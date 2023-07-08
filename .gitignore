@@ -1,0 +1,40 @@
+# Compiled output
+/dist
+/tmp
+/out-tsc
+/bazel-out
+
+# Node
+/chess-opening-explorer/node_modules
+npm-debug.log
+yarn-error.log
+
+# IDEs and editors
+.idea/
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# Visual Studio Code
+/chess-opening-explorer/.vscode/*
+!/chess-opening-explorer/.vscode/settings.json
+!/chess-opening-explorer/.vscode/tasks.json
+!/chess-opening-explorer/.vscode/launch.json
+!/chess-opening-explorer/.vscode/extensions.json
+.history/*
+
+# Miscellaneous
+/chess-opening-explorer/.angular/cache
+.sass-cache/
+/connect.lock
+/coverage
+/libpeerconnection.log
+testem.log
+/typings
+
+# System files
+.DS_Store
+Thumbs.db
