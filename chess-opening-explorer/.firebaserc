@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "chess-opening-explorer": {
+      "hosting": {
+        "chess-opening-explorer": [
+          "chess-opening-explorer"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "chess-opening-explorer"
+  }
+}
