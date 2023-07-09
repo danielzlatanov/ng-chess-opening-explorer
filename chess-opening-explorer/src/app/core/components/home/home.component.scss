@@ -1,0 +1,67 @@
+.home-container {
+  text-align: center;
+  padding: 40px;
+  background-image: url("/assets/images/bg1.jpg");
+  background-size: cover;
+  background-position: center;
+  color: white;
+  height: 100%;
+}
+
+.home-container h1 {
+  font-size: 36px;
+  color: white;
+  margin-bottom: 10px;
+}
+
+.home-container p {
+  font-size: 26px;
+  color: #5c5c5c;
+  margin-bottom: 30px;
+}
+
+.featured-openings {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.opening-card {
+  background-color: #f5f5f5;
+  padding: 20px;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.opening-card img {
+  max-width: 100%;
+  width: 240px;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+.opening-card h3 {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.opening-card p {
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.opening-card a {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #009688;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.opening-card a:hover {
+  background-color: #00796b;
+}
