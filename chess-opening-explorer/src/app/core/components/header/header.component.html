@@ -1,1 +1,24 @@
-<p>header works!</p>
+<header>
+  <nav>
+    <ul>
+      <li>
+        <a
+          routerLink="/"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          >Home</a
+        >
+      </li>
+      <li>
+        <a routerLink="/openings/catalog" routerLinkActive="active">Openings</a>
+      </li>
+      <li><a routerLink="/auth/login" routerLinkActive="active">Login</a></li>
+      <li>
+        <a routerLink="/auth/register" routerLinkActive="active">Register</a>
+      </li>
+      <li>
+        <a routerLink="/auth/profile" routerLinkActive="active">Profile</a>
+      </li>
+    </ul>
+  </nav>
+</header>
