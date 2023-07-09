@@ -1,24 +1,25 @@
-<header>
-  <nav>
-    <ul>
-      <li>
-        <a
-          routerLink="/"
-          routerLinkActive="active"
-          [routerLinkActiveOptions]="{ exact: true }"
-          >Home</a
-        >
-      </li>
-      <li>
-        <a routerLink="/openings/catalog" routerLinkActive="active">Openings</a>
-      </li>
-      <li><a routerLink="/auth/login" routerLinkActive="active">Login</a></li>
-      <li>
-        <a routerLink="/auth/register" routerLinkActive="active">Register</a>
-      </li>
-      <li>
-        <a routerLink="/auth/profile" routerLinkActive="active">Profile</a>
-      </li>
-    </ul>
+<mat-toolbar color="primary">
+  <span class="logo-container">
+    <a routerLink="/">
+      <img src="/assets/images/coe-logos/coe-logo_black.png" alt="coe-logo" />
+    </a>
+  </span>
+
+  <span class="spacer"></span>
+
+  <nav mat-tab-nav-bar>
+    <mat-nav-list class="nav-links">
+      <a mat-raised-button color="accent" routerLink="/"> Home </a>
+      <a mat-raised-button color="accent" routerLink="/openings/catalog">
+        Openings
+      </a>
+      <a mat-raised-button color="accent" routerLink="/auth/login">Login </a>
+      <a mat-raised-button color="accent" routerLink="/auth/register"
+        >Register
+      </a>
+      <a mat-raised-button color="accent" routerLink="/auth/profile"
+        >Profile
+      </a>
+    </mat-nav-list>
   </nav>
-</header>
+</mat-toolbar>
