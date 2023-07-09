@@ -8,7 +8,6 @@ import { RouterModule } from '@angular/router';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
 import { MatButtonModule } from '@angular/material/button';
-import { MatDividerModule } from '@angular/material/divider';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
@@ -24,7 +23,6 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     MatToolbarModule,
     MatListModule,
     MatButtonModule,
-    MatDividerModule,
     FontAwesomeModule
   ],
   exports: [
