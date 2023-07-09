@@ -1,0 +1,22 @@
+.mat-toolbar.footer-toolbar,
+.footer-content {
+  height: 64px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer-title {
+  font-weight: bold;
+  margin-right: 16px;
+}
+
+.social-icons {
+  display: flex;
+  font-size: 40px;
+  gap: 10px;
+}
+
+fa-icon {
+  color: white;
+}

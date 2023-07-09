@@ -9,6 +9,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { MatDividerModule } from '@angular/material/divider';
     MatListModule,
     MatButtonModule,
     MatDividerModule,
+    FontAwesomeModule
   ],
   exports: [
     HeaderComponent,
