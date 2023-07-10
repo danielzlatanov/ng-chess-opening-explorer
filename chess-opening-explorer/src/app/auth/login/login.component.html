@@ -6,11 +6,16 @@
   <form>
     <h3>Login Form</h3>
 
-    <label for="username">Email</label>
-    <input type="text" placeholder="Email address" id="username" />
+    <label for="email">Email</label>
+    <input type="text" placeholder="Email address" id="email" name="email" />
 
     <label for="password">Password</label>
-    <input type="password" placeholder="Password" id="password" />
+    <input
+      type="password"
+      placeholder="Password"
+      id="password"
+      name="password"
+    />
 
     <p id="registerMsg">
       Don't have an account? <a routerLink="/auth/register">Register now.</a>

@@ -1,0 +1,45 @@
+.opening-details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px;
+  background: rgb(203 199 196);
+  height: 100%;
+  padding-bottom: 0;
+}
+
+.opening-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.opening-header h2 {
+  font-size: 26px;
+  font-weight: bold;
+}
+
+.opening-header p {
+  font-size: 20px;
+  color: #888;
+}
+
+.opening-actions {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.opening-actions button {
+  padding: 16px 24px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  font-size: 20px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.opening-actions button:hover {
+  background-color: #0056b3;
+}

@@ -1,1 +1,22 @@
-<p>opening-details works!</p>
+<div class="opening-details">
+  <div class="opening-info">
+    <div class="opening-header">
+      <h2>Opening Title</h2>
+      <p>Opening Description</p>
+    </div>
+  </div>
+  <div class="chessboard-container">
+    <ngx-chess-board [size]="600"></ngx-chess-board>
+  </div>
+  <div class="opening-actions">
+    <button class="btn-reset">Reset Board</button>
+    <button class="btn-undo">Undo Move</button>
+    <button class="btn-reverse">Flip Board</button>
+    <button class="btn-prev">
+      <fa-icon [icon]="faArrowLeft"></fa-icon> Previous
+    </button>
+    <button class="btn-next">
+      Next <fa-icon [icon]="faArrowRight"></fa-icon>
+    </button>
+  </div>
+</div>
