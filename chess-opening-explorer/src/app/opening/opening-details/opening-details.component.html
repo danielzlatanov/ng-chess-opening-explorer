@@ -5,13 +5,22 @@
       <p>Opening Description</p>
     </div>
   </div>
+
   <div class="chessboard-container">
-    <ngx-chess-board [size]="600"></ngx-chess-board>
+    <ngx-chess-board
+      #board
+      [size]="600"
+      [lightTileColor]="'#ffffff'"
+      [darkTileColor]="'#4da1b0'"
+      [sourcePointColor]="'#62a138'"
+      [destinationPointColor]="'#62a138'"
+    ></ngx-chess-board>
   </div>
+
   <div class="opening-actions">
-    <button class="btn-reset">Reset Board</button>
-    <button class="btn-undo">Undo Move</button>
-    <button class="btn-reverse">Flip Board</button>
+    <button class="btn-reset" (click)="resetBoardHandler()">Reset Board</button>
+    <button class="btn-undo" (click)="undoMoveHandler()">Undo Move</button>
+    <button class="btn-reverse" (click)="flipBoardHandler()">Flip Board</button>
     <button class="btn-prev">
       <fa-icon [icon]="faArrowLeft"></fa-icon> Previous
     </button>
