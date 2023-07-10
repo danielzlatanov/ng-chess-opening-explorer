@@ -3,6 +3,7 @@ import {
   faChessKnight,
   faStar,
   faUser,
+  faChessBoard,
 } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -13,5 +14,6 @@ import {
 export class ProfileComponent {
   faUser = faUser;
   faChessKnight = faChessKnight;
+  faChessBoard = faChessBoard;
   faStar = faStar;
 }
