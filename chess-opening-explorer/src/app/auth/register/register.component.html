@@ -1,1 +1,34 @@
-<p>register works!</p>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="background">
+      <div class="shape"></div>
+      <div class="shape"></div>
+    </div>
+    <form>
+      <h3>Register Form</h3>
+
+      <label for="username">Email</label>
+      <input type="text" placeholder="Email address" id="username" />
+
+      <label for="password">Password</label>
+      <input type="password" placeholder="Password" id="password" />
+
+      <label for="password">Confirm</label>
+      <input type="password" placeholder="Confirm password" id="repass" />
+
+      <p id="loginMsg">
+        Already have an account?
+        <a routerLink="/auth/login">Login now.</a>
+      </p>
+      <button>Sign up</button>
+    </form>
+  </body>
+</html>

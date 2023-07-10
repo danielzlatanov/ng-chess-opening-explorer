@@ -14,9 +14,5 @@ export class AppComponent implements OnInit {
     return this.db.list('/').valueChanges();
   }
 
-  ngOnInit() {
-    this.getAllData().subscribe((data: any) => {
-      console.log(data);
-    });
-  }
+  ngOnInit() {}
 }
