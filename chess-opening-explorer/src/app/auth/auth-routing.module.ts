@@ -23,6 +23,9 @@ const routes: Routes = [
   {
     path: 'logout',
     component: LogoutComponent,
+    data: {
+      title: 'Logging You Out',
+    },
   },
   {
     path: 'profile',

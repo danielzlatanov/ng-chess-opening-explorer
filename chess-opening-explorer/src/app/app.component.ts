@@ -23,8 +23,8 @@ export class AppComponent implements OnInit {
         map((e) => e.snapshot.data?.['title']),
         filter((x) => Boolean(x))
       )
-      .subscribe((pageTitle) => {
-        this.pageTitle.setTitle(pageTitle);
+      .subscribe((newTitle) => {
+        this.pageTitle.setTitle(newTitle);
       });
   }
 

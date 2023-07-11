@@ -6,5 +6,4 @@ import { Component } from '@angular/core';
   styleUrls: ['./opening-create.component.scss'],
 })
 export class OpeningCreateComponent {
-  levels: string[] = ['Easy', 'Medium', 'Hard'];
 }

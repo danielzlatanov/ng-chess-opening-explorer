@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { OpeningCatalogComponent } from './opening-catalog/opening-catalog.component';
 import { OpeningDetailsComponent } from './opening-details/opening-details.component';
 import { OpeningCreateComponent } from './opening-create/opening-create.component';
+import { OpeningEditComponent } from './opening-edit/opening-edit.component';
 
 const routes: Routes = [
   {
@@ -17,6 +18,13 @@ const routes: Routes = [
     component: OpeningCreateComponent,
     data: {
       title: 'Create Opening',
+    },
+  },
+  {
+    path: 'edit/:id',
+    component: OpeningEditComponent,
+    data: {
+      title: 'Update Opening',
     },
   },
   {

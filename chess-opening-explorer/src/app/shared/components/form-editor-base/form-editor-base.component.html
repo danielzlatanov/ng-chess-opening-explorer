@@ -1,0 +1,52 @@
+<body>
+  <div id="title">
+    <h2>Create Opening</h2>
+  </div>
+  <div class="create-opening-container">
+    <form>
+      <div class="form-group">
+        <label for="opening-name">Opening name</label>
+        <input type="text" id="opening-name" name="opening-name" />
+      </div>
+
+      <div class="form-group">
+        <label for="opening-description"
+          >Describe the strategy behind your opening</label
+        >
+        <textarea
+          id="opening-description"
+          name="opening-description"
+        ></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="fen-input">Forsyth-Edwards notation (FEN)</label>
+        <input type="text" id="fen-input" name="fen-input" />
+      </div>
+
+      <div class="form-group">
+        <mat-form-field>
+          <mat-label>Difficulty Level</mat-label>
+          <mat-select>
+            <mat-option *ngFor="let level of levels" [value]="level">
+              {{ level }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <button type="submit" class="submit-button">Create</button>
+    </form>
+
+    <div class="chess-board-container">
+      <ngx-chess-board
+        #board
+        [size]="500"
+        [lightTileColor]="'#ffffff'"
+        [darkTileColor]="'#4da1b0'"
+        [sourcePointColor]="'#62a138'"
+        [destinationPointColor]="'#62a138'"
+      ></ngx-chess-board>
+    </div>
+  </div>
+</body>
