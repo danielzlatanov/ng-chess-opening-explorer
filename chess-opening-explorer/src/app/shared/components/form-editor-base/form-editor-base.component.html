@@ -52,14 +52,7 @@
     </form>
 
     <div class="chess-board-container">
-      <ngx-chess-board
-        #board
-        [size]="500"
-        [lightTileColor]="'#ffffff'"
-        [darkTileColor]="'#4da1b0'"
-        [sourcePointColor]="'#62a138'"
-        [destinationPointColor]="'#62a138'"
-      ></ngx-chess-board>
+      <app-chessboard [size]="500"></app-chessboard>
     </div>
   </div>
 </body>
