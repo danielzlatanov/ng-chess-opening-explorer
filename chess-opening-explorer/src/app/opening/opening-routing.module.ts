@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { OpeningCatalogComponent } from './opening-catalog/opening-catalog.component';
 import { OpeningDetailsComponent } from './opening-details/opening-details.component';
+import { OpeningCreateComponent } from './opening-create/opening-create.component';
 
 const routes: Routes = [
   {
@@ -9,6 +10,13 @@ const routes: Routes = [
     component: OpeningCatalogComponent,
     data: {
       title: 'Browse Openings',
+    },
+  },
+  {
+    path: 'create',
+    component: OpeningCreateComponent,
+    data: {
+      title: 'Create Opening',
     },
   },
   {

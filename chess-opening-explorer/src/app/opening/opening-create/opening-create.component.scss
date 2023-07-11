@@ -1,0 +1,61 @@
+body {
+  background: rgb(203 199 196);
+  height: 100%;
+}
+
+.create-opening-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 70%;
+  margin: 0 auto;
+}
+
+#title h2 {
+  text-align: center;
+  margin: 0 auto;
+  margin-bottom: 80px;
+  padding-top: 60px;
+  font-size: 26px;
+}
+
+form {
+  flex: 1;
+  margin-right: 20px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+input[type="text"],
+textarea {
+  width: 80%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.submit-button {
+  padding: 10px 20px;
+  background-color: #0164ce;
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.submit-button:hover {
+  background-color: #0056b3;
+}
+
+.chess-board-container {
+  margin-left: 20px;
+}
