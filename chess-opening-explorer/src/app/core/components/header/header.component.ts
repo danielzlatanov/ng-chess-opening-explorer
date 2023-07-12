@@ -10,6 +10,7 @@ import { LoaderService } from 'src/app/shared/loader/loader.service';
 })
 export class HeaderComponent implements OnInit {
   user: User | null = null;
+  loading = true;
 
   constructor(
     private authService: AuthService,
@@ -18,9 +19,11 @@ export class HeaderComponent implements OnInit {
     this.authService.user$.subscribe((user) => {
       this.user = user;
       this.loaderService.hideLoader();
+      this.loading = false;
     });
   }
   ngOnInit(): void {
     this.loaderService.showLoader();
+    this.loading = true;
   }
 }

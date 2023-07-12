@@ -10,6 +10,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatButtonModule } from '@angular/material/button';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MatDialogModule } from '@angular/material/dialog';
+import { SharedModule } from '../shared/shared.module';
 @NgModule({
   declarations: [
     HeaderComponent,
@@ -19,6 +20,7 @@ import { MatDialogModule } from '@angular/material/dialog';
   ],
   imports: [
     CommonModule,
+    SharedModule,
     RouterModule,
     MatToolbarModule,
     MatListModule,
