@@ -30,24 +30,9 @@ export class AuthService {
   async login(email: string, password: string): Promise<void> {
     try {
       await this.afAuth.signInWithEmailAndPassword(email, password);
-    } catch (error) {
+    } catch (error: any) {
+      alert(error.message);
       console.error(error);
     }
-  }
-
-  async logout(): Promise<void> {
-    try {
-      await this.afAuth.signOut();
-    } catch (error) {
-      console.error(error);
-    }
-  }
-
-  isAuthenticated(): boolean {
-    return Boolean(this.afAuth.currentUser);
-  }
-
-  async getUser(): Promise<any> {
-    return await this.afAuth.currentUser;
   }
 }
