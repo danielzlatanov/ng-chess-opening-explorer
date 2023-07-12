@@ -1,15 +1,26 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { User } from 'firebase/auth';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(private afAuth: AngularFireAuth) {}
+  user: User | null = null;
+
+  constructor(private afAuth: AngularFireAuth) {
+    this.afAuth.authState.subscribe((user) => {
+      (this.user as any) = user;
+    });
+  }
 
   async register(email: string, password: string): Promise<void> {
     try {
-      await this.afAuth.createUserWithEmailAndPassword(email, password);
+      const userCredential = await this.afAuth.createUserWithEmailAndPassword(
+        email,
+        password
+      );
+      (this.user as any) = userCredential.user;
     } catch (err: any) {
       if (err.code === 'auth/weak-password') {
         return alert(
@@ -29,10 +40,31 @@ export class AuthService {
 
   async login(email: string, password: string): Promise<void> {
     try {
-      await this.afAuth.signInWithEmailAndPassword(email, password);
+      const userCredential = await this.afAuth.signInWithEmailAndPassword(
+        email,
+        password
+      );
+      (this.user as any) = userCredential.user;
     } catch (error: any) {
       alert(error.message);
       console.error(error);
     }
+  }
+
+  async logout(): Promise<void> {
+    try {
+      await this.afAuth.signOut();
+      this.user = null;
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  isAuthenticated(): boolean {
+    return Boolean(this.afAuth.currentUser);
+  }
+
+  async getUser(): Promise<any> {
+    return await this.afAuth.currentUser;
   }
 }

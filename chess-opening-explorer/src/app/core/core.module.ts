@@ -23,7 +23,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     MatToolbarModule,
     MatListModule,
     MatButtonModule,
-    FontAwesomeModule
+    FontAwesomeModule,
   ],
   exports: [
     HeaderComponent,

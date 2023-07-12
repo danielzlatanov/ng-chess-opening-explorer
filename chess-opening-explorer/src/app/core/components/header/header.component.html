@@ -6,23 +6,31 @@
   </span>
 
   <span class="spacer"></span>
-
   <nav mat-tab-nav-bar>
     <mat-nav-list class="nav-links">
       <a mat-raised-button color="accent" routerLink="/"> Home </a>
       <a mat-raised-button color="accent" routerLink="/openings/catalog">
         Openings
       </a>
-      <a mat-raised-button color="accent" routerLink="/openings/create"
-        >Create
-      </a>
-      <a mat-raised-button color="accent" routerLink="/auth/profile"
-        >Profile
-      </a>
-      <a mat-raised-button color="accent" routerLink="/auth/login">Login </a>
-      <a mat-raised-button color="accent" routerLink="/auth/register"
-        >Register
-      </a>
+
+      <ng-container *ngIf="user">
+        <a mat-raised-button color="accent" routerLink="/openings/create"
+          >Create
+        </a>
+        <a mat-raised-button color="accent" routerLink="/auth/profile"
+          >Profile
+        </a>
+        <a mat-raised-button color="accent" routerLink="/auth/logout"
+          >Logout
+        </a>
+      </ng-container>
+
+      <ng-container *ngIf="user == null">
+        <a mat-raised-button color="accent" routerLink="/auth/login">Login </a>
+        <a mat-raised-button color="accent" routerLink="/auth/register"
+          >Register
+        </a>
+      </ng-container>
     </mat-nav-list>
   </nav>
 </mat-toolbar>
