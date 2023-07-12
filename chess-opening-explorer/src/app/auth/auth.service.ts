@@ -1,16 +1,19 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { User } from 'firebase/auth';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  user: User | null = null;
+  private userSubject: BehaviorSubject<User | null> =
+    new BehaviorSubject<User | null>(null);
+  user$ = this.userSubject.asObservable();
 
   constructor(private afAuth: AngularFireAuth) {
     this.afAuth.authState.subscribe((user) => {
-      (this.user as any) = user;
+      this.userSubject.next(user as any);
     });
   }
 
@@ -20,7 +23,7 @@ export class AuthService {
         email,
         password
       );
-      (this.user as any) = userCredential.user;
+      this.userSubject.next(userCredential.user as any);
     } catch (err: any) {
       if (err.code === 'auth/weak-password') {
         return alert(
@@ -44,7 +47,7 @@ export class AuthService {
         email,
         password
       );
-      (this.user as any) = userCredential.user;
+      this.userSubject.next(userCredential.user as any);
     } catch (error: any) {
       alert(error.message);
       console.error(error);
@@ -54,17 +57,17 @@ export class AuthService {
   async logout(): Promise<void> {
     try {
       await this.afAuth.signOut();
-      this.user = null;
+      this.userSubject.next(null);
     } catch (error) {
       console.error(error);
     }
   }
 
-  isAuthenticated(): boolean {
-    return Boolean(this.afAuth.currentUser);
-  }
+  // isAuthenticated(): boolean {
+  //   return Boolean(this.afAuth.currentUser);
+  // }
 
-  async getUser(): Promise<any> {
-    return await this.afAuth.currentUser;
-  }
+  // async getUser(): Promise<any> {
+  //   return await this.afAuth.currentUser;
+  // }
 }

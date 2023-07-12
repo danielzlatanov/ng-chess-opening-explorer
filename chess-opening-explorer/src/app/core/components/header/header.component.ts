@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { User } from 'firebase/auth';
 import { AuthService } from 'src/app/auth/auth.service';
 
 @Component({
@@ -7,9 +8,12 @@ import { AuthService } from 'src/app/auth/auth.service';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent {
-  constructor(private authService: AuthService) {}
+  user: User | null = null;
 
-  get user() {
-    return this.authService.user;
+  constructor(private authService: AuthService) {
+    this.authService.user$.subscribe((user) => {
+      this.user = user;
+      console.log('Final user value', this.user);
+    });
   }
 }
