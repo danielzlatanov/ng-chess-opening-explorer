@@ -9,7 +9,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
 import { MatButtonModule } from '@angular/material/button';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-
+import { MatDialogModule } from '@angular/material/dialog';
 @NgModule({
   declarations: [
     HeaderComponent,
@@ -24,6 +24,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     MatListModule,
     MatButtonModule,
     FontAwesomeModule,
+    MatDialogModule,
   ],
   exports: [
     HeaderComponent,
