@@ -4,4 +4,5 @@ export interface IOpening {
   description: string;
   fen: string;
   level: string;
+  ownerId: string;
 }
