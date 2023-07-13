@@ -1,5 +1,4 @@
-import { AngularFireDatabase } from '@angular/fire/compat/database';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivationStart, Router } from '@angular/router';
 import { filter, map } from 'rxjs';
@@ -9,14 +8,10 @@ import { filter, map } from 'rxjs';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   title = 'chess-opening-explorer';
 
-  constructor(
-    private db: AngularFireDatabase,
-    private router: Router,
-    private pageTitle: Title
-  ) {
+  constructor(private router: Router, private pageTitle: Title) {
     this.router.events
       .pipe(
         filter((e): e is ActivationStart => e instanceof ActivationStart),
@@ -27,10 +22,4 @@ export class AppComponent implements OnInit {
         this.pageTitle.setTitle(newTitle);
       });
   }
-
-  // getAllData() {
-  //   return this.db.list('/').valueChanges();
-  // }
-
-  ngOnInit() {}
 }

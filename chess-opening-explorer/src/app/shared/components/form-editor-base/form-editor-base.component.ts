@@ -1,4 +1,5 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { levels } from 'src/app/constants';
 
 @Component({
@@ -9,4 +10,9 @@ import { levels } from 'src/app/constants';
 export class FormEditorBaseComponent {
   levels = levels;
   @Input() mode!: string;
+  @Output() formSubmitted: EventEmitter<any> = new EventEmitter<any>();
+
+  handleSubmit(form: NgForm) {
+    this.formSubmitted.emit(form);
+  }
 }

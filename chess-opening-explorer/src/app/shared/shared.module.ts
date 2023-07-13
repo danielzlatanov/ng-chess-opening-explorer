@@ -7,6 +7,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { NgxChessBoardModule } from 'ngx-chess-board';
 import { LoaderComponent } from './loader/loader/loader.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [FormEditorBaseComponent, ChessboardComponent, LoaderComponent],
@@ -16,6 +17,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     MatFormFieldModule,
     NgxChessBoardModule,
     MatProgressSpinnerModule,
+    FormsModule
   ],
   exports: [FormEditorBaseComponent, ChessboardComponent, LoaderComponent],
 })

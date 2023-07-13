@@ -9,10 +9,10 @@
         <img src="/assets/images/coe-logos/coe-logo_black.png" alt="coe-logo" />
       </a>
     </span>
-
     <span class="spacer"></span>
     <nav mat-tab-nav-bar>
       <mat-nav-list class="nav-links">
+        <p *ngIf="user">Hi, {{ user.email!.split("@")[0] }}</p>
         <a mat-raised-button color="accent" routerLink="/"> Home </a>
         <a mat-raised-button color="accent" routerLink="/openings/catalog">
           Openings

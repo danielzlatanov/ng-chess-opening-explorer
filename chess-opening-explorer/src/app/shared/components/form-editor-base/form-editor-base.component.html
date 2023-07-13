@@ -5,13 +5,19 @@
   </div>
 
   <div class="create-opening-container">
-    <form>
+    <form #editorBaseForm="ngForm" (ngSubmit)="handleSubmit(editorBaseForm)">
       <div class="form-group">
         <label for="opening-name" *ngIf="mode == 'create'">Opening name</label>
         <label for="opening-name" *ngIf="mode == 'edit'"
           >New opening name</label
         >
-        <input type="text" id="opening-name" name="opening-name" />
+        <input
+          type="text"
+          id="opening-name"
+          name="opening-name"
+          ngModel
+          #nameInput="ngModel"
+        />
       </div>
 
       <div class="form-group">
@@ -24,18 +30,30 @@
         <textarea
           id="opening-description"
           name="opening-description"
+          ngModel
+          #descriptionInput="ngModel"
         ></textarea>
       </div>
 
       <div class="form-group">
         <label for="fen-input">Forsyth-Edwards notation (FEN)</label>
-        <input type="text" id="fen-input" name="fen-input" />
+        <input
+          type="text"
+          id="fen-input"
+          name="fen-input"
+          ngModel
+          #fenInput="ngModel"
+        />
       </div>
 
       <div class="form-group">
         <mat-form-field>
           <mat-label>Difficulty Level</mat-label>
-          <mat-select>
+          <mat-select
+            name="difficulty-level"
+            ngModel
+            #difficultyInput="ngModel"
+          >
             <mat-option *ngFor="let level of levels" [value]="level">
               {{ level }}
             </mat-option>

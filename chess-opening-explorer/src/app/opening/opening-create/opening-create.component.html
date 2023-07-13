@@ -1,1 +1,4 @@
-<app-form-editor-base [mode]="'create'"></app-form-editor-base>
+<app-form-editor-base
+  [mode]="'create'"
+  (formSubmitted)="createOpening($event)"
+></app-form-editor-base>
