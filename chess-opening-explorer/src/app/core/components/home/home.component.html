@@ -3,24 +3,17 @@
   <p>Explore and learn various chess openings</p>
 
   <h2>Featured Openings</h2>
-  <div class="featured-openings">
-    <div class="opening-card">
-      <img src="/assets/images/1.jpg" alt="Opening 1 IMG" />
-      <h3>Opening 1</h3>
-      <p>Description of Opening 1</p>
-      <a routerLink="/openings/details/1">Learn More</a>
-    </div>
-    <div class="opening-card">
-      <img src="/assets/images/1.jpg" alt="Opening 2 IMG" />
-      <h3>Opening 2</h3>
-      <p>Description of Opening 2</p>
-      <a routerLink="/openings/details/2">Learn More</a>
-    </div>
-    <div class="opening-card">
-      <img src="/assets/images/1.jpg" alt="Opening 3 IMG" />
-      <h3>Opening 3</h3>
-      <p>Description of Opening 3</p>
-      <a routerLink="/openings/details/3">Learn More</a>
+  <div class="featured-openings" *ngIf="lastThreeOpenings">
+    <div
+      class="opening-card"
+      *ngFor="let opening of lastThreeOpenings; let i = index"
+    >
+      <!-- todo img logic -->
+      <img src="/assets/images/openings/1.png" alt="Opening {{ i + 1 }} IMG" />
+
+      <h3>{{ opening.name }}</h3>
+      <p>{{ opening.description }}</p>
+      <a routerLink="/openings/details/{{ opening.id }}">Learn More</a>
     </div>
   </div>
 </div>
