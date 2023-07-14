@@ -1,8 +1,14 @@
-<div class="opening-details">
+<div class="opening-details" *ngIf="opening">
   <div class="opening-info">
     <div class="opening-header">
-      <h2>Opening Title</h2>
-      <p>Opening Description</p>
+      <h2>{{ opening.name }}</h2>
+
+      <!-- todo owner details -->
+      <!-- <p>Owned by: {{ opening.ownerId }}</p> -->
+      
+      <p>Difficulty: {{ opening.level }}</p>
+      <p>FEN: {{ opening.fen }}</p>
+      <p id="description">{{ opening.description }}</p>
     </div>
   </div>
 
