@@ -8,8 +8,7 @@
       class="opening-card"
       *ngFor="let opening of lastThreeOpenings; let i = index"
     >
-      <!-- todo img logic -->
-      <img src="/assets/images/openings/1.png" alt="Opening {{ i + 1 }} IMG" />
+      <img [src]="getRandomChessPiece()" alt="Opening {{ i + 1 }} IMG" />
 
       <h3>{{ opening.name }}</h3>
       <p>{{ opening.description }}</p>

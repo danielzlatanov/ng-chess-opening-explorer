@@ -4,7 +4,6 @@ import {
   AngularFireList,
 } from '@angular/fire/compat/database';
 import { IOpening } from '../shared/interfaces/opening';
-import { Observable, map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',

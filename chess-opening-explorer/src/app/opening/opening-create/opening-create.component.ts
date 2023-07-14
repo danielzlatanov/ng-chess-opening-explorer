@@ -44,11 +44,13 @@ export class OpeningCreateComponent implements OnInit {
     this.openingService
       .createOpening(opening)
       .then(() => {
-        console.log('Opening created');
         this.router.navigate(['/openings/catalog']);
       })
       .catch((err) => {
-        console.log('An error occurred while creating opening: ', err.message);
+        console.error(
+          'An error occurred while creating opening: ',
+          err.message
+        );
       });
   }
 }
