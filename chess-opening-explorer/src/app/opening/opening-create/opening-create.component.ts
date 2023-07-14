@@ -12,6 +12,7 @@ import { IOpening } from 'src/app/shared/interfaces/opening';
 })
 export class OpeningCreateComponent implements OnInit {
   userUid!: string; //!opening create cmp will be guarded later on
+  userEmail!: string;
 
   constructor(
     private openingService: OpeningService,
@@ -23,6 +24,7 @@ export class OpeningCreateComponent implements OnInit {
     this.authService.user$.subscribe((user) => {
       if (user) {
         this.userUid = user.uid;
+        this.userEmail = user.email as string;
       }
     });
   }
@@ -39,6 +41,7 @@ export class OpeningCreateComponent implements OnInit {
       fen,
       level,
       ownerId: this.userUid,
+      ownerEmail: this.userEmail,
     };
 
     this.openingService
