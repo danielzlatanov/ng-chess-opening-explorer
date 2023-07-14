@@ -30,7 +30,7 @@ export class HomeComponent implements OnInit {
       })
       .catch((err) => {
         this.lastThreeOpenings = null;
-        console.error('Error fetching last three openings:', err.message);
+        console.error('Error fetching last three openings: ', err.message);
       });
   }
 

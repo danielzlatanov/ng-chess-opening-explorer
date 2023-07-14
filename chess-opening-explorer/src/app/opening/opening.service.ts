@@ -15,11 +15,13 @@ export class OpeningService {
     this.openingsRef = this.afDatabase.list<IOpening>('openings');
   }
 
-  getLastThreeOpenings(): Promise<IOpening[]> {
+  private fetchOpenings(limitQuery?: boolean): Promise<IOpening[]> {
+    let modifiedRef = limitQuery
+      ? this.openingsRef.query.orderByKey().limitToLast(3)
+      : this.openingsRef.query;
+
     return new Promise<IOpening[]>((resolve, reject) => {
-      this.openingsRef.query
-        .orderByKey()
-        .limitToLast(3)
+      modifiedRef
         .once('value')
         .then((snapshot) => {
           const openings: IOpening[] = [];
@@ -34,6 +36,14 @@ export class OpeningService {
         })
         .catch((error) => reject(error));
     });
+  }
+
+  async getAllOpenings(): Promise<IOpening[]> {
+    return this.fetchOpenings();
+  }
+
+  getLastThreeOpenings(): Promise<IOpening[]> {
+    return this.fetchOpenings(true);
   }
 
   createOpening(opening: IOpening): Promise<void> {
