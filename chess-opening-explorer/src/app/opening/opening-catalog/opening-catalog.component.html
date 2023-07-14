@@ -7,173 +7,22 @@
     </div>
   </div>
 
-  <div class="openings-grid">
-    <div class="opening-card">
+  <div class="openings-grid" *ngIf="openings">
+    <div class="opening-card" *ngFor="let opening of openings; let i = index">
       <div class="opening-image">
-        <img src="/assets/images/1.jpg" alt="Opening 2" />
+        <!-- *img todo -->
+        <img src="/assets/images/1.jpg" alt="Opening {{ i + 1 }}" />
       </div>
+
       <div class="opening-details">
-        <h2 class="opening-title">Opening 1</h2>
+        <h2 class="opening-title">{{ opening.name }}</h2>
         <p class="opening-description">
-          Description of Opening 1, Description of Opening 1
+          {{ opening.description }}
         </p>
         <a
           mat-stroked-button
           class="view-details"
-          routerLink="/openings/details/1"
-          >Learn</a
-        >
-      </div>
-    </div>
-    <div class="opening-card">
-      <div class="opening-image">
-        <img src="/assets/images/1.jpg" alt="Opening 2" />
-      </div>
-      <div class="opening-details">
-        <h2 class="opening-title">Opening 1</h2>
-        <p class="opening-description">
-          Description of Opening 1, Description of Opening 1
-        </p>
-        <a
-          mat-stroked-button
-          class="view-details"
-          routerLink="/openings/details/1"
-          >Learn</a
-        >
-      </div>
-    </div>
-    <div class="opening-card">
-      <div class="opening-image">
-        <img src="/assets/images/1.jpg" alt="Opening 2" />
-      </div>
-      <div class="opening-details">
-        <h2 class="opening-title">Opening 1</h2>
-        <p class="opening-description">
-          Description of Opening 1, Description of Opening 1
-        </p>
-        <a
-          mat-stroked-button
-          class="view-details"
-          routerLink="/openings/details/1"
-          >Learn</a
-        >
-      </div>
-    </div>
-    <div class="opening-card">
-      <div class="opening-image">
-        <img src="/assets/images/1.jpg" alt="Opening 2" />
-      </div>
-      <div class="opening-details">
-        <h2 class="opening-title">Opening 1</h2>
-        <p class="opening-description">
-          Description of Opening 1, Description of Opening 1
-        </p>
-        <a
-          mat-stroked-button
-          class="view-details"
-          routerLink="/openings/details/1"
-          >Learn</a
-        >
-      </div>
-    </div>
-    <div class="opening-card">
-      <div class="opening-image">
-        <img src="/assets/images/1.jpg" alt="Opening 2" />
-      </div>
-      <div class="opening-details">
-        <h2 class="opening-title">Opening 1</h2>
-        <p class="opening-description">
-          Description of Opening 1, Description of Opening 1
-        </p>
-        <a
-          mat-stroked-button
-          class="view-details"
-          routerLink="/openings/details/1"
-          >Learn</a
-        >
-      </div>
-    </div>
-    <div class="opening-card">
-      <div class="opening-image">
-        <img src="/assets/images/1.jpg" alt="Opening 2" />
-      </div>
-      <div class="opening-details">
-        <h2 class="opening-title">Opening 1</h2>
-        <p class="opening-description">
-          Description of Opening 1, Description of Opening 1
-        </p>
-        <a
-          mat-stroked-button
-          class="view-details"
-          routerLink="/openings/details/1"
-          >Learn</a
-        >
-      </div>
-    </div>
-    <div class="opening-card">
-      <div class="opening-image">
-        <img src="/assets/images/1.jpg" alt="Opening 2" />
-      </div>
-      <div class="opening-details">
-        <h2 class="opening-title">Opening 1</h2>
-        <p class="opening-description">
-          Description of Opening 1, Description of Opening 1
-        </p>
-        <a
-          mat-stroked-button
-          class="view-details"
-          routerLink="/openings/details/1"
-          >Learn</a
-        >
-      </div>
-    </div>
-    <div class="opening-card">
-      <div class="opening-image">
-        <img src="/assets/images/1.jpg" alt="Opening 2" />
-      </div>
-      <div class="opening-details">
-        <h2 class="opening-title">Opening 1</h2>
-        <p class="opening-description">
-          Description of Opening 1, Description of Opening 1
-        </p>
-        <a
-          mat-stroked-button
-          class="view-details"
-          routerLink="/openings/details/1"
-          >Learn</a
-        >
-      </div>
-    </div>
-    <div class="opening-card">
-      <div class="opening-image">
-        <img src="/assets/images/1.jpg" alt="Opening 2" />
-      </div>
-      <div class="opening-details">
-        <h2 class="opening-title">Opening 1</h2>
-        <p class="opening-description">
-          Description of Opening 1, Description of Opening 1
-        </p>
-        <a
-          mat-stroked-button
-          class="view-details"
-          routerLink="/openings/details/1"
-          >Learn</a
-        >
-      </div>
-    </div>
-    <div class="opening-card">
-      <div class="opening-image">
-        <img src="/assets/images/1.jpg" alt="Opening 2" />
-      </div>
-      <div class="opening-details">
-        <h2 class="opening-title">Opening 1</h2>
-        <p class="opening-description">
-          Description of Opening 1, Description of Opening 1
-        </p>
-        <a
-          mat-stroked-button
-          class="view-details"
-          routerLink="/openings/details/1"
+          routerLink="/openings/details/{{ opening.id }}"
           >Learn</a
         >
       </div>
