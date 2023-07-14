@@ -10,8 +10,7 @@
   <div class="openings-grid" *ngIf="openings">
     <div class="opening-card" *ngFor="let opening of openings; let i = index">
       <div class="opening-image">
-        <!-- *img todo -->
-        <img src="/assets/images/1.jpg" alt="Opening {{ i + 1 }}" />
+        <img [src]="getRandomChessPieceImg()" alt="Opening {{ i + 1 }}" />
       </div>
 
       <div class="opening-details">

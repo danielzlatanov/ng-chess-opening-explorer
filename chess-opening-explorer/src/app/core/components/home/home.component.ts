@@ -5,6 +5,7 @@ import {
   OnInit,
 } from '@angular/core';
 import { OpeningService } from 'src/app/opening/opening.service';
+import { getRandomChessPiece } from 'src/app/shared/helpers/getRandomChessPieceImg';
 import { IOpening } from 'src/app/shared/interfaces/opening';
 
 @Component({
@@ -15,6 +16,7 @@ import { IOpening } from 'src/app/shared/interfaces/opening';
 })
 export class HomeComponent implements OnInit {
   lastThreeOpenings: IOpening[] | null = [];
+  getRandomChessPieceImg: Function = getRandomChessPiece;
 
   constructor(
     private openingService: OpeningService,
@@ -32,26 +34,5 @@ export class HomeComponent implements OnInit {
         this.lastThreeOpenings = null;
         console.error('Error fetching last three openings: ', err.message);
       });
-  }
-
-  getRandomChessPiece(): string {
-    const chessPieces = [
-      'bb.png',
-      'bw.png',
-      'kb.png',
-      'kw.png',
-      'nb.png',
-      'nw.png',
-      'pb.png',
-      'pw.png',
-      'qb.png',
-      'qw.png',
-      'rb.png',
-      'rw.png',
-    ];
-
-    const randomIndex = Math.floor(Math.random() * chessPieces.length);
-    const imgPath = `/assets/images/chess-pieces/${chessPieces[randomIndex]}`;
-    return imgPath;
   }
 }
