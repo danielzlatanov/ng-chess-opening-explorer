@@ -40,7 +40,8 @@
 }
 
 .search-bar input {
-  width: 300px;
+  width: 400px;
+  font-size: 20px;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -49,6 +50,7 @@
 .search-bar button {
   width: 100px;
   padding: 10px;
+  font-size: 20px;
   margin-left: 8px;
   background-color: #009688;
   color: #fff;
@@ -70,6 +72,7 @@
   width: 250px;
   height: 300px;
   border-radius: 8px;
+  overflow: hidden;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   background-color: rgba(255, 255, 255, 0.5);
 }
