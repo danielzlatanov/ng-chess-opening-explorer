@@ -3,12 +3,13 @@
     <div class="opening-header">
       <h2>{{ opening.name }}</h2>
 
-      <!-- todo owner details -->
-      <!-- <p>Owned by: {{ opening.ownerId }}</p> -->
-      
+      <p *ngIf="opening.ownerEmail">
+        Owned by: <strong>{{ opening.ownerEmail.split("@")[0] }}</strong>
+      </p>
+
       <p>Difficulty: {{ opening.level }}</p>
       <p>FEN: {{ opening.fen }}</p>
-      <p id="description">{{ opening.description }}</p>
+      <p>{{ opening.description }}</p>
     </div>
   </div>
 
