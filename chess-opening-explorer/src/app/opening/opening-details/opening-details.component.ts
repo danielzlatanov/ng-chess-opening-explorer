@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { OpeningService } from '../opening.service';
 import { ActivatedRoute } from '@angular/router';
 import { IOpening } from 'src/app/shared/interfaces/opening';
+import { ChessboardComponent } from 'src/app/shared/components/chessboard/chessboard.component';
 
 @Component({
   selector: 'app-opening-details',
@@ -14,6 +15,8 @@ export class OpeningDetailsComponent implements OnInit {
   faArrowRight = faArrowRight;
   openingId!: string;
   opening: IOpening | null = null;
+
+  @ViewChild('board', { static: false }) board!: ChessboardComponent;
 
   constructor(
     private openingService: OpeningService,
