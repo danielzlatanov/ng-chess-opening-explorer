@@ -1,37 +1,75 @@
 <div class="opening-details" *ngIf="opening">
-  <div class="opening-info">
-    <div class="opening-header">
-      <h2>{{ opening.name }}</h2>
+  <div class="opening-header">
+    <h2>{{ opening.name }}</h2>
+  </div>
 
-      <p *ngIf="opening.ownerEmail">
-        Owned by: <strong>{{ opening.ownerEmail.split("@")[0] }}</strong>
-      </p>
-
-      <p>Difficulty: {{ opening.level }}</p>
-      <p>FEN: {{ opening.fen }}</p>
-      <p>{{ opening.description }}</p>
+  <div class="content-container">
+    <div class="left-section">
+      <div class="section">
+        <div class="section-info">
+          <div class="section" *ngIf="opening.ownerEmail">
+            <h4 class="section-title">Owned by:</h4>
+            <div class="section-info">
+              <p class="section-item">{{ opening.ownerEmail.split("@")[0] }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="section">
+        <div class="divider"></div>
+        <h4 class="section-title">Difficulty:</h4>
+        <div class="section-info">
+          <p class="section-item">{{ opening.level }}</p>
+        </div>
+      </div>
+      <div class="section">
+        <div class="divider"></div>
+        <h4 class="section-title">FEN:</h4>
+        <div class="section-info">
+          <p class="section-item">{{ opening.fen }}</p>
+        </div>
+      </div>
+      <div class="section">
+        <div class="divider"></div>
+        <h4 class="section-title">Description:</h4>
+        <div class="section-info">
+          <p class="section-item">{{ opening.description }}</p>
+        </div>
+      </div>
     </div>
-  </div>
+    <div class="middle-section">
+      <div class="chessboard-container">
+        <app-chessboard
+          [size]="600"
+          #board
+          [fen]="opening.fen"
+        ></app-chessboard>
+      </div>
+    </div>
 
-  <div class="chessboard-container">
-    <app-chessboard [size]="600" #board [fen]="opening.fen"></app-chessboard>
-  </div>
+    <div class="right-section">
+      <div class="opening-actions">
+        <h3>Controls:</h3>
+        <button class="btn-reset" (click)="board.resetBoardHandler()">
+          Reset Board
+        </button>
+        <button class="btn-undo" (click)="board.undoMoveHandler()">
+          Undo Move
+        </button>
+        <button class="btn-reverse" (click)="board.flipBoardHandler()">
+          Flip Board
+        </button>
+        <div class="divider"></div>
 
-  <div class="opening-actions">
-    <button class="btn-reset" (click)="board.resetBoardHandler()">
-      Reset Board
-    </button>
-    <button class="btn-undo" (click)="board.undoMoveHandler()">
-      Undo Move
-    </button>
-    <button class="btn-reverse" (click)="board.flipBoardHandler()">
-      Flip Board
-    </button>
-    <button class="btn-prev">
-      <fa-icon [icon]="faArrowLeft"></fa-icon> Previous
-    </button>
-    <button class="btn-next">
-      Next <fa-icon [icon]="faArrowRight"></fa-icon>
-    </button>
+        <div class="button-group">
+          <button class="btn-prev">
+            Prev<fa-icon [icon]="faArrowLeft"></fa-icon>
+          </button>
+          <button class="btn-next">
+            Next<fa-icon [icon]="faArrowRight"></fa-icon>
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
