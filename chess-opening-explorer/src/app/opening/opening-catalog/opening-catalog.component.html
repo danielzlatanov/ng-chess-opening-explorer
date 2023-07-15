@@ -18,9 +18,6 @@
           {{ opening.name | slice : 0 : 16 }}
           {{ opening.name.length > 16 ? "..." : "" }}
         </h2>
-        <p>
-          Difficulty: <strong>{{ opening.level }}</strong>
-        </p>
         <p class="opening-description">
           {{ opening.description | slice : 0 : 20 }}
           {{ opening.description.length > 20 ? "..." : "" }}

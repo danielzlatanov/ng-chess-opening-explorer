@@ -12,11 +12,11 @@
             <div class="section-info">
               <p class="section-item">{{ opening.ownerEmail.split("@")[0] }}</p>
             </div>
+            <div class="divider"></div>
           </div>
         </div>
       </div>
       <div class="section">
-        <div class="divider"></div>
         <h4 class="section-title">Difficulty:</h4>
         <div class="section-info">
           <p class="section-item">{{ opening.level }}</p>
@@ -69,6 +69,16 @@
             Next<fa-icon [icon]="faArrowRight"></fa-icon>
           </button>
         </div>
+
+        <ng-container *ngIf="isOwner">
+          <h3>Owner Actions:</h3>
+          <button class="btn-reset" (click)="board.resetBoardHandler()">
+            Edit
+          </button>
+          <button class="btn-undo" (click)="board.undoMoveHandler()">
+            Delete
+          </button>
+        </ng-container>
       </div>
     </div>
   </div>

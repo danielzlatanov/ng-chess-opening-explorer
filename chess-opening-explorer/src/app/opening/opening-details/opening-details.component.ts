@@ -4,6 +4,8 @@ import { OpeningService } from '../opening.service';
 import { ActivatedRoute } from '@angular/router';
 import { IOpening } from 'src/app/shared/interfaces/opening';
 import { ChessboardComponent } from 'src/app/shared/components/chessboard/chessboard.component';
+import { AuthService } from 'src/app/auth/auth.service';
+import { User } from 'firebase/auth';
 
 @Component({
   selector: 'app-opening-details',
@@ -15,17 +17,23 @@ export class OpeningDetailsComponent implements OnInit {
   faArrowRight = faArrowRight;
   openingId!: string;
   opening: IOpening | null = null;
+  user: User | null = null;
+  isOwner = false;
 
   @ViewChild('board', { static: false }) board!: ChessboardComponent;
 
   constructor(
     private openingService: OpeningService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
     this.openingId = this.route.snapshot.paramMap.get('id') as string;
     this.fetchOpeningDetails();
+    this.authService.user$.subscribe((user) => {
+      this.user = user;
+    });
   }
 
   fetchOpeningDetails(): void {
@@ -33,6 +41,7 @@ export class OpeningDetailsComponent implements OnInit {
       .getOpeningById(this.openingId)
       .then((opening) => {
         this.opening = opening;
+        this.isOwner = opening.ownerId == this.user?.uid;
       })
       .catch((err) => {
         this.opening = null;
