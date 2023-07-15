@@ -96,7 +96,8 @@
   height: 100%;
 }
 
-.opening-actions button:not(.btn-prev):not(.btn-next) {
+.opening-actions
+  button:not(.btn-prev):not(.btn-next):not(.btn-edit):not(.btn-del) {
   padding: 16px 24px;
   width: 200px;
   background-color: #007bff;
@@ -107,7 +108,8 @@
   cursor: pointer;
 }
 
-.opening-actions button:hover:not(.btn-prev):not(.btn-next) {
+.opening-actions
+  button:hover:not(.btn-prev):not(.btn-next):not(.btn-edit):not(.btn-del) {
   background-color: #0056b3;
 }
 
@@ -142,4 +144,31 @@
 
 .btn-prev {
   margin-right: 10px;
+}
+
+.btn-edit,
+.btn-del {
+  padding: 16px 24px;
+  width: 200px;
+  color: #fff;
+  border: none;
+  font-size: 20px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn-edit {
+  background: #ffa726;
+}
+
+.btn-edit:hover {
+  background: #e19420;
+}
+
+.btn-del {
+  background: #f44336;
+}
+
+.btn-del:hover {
+  background: #d43b30;
 }

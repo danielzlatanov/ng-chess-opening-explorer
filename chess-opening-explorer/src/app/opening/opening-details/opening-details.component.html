@@ -72,12 +72,8 @@
 
         <ng-container *ngIf="isOwner">
           <h3>Owner Actions:</h3>
-          <button class="btn-reset" (click)="board.resetBoardHandler()">
-            Edit
-          </button>
-          <button class="btn-undo" (click)="board.undoMoveHandler()">
-            Delete
-          </button>
+          <button class="btn-edit">Edit</button>
+          <button class="btn-del">Delete</button>
         </ng-container>
       </div>
     </div>
