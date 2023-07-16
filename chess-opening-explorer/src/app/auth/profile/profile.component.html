@@ -1,42 +1,40 @@
 <div class="profile-container">
   <h1>Your Profile</h1>
   <div class="top-sections">
-  <div class="personal-info section">
-    <h2>Personal Information <fa-icon [icon]="faUser"></fa-icon></h2>
-    <div class="divider"></div>
-    <div class="info">
-      <p><strong>Email:</strong> johndoe@example.com</p>
-      <p><strong>Account Created:</strong> 2023-07-15</p>
+    <div class="personal-info section">
+      <h2>Personal Information <fa-icon [icon]="faUser"></fa-icon></h2>
+      <div class="divider"></div>
+      <div class="info" *ngIf="user">
+        <p><strong>Email:</strong> {{ user.email }}</p>
+        <p><strong>Account Created:</strong> {{ euTime }}</p>
+      </div>
+    </div>
+
+    <div class="openings-explored section">
+      <h2>Openings Explored <fa-icon [icon]="faChessKnight"></fa-icon></h2>
+      <div class="divider"></div>
+      <div class="info">
+        <ul>
+          <li>Opening 1</li>
+          <li>Opening 2</li>
+          <li>Opening 3</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="favorite-openings section">
+      <h2>Favorite Openings <fa-icon [icon]="faStar"></fa-icon></h2>
+      <div class="divider"></div>
+      <div class="info">
+        <ul>
+          <li>Favorite Opening 1</li>
+          <li>Favorite Opening 2</li>
+          <li>Favorite Opening 3</li>
+        </ul>
+      </div>
     </div>
   </div>
 
-  <div class="openings-explored section">
-    <h2>Openings Explored <fa-icon [icon]="faChessKnight"></fa-icon></h2>
-    <div class="divider"></div>
-    <div class="info">
-      <ul>
-        <li>Opening 1</li>
-        <li>Opening 2</li>
-        <li>Opening 3</li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="favorite-openings section">
-    <h2>Favorite Openings <fa-icon [icon]="faStar"></fa-icon></h2>
-    <div class="divider"></div>
-    <div class="info">
-      <ul>
-        <li>Favorite Opening 1</li>
-        <li>Favorite Opening 2</li>
-        <li>Favorite Opening 3</li>
-      </ul>
-    </div>
-  </div>
-
-</div>
-
-  
   <div class="my-openings section">
     <h2 class="section-title">
       Openings Created by Me <fa-icon [icon]="faChessBoard"></fa-icon>
