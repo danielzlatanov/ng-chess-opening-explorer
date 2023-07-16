@@ -85,7 +85,6 @@ export class OpeningService {
     }
 
     const emailKey = userEmail.split('@')[0];
-
     const exploredOpeningsRef = this.afDatabase.object(
       `openings/${openingId}/exploredBy/${emailKey}`
     );
@@ -113,12 +112,25 @@ export class OpeningService {
     }
 
     const emailKey = userEmail.split('@')[0];
-
     const favOpeningsRef = this.afDatabase.object(
       `openings/${openingId}/favouritedBy/${emailKey}`
     );
 
-    console.log('setted as favourite');
     return favOpeningsRef.set(true);
+  }
+
+  async checkFavouriteStatus(
+    openingId: string,
+    userEmail: string
+  ): Promise<boolean> {
+    const emailKey = userEmail.split('@')[0];
+    const openings = await this.getAllOpenings();
+
+    const isFavourite = openings.some(
+      (opening) =>
+        opening.id === openingId && opening.favouritedBy?.[emailKey] == true
+    );
+
+    return isFavourite;
   }
 }

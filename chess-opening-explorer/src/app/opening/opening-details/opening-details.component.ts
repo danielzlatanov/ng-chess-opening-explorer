@@ -26,7 +26,7 @@ export class OpeningDetailsComponent implements OnInit {
   opening: IOpening | null = null;
   user: User | null = null;
   isOwner = false;
-  isFavourite = false;
+  isFavourite = true;
 
   @ViewChild('board', { static: false }) board!: ChessboardComponent;
 
@@ -53,6 +53,15 @@ export class OpeningDetailsComponent implements OnInit {
 
         if (this.user && this.user.email && opening.id) {
           this.openingService.setOpeningAsExplored(opening.id, this.user.email);
+
+          this.openingService
+            .checkFavouriteStatus(this.openingId, this.user.email)
+            .then((isFavourite) => {
+              this.isFavourite = isFavourite;
+            })
+            .catch((err) => {
+              console.error('Error checking favorite status:', err.message);
+            });
         }
       })
       .catch((err) => {
@@ -60,7 +69,8 @@ export class OpeningDetailsComponent implements OnInit {
         console.error('Error fetching current opening: ', err.message);
       });
   }
-  favouriteOpening() {
+
+  favouriteOpening(): void {
     if (this.user && this.opening) {
       this.openingService.setOpeningAsFavourited(
         this.opening.id!,
