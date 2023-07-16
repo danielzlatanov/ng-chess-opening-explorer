@@ -13,11 +13,11 @@
     <div class="openings-explored section">
       <h2>Openings Explored <fa-icon [icon]="faChessKnight"></fa-icon></h2>
       <div class="divider"></div>
-      <div class="info">
+      <div class="info" *ngFor="let opening of exploredOpenings">
         <ul>
-          <!-- <a routerLink="/openings/details/{{ opening.id }}"> -->
-          <li>Opening 1</li>
-          <!-- </a> -->
+          <a routerLink="/openings/details/{{ opening.id }}">
+            <li>{{ opening.name }}</li>
+          </a>
         </ul>
       </div>
     </div>

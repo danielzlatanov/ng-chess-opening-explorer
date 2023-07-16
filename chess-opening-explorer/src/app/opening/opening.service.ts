@@ -97,8 +97,6 @@ export class OpeningService {
     const emailKey = userEmail.split('@')[0];
 
     const openings = await this.getAllOpenings();
-    console.log('Openings:', openings);
-
     const userExploredOpenings = openings.filter(
       (opening) => opening.exploredBy && opening.exploredBy[emailKey]
     );

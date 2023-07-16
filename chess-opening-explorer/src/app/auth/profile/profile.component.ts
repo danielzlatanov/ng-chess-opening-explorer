@@ -52,12 +52,10 @@ export class ProfileComponent implements OnInit {
 
   retrieveExploredOpenings() {
     if (this.user) {
-      console.log('User email:', this.user?.email);
       this.openingService
         .getUserExploredOpenings(this.user.email!)
         .then((openings) => {
           this.exploredOpenings = openings;
-          console.log('received explored openings: ', this.exploredOpenings);
         })
         .catch((err) => {
           this.exploredOpenings = [];
