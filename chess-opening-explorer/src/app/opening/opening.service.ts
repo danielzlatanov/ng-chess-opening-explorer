@@ -160,4 +160,12 @@ export class OpeningService {
 
     return userFavOpenings;
   }
+
+  async getUserOwnOpenings(userId: string): Promise<IOpening[]> {
+    const openings = await this.getAllOpenings();
+    const userOwnOpenings = openings.filter(
+      (opening) => opening.ownerId == userId
+    );
+    return userOwnOpenings;
+  }
 }

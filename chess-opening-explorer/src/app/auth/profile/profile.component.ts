@@ -24,6 +24,7 @@ export class ProfileComponent implements OnInit {
   euTime: string | undefined = undefined;
   exploredOpenings: IOpening[] | [] = [];
   favOpenings: IOpening[] | [] = [];
+  userOwnOpenings: IOpening[] | [] = [];
 
   constructor(
     private authService: AuthService,
@@ -49,10 +50,11 @@ export class ProfileComponent implements OnInit {
 
       this.retrieveExploredOpenings();
       this.retrieveFavouritedOpenings();
+      this.retrieveUserOwnOpenings();
     });
   }
 
-  retrieveExploredOpenings() {
+  retrieveExploredOpenings(): void {
     if (this.user) {
       this.openingService
         .getUserExploredOpenings(this.user.email!)
@@ -66,7 +68,7 @@ export class ProfileComponent implements OnInit {
     }
   }
 
-  retrieveFavouritedOpenings() {
+  retrieveFavouritedOpenings(): void {
     if (this.user) {
       this.openingService
         .getUserFavOpenings(this.user.email!)
@@ -76,6 +78,21 @@ export class ProfileComponent implements OnInit {
         .catch((err) => {
           this.favOpenings = [];
           console.error('Error fetching favourited openings: ', err.message);
+        });
+    }
+  }
+
+  retrieveUserOwnOpenings(): void {
+    if (this.user) {
+      this.openingService
+        .getUserOwnOpenings(this.user.uid!)
+        .then((openings) => {
+          this.userOwnOpenings = openings;
+          console.log('fetched own: ', this.userOwnOpenings);
+        })
+        .catch((err) => {
+          this.userOwnOpenings = [];
+          console.error("Error fetching user's own openings: ", err.message);
         });
     }
   }
