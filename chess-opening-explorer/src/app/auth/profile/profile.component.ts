@@ -72,7 +72,6 @@ export class ProfileComponent implements OnInit {
         .getUserFavOpenings(this.user.email!)
         .then((openings) => {
           this.favOpenings = openings;
-          console.log('retrieved favourites: ', this.favOpenings);
         })
         .catch((err) => {
           this.favOpenings = [];

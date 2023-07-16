@@ -25,11 +25,11 @@
     <div class="favorite-openings section">
       <h2>Favourite Openings <fa-icon [icon]="faStar"></fa-icon></h2>
       <div class="divider"></div>
-      <div class="info">
+      <div class="info" *ngFor="let opening of favOpenings">
         <ul>
-          <!-- <a routerLink="/openings/details/{{ opening.id }}"> -->
-          <li>Favourite Opening 1</li>
-          <!-- </a> -->
+          <a routerLink="/openings/details/{{ opening.id }}">
+            <li>{{ opening.name }}</li>
+          </a>
         </ul>
       </div>
     </div>
