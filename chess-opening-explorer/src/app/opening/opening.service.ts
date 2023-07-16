@@ -103,4 +103,22 @@ export class OpeningService {
 
     return userExploredOpenings;
   }
+
+  async setOpeningAsFavourited(
+    openingId: string,
+    userEmail: string
+  ): Promise<void> {
+    if (!userEmail) {
+      return Promise.reject('User email not available');
+    }
+
+    const emailKey = userEmail.split('@')[0];
+
+    const favOpeningsRef = this.afDatabase.object(
+      `openings/${openingId}/favouritedBy/${emailKey}`
+    );
+
+    console.log('setted as favourite');
+    return favOpeningsRef.set(true);
+  }
 }

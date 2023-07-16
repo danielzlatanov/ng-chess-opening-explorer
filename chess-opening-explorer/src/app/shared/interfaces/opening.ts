@@ -7,4 +7,5 @@ export interface IOpening {
   ownerId: string;
   ownerEmail: string;
   exploredBy?: Record<string, boolean>;
+  favouritedBy?: Record<string, boolean>;
 }

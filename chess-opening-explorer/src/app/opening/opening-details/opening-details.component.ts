@@ -61,6 +61,12 @@ export class OpeningDetailsComponent implements OnInit {
       });
   }
   favouriteOpening() {
-    console.log('user favourited current opening');
+    if (this.user && this.opening) {
+      this.openingService.setOpeningAsFavourited(
+        this.opening.id!,
+        this.user.email!
+      );
+      this.isFavourite = true;
+    }
   }
 }
