@@ -149,4 +149,15 @@ export class OpeningService {
 
     return isFavourite;
   }
+
+  async getUserFavOpenings(userEmail: string): Promise<IOpening[]> {
+    const emailKey = userEmail.split('@')[0];
+
+    const openings = await this.getAllOpenings();
+    const userFavOpenings = openings.filter(
+      (opening) => opening.favouritedBy && opening.favouritedBy[emailKey]
+    );
+
+    return userFavOpenings;
+  }
 }

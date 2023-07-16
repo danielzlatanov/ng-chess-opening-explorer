@@ -23,6 +23,7 @@ export class ProfileComponent implements OnInit {
   user: User | null = null;
   euTime: string | undefined = undefined;
   exploredOpenings: IOpening[] | [] = [];
+  favOpenings: IOpening[] | [] = [];
 
   constructor(
     private authService: AuthService,
@@ -47,6 +48,7 @@ export class ProfileComponent implements OnInit {
       });
 
       this.retrieveExploredOpenings();
+      this.retrieveFavouritedOpenings();
     });
   }
 
@@ -60,6 +62,21 @@ export class ProfileComponent implements OnInit {
         .catch((err) => {
           this.exploredOpenings = [];
           console.error('Error fetching explored openings: ', err.message);
+        });
+    }
+  }
+
+  retrieveFavouritedOpenings() {
+    if (this.user) {
+      this.openingService
+        .getUserFavOpenings(this.user.email!)
+        .then((openings) => {
+          this.favOpenings = openings;
+          console.log('retrieved favourites: ', this.favOpenings);
+        })
+        .catch((err) => {
+          this.favOpenings = [];
+          console.error('Error fetching favourited openings: ', err.message);
         });
     }
   }
