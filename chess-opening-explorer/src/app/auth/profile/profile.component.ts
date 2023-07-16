@@ -88,7 +88,6 @@ export class ProfileComponent implements OnInit {
         .getUserOwnOpenings(this.user.uid!)
         .then((openings) => {
           this.userOwnOpenings = openings;
-          console.log('fetched own: ', this.userOwnOpenings);
         })
         .catch((err) => {
           this.userOwnOpenings = [];

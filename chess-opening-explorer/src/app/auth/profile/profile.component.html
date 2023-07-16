@@ -40,26 +40,17 @@
       Openings Created by Me <fa-icon [icon]="faChessBoard"></fa-icon>
     </h2>
     <div class="divider"></div>
-    <div class="openings-list">
-      <div class="opening-item">
-        <h4 class="opening-title">Opening 1</h4>
-        <p class="opening-description">Description of Opening 1</p>
-        <div class="opening-actions">
-          <button class="edit-button">Edit</button>
-          <button class="delete-button">Delete</button>
-        </div>
-      </div>
-      <div class="opening-item">
-        <h4 class="opening-title">Opening 1</h4>
-        <p class="opening-description">Description of Opening 1</p>
-        <div class="opening-actions">
-          <button class="edit-button">Edit</button>
-          <button class="delete-button">Delete</button>
-        </div>
-      </div>
-      <div class="opening-item">
-        <h4 class="opening-title">Opening 1</h4>
-        <p class="opening-description">Description of Opening 1</p>
+    <div class="openings-list" *ngIf="userOwnOpenings">
+      <div class="opening-item" *ngFor="let opening of userOwnOpenings">
+        <h4 class="opening-title">
+          {{ opening.name | slice : 0 : 20 }}
+          {{ opening.name.length > 20 ? "..." : "" }}
+        </h4>
+        <p class="opening-description">
+          {{ opening.description | slice : 0 : 20 }}
+          {{ opening.description.length > 20 ? "..." : "" }}
+        </p>
+
         <div class="opening-actions">
           <button class="edit-button">Edit</button>
           <button class="delete-button">Delete</button>
