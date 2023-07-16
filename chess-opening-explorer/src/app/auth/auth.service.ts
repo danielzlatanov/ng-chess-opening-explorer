@@ -62,12 +62,4 @@ export class AuthService {
       console.error(error);
     }
   }
-
-  // isAuthenticated(): boolean {
-  //   return Boolean(this.afAuth.currentUser);
-  // }
-
-  // async getUser(): Promise<any> {
-  //   return await this.afAuth.currentUser;
-  // }
 }

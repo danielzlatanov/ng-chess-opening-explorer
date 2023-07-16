@@ -6,4 +6,5 @@ export interface IOpening {
   level: string;
   ownerId: string;
   ownerEmail: string;
+  exploredBy?: string[];
 }

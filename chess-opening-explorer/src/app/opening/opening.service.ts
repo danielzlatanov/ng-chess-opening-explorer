@@ -75,4 +75,21 @@ export class OpeningService {
         .catch((error) => reject(error));
     });
   }
+
+  async setOpeningAsExplored(
+    openingId: string,
+    userEmail: string
+  ): Promise<void> {
+    if (!userEmail) {
+      return Promise.reject('User email not available');
+    }
+
+    const emailKey = userEmail.split('@')[0];
+
+    const exploredOpeningsRef = this.afDatabase.object(
+      `openings/${openingId}/exploredBy/${emailKey}`
+    );
+
+    return exploredOpeningsRef.set(true);
+  }
 }

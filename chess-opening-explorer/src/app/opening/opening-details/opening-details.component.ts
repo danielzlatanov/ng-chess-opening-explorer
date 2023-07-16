@@ -42,6 +42,10 @@ export class OpeningDetailsComponent implements OnInit {
       .then((opening) => {
         this.opening = opening;
         this.isOwner = opening.ownerId == this.user?.uid;
+
+        if (this.user && this.user.email && opening.id) {
+          this.openingService.setOpeningAsExplored(opening.id, this.user.email);
+        }
       })
       .catch((err) => {
         this.opening = null;
