@@ -92,4 +92,17 @@ export class OpeningService {
 
     return exploredOpeningsRef.set(true);
   }
+
+  async getUserExploredOpenings(userEmail: string): Promise<IOpening[]> {
+    const emailKey = userEmail.split('@')[0];
+
+    const openings = await this.getAllOpenings();
+    console.log('Openings:', openings);
+
+    const userExploredOpenings = openings.filter(
+      (opening) => opening.exploredBy && opening.exploredBy[emailKey]
+    );
+
+    return userExploredOpenings;
+  }
 }
