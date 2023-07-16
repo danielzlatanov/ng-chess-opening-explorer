@@ -50,7 +50,11 @@
     <div class="right-section">
       <div class="opening-actions">
         <h3>Controls:</h3>
-        <button class="btn-favorite" (click)="favouriteOpening()">
+        <button
+          *ngIf="!isOwner"
+          class="btn-favorite"
+          (click)="favouriteOpening()"
+        >
           {{ isFavourite ? "Unfavourite" : "Favourite" }}
           <fa-icon [icon]="isFavourite ? faHeartBroken : faHeart"></fa-icon>
         </button>
