@@ -53,7 +53,7 @@
         <button
           *ngIf="!isOwner"
           class="btn-favorite"
-          (click)="favouriteOpening()"
+          (click)="isFavourite ? unfavouriteOpening() : favouriteOpening()"
         >
           {{ isFavourite ? "Unfavourite" : "Favourite" }}
           <fa-icon [icon]="isFavourite ? faHeartBroken : faHeart"></fa-icon>

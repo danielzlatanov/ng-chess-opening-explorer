@@ -79,4 +79,14 @@ export class OpeningDetailsComponent implements OnInit {
       this.isFavourite = true;
     }
   }
+
+  unfavouriteOpening(): void {
+    if (this.user && this.opening) {
+      this.openingService.setOpeningAsUnfavourited(
+        this.opening.id!,
+        this.user.email!
+      );
+      this.isFavourite = false;
+    }
+  }
 }
