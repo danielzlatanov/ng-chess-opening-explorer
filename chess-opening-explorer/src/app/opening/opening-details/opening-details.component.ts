@@ -1,5 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import {
+  faArrowLeft,
+  faArrowRight,
+  faHeart,
+  faHeartBroken,
+} from '@fortawesome/free-solid-svg-icons';
 import { OpeningService } from '../opening.service';
 import { ActivatedRoute } from '@angular/router';
 import { IOpening } from 'src/app/shared/interfaces/opening';
@@ -15,10 +20,13 @@ import { User } from 'firebase/auth';
 export class OpeningDetailsComponent implements OnInit {
   faArrowLeft = faArrowLeft;
   faArrowRight = faArrowRight;
+  faHeart = faHeart;
+  faHeartBroken = faHeartBroken;
   openingId!: string;
   opening: IOpening | null = null;
   user: User | null = null;
   isOwner = false;
+  isFavourite = false;
 
   @ViewChild('board', { static: false }) board!: ChessboardComponent;
 
@@ -51,5 +59,8 @@ export class OpeningDetailsComponent implements OnInit {
         this.opening = null;
         console.error('Error fetching current opening: ', err.message);
       });
+  }
+  favouriteOpening() {
+    console.log('user favourited current opening');
   }
 }
