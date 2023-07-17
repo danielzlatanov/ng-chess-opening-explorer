@@ -2,6 +2,9 @@
   padding: 40px;
   background: rgb(203 199 196);
   height: 100%;
+  flex-wrap: wrap;
+  overflow-x: auto;
+  overflow-y: auto;
 }
 
 .openings-grid {
