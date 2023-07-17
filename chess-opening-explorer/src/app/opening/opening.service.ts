@@ -88,6 +88,15 @@ export class OpeningService {
     }
   }
 
+  deleteOpening(openingId: string): Promise<void> {
+    return new Promise<void>((resolve, reject) => {
+      this.openingsRef
+        .remove(openingId)
+        .then(() => resolve())
+        .catch((error) => reject(error));
+    });
+  }
+
   async setOpeningAsExplored(
     openingId: string,
     userEmail: string
