@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { IOpening } from 'src/app/shared/interfaces/opening';
 import { OpeningService } from '../opening.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-opening-edit',
@@ -15,7 +15,8 @@ export class OpeningEditComponent implements OnInit {
 
   constructor(
     private openingService: OpeningService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -36,6 +37,24 @@ export class OpeningEditComponent implements OnInit {
       return;
     }
 
-    console.log('editing form: ', form.value);
+    const { name, description, fen, level } = form.value;
+    const updatedOpening: IOpening = {
+      name,
+      description,
+      fen,
+      level,
+    };
+
+    this.openingService
+      .updateOpening(this.openingId, updatedOpening)
+      .then(() => {
+        this.router.navigate(['/openings/catalog']);
+      })
+      .catch((err) => {
+        console.error(
+          'An error occurred while updating opening: ',
+          err.message
+        );
+      });
   }
 }
