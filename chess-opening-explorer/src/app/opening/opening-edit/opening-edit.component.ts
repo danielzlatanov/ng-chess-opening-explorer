@@ -48,7 +48,7 @@ export class OpeningEditComponent implements OnInit {
     this.openingService
       .updateOpening(this.openingId, updatedOpening)
       .then(() => {
-        this.router.navigate(['/openings/catalog']);
+        this.router.navigate(['/openings/details/' + this.openingId]);
       })
       .catch((err) => {
         console.error(
