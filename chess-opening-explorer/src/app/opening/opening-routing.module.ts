@@ -4,6 +4,7 @@ import { OpeningCatalogComponent } from './opening-catalog/opening-catalog.compo
 import { OpeningDetailsComponent } from './opening-details/opening-details.component';
 import { OpeningCreateComponent } from './opening-create/opening-create.component';
 import { OpeningEditComponent } from './opening-edit/opening-edit.component';
+import { OpeningDeleteComponent } from './opening-delete/opening-delete.component';
 
 const routes: Routes = [
   {
@@ -25,6 +26,13 @@ const routes: Routes = [
     component: OpeningEditComponent,
     data: {
       title: 'Update Opening',
+    },
+  },
+  {
+    path: 'delete/:id',
+    component: OpeningDeleteComponent,
+    data: {
+      title: 'Delete Opening',
     },
   },
   {

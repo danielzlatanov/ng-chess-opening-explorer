@@ -7,6 +7,7 @@ import { OpeningCreateComponent } from './opening-create/opening-create.componen
 import { OpeningEditComponent } from './opening-edit/opening-edit.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SharedModule } from '../shared/shared.module';
+import { OpeningDeleteComponent } from './opening-delete/opening-delete.component';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { SharedModule } from '../shared/shared.module';
     OpeningCatalogComponent,
     OpeningCreateComponent,
     OpeningEditComponent,
+    OpeningDeleteComponent,
   ],
   imports: [
     CommonModule,

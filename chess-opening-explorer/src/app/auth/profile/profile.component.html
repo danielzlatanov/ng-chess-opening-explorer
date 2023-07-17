@@ -52,8 +52,18 @@
         </p>
 
         <div class="opening-actions">
-          <button class="edit-button">Edit</button>
-          <button class="delete-button">Delete</button>
+          <button
+            class="edit-button"
+            routerLink="/openings/edit/{{ opening.id }}"
+          >
+            Edit
+          </button>
+          <button
+            class="delete-button"
+            routerLink="/openings/delete/{{ opening.id }}"
+          >
+            Delete
+          </button>
         </div>
       </div>
     </div>

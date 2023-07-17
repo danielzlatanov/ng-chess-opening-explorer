@@ -80,8 +80,15 @@
 
         <ng-container *ngIf="isOwner">
           <h3>Owner Actions:</h3>
-          <button class="btn-edit">Edit</button>
-          <button class="btn-del">Delete</button>
+          <button class="btn-edit" routerLink="/openings/edit/{{ opening.id }}">
+            Edit
+          </button>
+          <button
+            class="btn-del"
+            routerLink="/openings/delete/{{ opening.id }}"
+          >
+            Delete
+          </button>
         </ng-container>
       </div>
     </div>
