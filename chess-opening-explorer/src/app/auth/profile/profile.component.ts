@@ -105,7 +105,9 @@ export class ProfileComponent implements OnInit {
       .openConfirmationDialog()
       .subscribe((confirmed: boolean) => {
         if (confirmed) {
-          this.router.navigate(['/openings/delete/' + openingId]);
+          this.router.navigate(['/openings/delete/' + openingId], {
+            queryParams: { redirectPath: '/auth/profile' },
+          });
         }
       });
   }

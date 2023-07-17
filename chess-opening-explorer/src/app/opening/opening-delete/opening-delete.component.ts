@@ -9,6 +9,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class OpeningDeleteComponent {
   openingId!: string;
+  redirectPath: string | undefined;
 
   constructor(
     private openingService: OpeningService,
@@ -18,10 +19,15 @@ export class OpeningDeleteComponent {
 
   ngOnInit(): void {
     this.openingId = this.route.snapshot.paramMap.get('id') as string;
+    this.redirectPath = this.route.snapshot.queryParams['redirectPath'];
+
     this.openingService
       .deleteOpening(this.openingId)
       .then(() => {
-        this.router.navigate(['/openings/catalog']);
+        if (this.redirectPath) {
+          return this.router.navigate([this.redirectPath]);
+        }
+        return this.router.navigate(['/openings/catalog']);
       })
       .catch((err) => {
         console.error('Error deleting opening: ', err.message);
