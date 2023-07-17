@@ -76,6 +76,18 @@ export class OpeningService {
     });
   }
 
+  async updateOpening(
+    openingId: string,
+    updatedOpening: IOpening
+  ): Promise<void> {
+    try {
+      await this.openingsRef.update(openingId, updatedOpening);
+    } catch (error) {
+      console.error('Error updating opening:', error);
+      throw error;
+    }
+  }
+
   async setOpeningAsExplored(
     openingId: string,
     userEmail: string

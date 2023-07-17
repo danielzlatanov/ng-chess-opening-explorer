@@ -4,8 +4,8 @@ export interface IOpening {
   description: string;
   fen: string;
   level: string;
-  ownerId: string;
-  ownerEmail: string;
+  ownerId?: string;
+  ownerEmail?: string;
   exploredBy?: Record<string, boolean>;
   favouritedBy?: Record<string, boolean>;
 }
