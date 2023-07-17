@@ -51,8 +51,8 @@
       <div class="opening-actions">
         <h3>Controls:</h3>
         <button
-          *ngIf="!isOwner"
-          class="btn-favorite"
+          *ngIf="!isOwner && user"
+          [ngClass]="{ 'btn-unfav': isFavourite, 'btn-fav': !isFavourite }"
           (click)="isFavourite ? unfavouriteOpening() : favouriteOpening()"
         >
           {{ isFavourite ? "Unfavourite" : "Favourite" }}

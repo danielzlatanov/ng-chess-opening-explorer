@@ -97,7 +97,9 @@
 }
 
 .opening-actions
-  button:not(.btn-prev):not(.btn-next):not(.btn-edit):not(.btn-del) {
+  button:not(.btn-prev):not(.btn-next):not(.btn-edit):not(.btn-del):not(
+    .btn-fav
+  ):not(.btn-unfav) {
   padding: 16px 24px;
   width: 200px;
   background-color: #007bff;
@@ -109,7 +111,9 @@
 }
 
 .opening-actions
-  button:hover:not(.btn-prev):not(.btn-next):not(.btn-edit):not(.btn-del) {
+  button:hover:not(.btn-prev):not(.btn-next):not(.btn-edit):not(.btn-del):not(
+    .btn-fav
+  ):not(.btn-unfav) {
   background-color: #0056b3;
 }
 
@@ -147,7 +151,9 @@
 }
 
 .btn-edit,
-.btn-del {
+.btn-del,
+.btn-fav,
+.btn-unfav {
   padding: 16px 24px;
   width: 200px;
   color: #fff;
@@ -171,4 +177,12 @@
 
 .btn-del:hover {
   background: #d43b30;
+}
+
+.btn-fav {
+  background: #00c853;
+}
+
+.btn-unfav {
+  background: #f44336;
 }
