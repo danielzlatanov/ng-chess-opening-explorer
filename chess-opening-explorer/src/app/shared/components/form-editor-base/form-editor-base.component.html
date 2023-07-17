@@ -9,7 +9,13 @@
       <div class="form-group">
         <label for="name" *ngIf="mode == 'create'">Opening name</label>
         <label for="name" *ngIf="mode == 'edit'">New opening name</label>
-        <input type="text" id="name" name="name" ngModel #nameInput="ngModel" />
+        <input
+          type="text"
+          id="name"
+          name="name"
+          ngModel=" {{ mode == 'edit' ? opening?.name : '' }}"
+          #nameInput="ngModel"
+        />
       </div>
 
       <div class="form-group">
@@ -22,20 +28,30 @@
         <textarea
           id="description"
           name="description"
-          ngModel
+          ngModel=" {{ mode == 'edit' ? opening?.description : '' }}"
           #descriptionInput="ngModel"
         ></textarea>
       </div>
 
       <div class="form-group">
         <label for="fen">Forsyth-Edwards notation (FEN)</label>
-        <input type="text" id="fen" name="fen" ngModel #fenInput="ngModel" />
+        <input
+          type="text"
+          id="fen"
+          name="fen"
+          ngModel=" {{ mode == 'edit' ? opening?.fen : '' }}"
+          #fenInput="ngModel"
+        />
       </div>
 
       <div class="form-group">
         <mat-form-field>
           <mat-label>Difficulty Level</mat-label>
-          <mat-select name="level" ngModel #difficultyInput="ngModel">
+          <mat-select
+            name="level"
+            ngModel="{{ mode == 'edit' ? opening?.level : '' }}"
+            #difficultyInput="ngModel"
+          >
             <mat-option *ngFor="let level of levels" [value]="level">
               {{ level }}
             </mat-option>
