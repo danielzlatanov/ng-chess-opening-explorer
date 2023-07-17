@@ -83,10 +83,7 @@
           <button class="btn-edit" routerLink="/openings/edit/{{ opening.id }}">
             Edit
           </button>
-          <button
-            class="btn-del"
-            routerLink="/openings/delete/{{ opening.id }}"
-          >
+          <button class="btn-del" (click)="openConfirmationDialog()">
             Delete
           </button>
         </ng-container>

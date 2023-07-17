@@ -6,11 +6,13 @@ import {
   faHeartBroken,
 } from '@fortawesome/free-solid-svg-icons';
 import { OpeningService } from '../opening.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { IOpening } from 'src/app/shared/interfaces/opening';
 import { ChessboardComponent } from 'src/app/shared/components/chessboard/chessboard.component';
 import { AuthService } from 'src/app/auth/auth.service';
 import { User } from 'firebase/auth';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmationDialogComponent } from 'src/app/shared/components/confirmation-dialog/confirmation-dialog.component';
 
 @Component({
   selector: 'app-opening-details',
@@ -33,7 +35,9 @@ export class OpeningDetailsComponent implements OnInit {
   constructor(
     private openingService: OpeningService,
     private route: ActivatedRoute,
-    private authService: AuthService
+    private router: Router,
+    private authService: AuthService,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -88,5 +92,17 @@ export class OpeningDetailsComponent implements OnInit {
       );
       this.isFavourite = false;
     }
+  }
+
+  openConfirmationDialog(): void {
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      width: '400px',
+    });
+
+    dialogRef.afterClosed().subscribe((confirmed: boolean) => {
+      if (confirmed) {
+        this.router.navigate(['/openings/delete/' + this.openingId]);
+      }
+    });
   }
 }
