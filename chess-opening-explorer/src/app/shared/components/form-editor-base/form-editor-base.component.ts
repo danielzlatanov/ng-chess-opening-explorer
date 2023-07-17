@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { levels } from 'src/app/constants';
+import { IOpening } from '../../interfaces/opening';
 
 @Component({
   selector: 'app-form-editor-base',
@@ -10,6 +11,7 @@ import { levels } from 'src/app/constants';
 export class FormEditorBaseComponent {
   levels = levels;
   @Input() mode!: string;
+  @Input() opening: IOpening | null = null;
   @Output() formSubmitted: EventEmitter<any> = new EventEmitter<any>();
 
   handleSubmit(form: NgForm) {
