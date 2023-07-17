@@ -60,7 +60,7 @@
           </button>
           <button
             class="delete-button"
-            routerLink="/openings/delete/{{ opening.id }}"
+            (click)="handleDeleteDialog(opening.id!)"
           >
             Delete
           </button>

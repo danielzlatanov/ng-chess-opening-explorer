@@ -9,6 +9,8 @@ import { AuthService } from '../auth.service';
 import { User } from 'firebase/auth';
 import { OpeningService } from 'src/app/opening/opening.service';
 import { IOpening } from 'src/app/shared/interfaces/opening';
+import { ConfirmationDialogService } from 'src/app/shared/components/confirmation-dialog/confirmation-dialog.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -28,7 +30,9 @@ export class ProfileComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private openingService: OpeningService
+    private openingService: OpeningService,
+    private dialogService: ConfirmationDialogService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -94,5 +98,15 @@ export class ProfileComponent implements OnInit {
           console.error("Error fetching user's own openings: ", err.message);
         });
     }
+  }
+
+  handleDeleteDialog(openingId: string): void {
+    this.dialogService
+      .openConfirmationDialog()
+      .subscribe((confirmed: boolean) => {
+        if (confirmed) {
+          this.router.navigate(['/openings/delete/' + openingId]);
+        }
+      });
   }
 }
