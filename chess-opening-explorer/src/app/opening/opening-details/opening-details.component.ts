@@ -11,8 +11,7 @@ import { IOpening } from 'src/app/shared/interfaces/opening';
 import { ChessboardComponent } from 'src/app/shared/components/chessboard/chessboard.component';
 import { AuthService } from 'src/app/auth/auth.service';
 import { User } from 'firebase/auth';
-import { MatDialog } from '@angular/material/dialog';
-import { ConfirmationDialogComponent } from 'src/app/shared/components/confirmation-dialog/confirmation-dialog.component';
+import { ConfirmationDialogService } from 'src/app/shared/components/confirmation-dialog/confirmation-dialog.service';
 
 @Component({
   selector: 'app-opening-details',
@@ -37,7 +36,7 @@ export class OpeningDetailsComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private authService: AuthService,
-    private dialog: MatDialog
+    private dialogService: ConfirmationDialogService
   ) {}
 
   ngOnInit(): void {
@@ -94,15 +93,13 @@ export class OpeningDetailsComponent implements OnInit {
     }
   }
 
-  openConfirmationDialog(): void {
-    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
-      width: '400px',
-    });
-
-    dialogRef.afterClosed().subscribe((confirmed: boolean) => {
-      if (confirmed) {
-        this.router.navigate(['/openings/delete/' + this.openingId]);
-      }
-    });
+  handleDeleteDialog(): void {
+    this.dialogService
+      .openConfirmationDialog()
+      .subscribe((confirmed: boolean) => {
+        if (confirmed) {
+          this.router.navigate(['/openings/delete/' + this.openingId]);
+        }
+      });
   }
 }

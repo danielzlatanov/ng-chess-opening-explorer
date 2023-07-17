@@ -21,7 +21,6 @@ export class OpeningDeleteComponent {
     this.openingService
       .deleteOpening(this.openingId)
       .then(() => {
-        console.log('Opening deleted successfully');
         this.router.navigate(['/openings/catalog']);
       })
       .catch((err) => {
