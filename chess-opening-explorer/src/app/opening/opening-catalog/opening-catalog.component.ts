@@ -15,8 +15,10 @@ import { getRandomChessPiece } from 'src/app/shared/helpers/getRandomChessPieceI
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class OpeningCatalogComponent implements OnInit {
-  openings: IOpening[] | null = [];
   getRandomChessPieceImg: Function = getRandomChessPiece;
+  openings: IOpening[] | null = [];
+  filteredOpenings: IOpening[] | null = [];
+  searchQuery: string = '';
 
   constructor(
     private openingService: OpeningService,
@@ -28,11 +30,24 @@ export class OpeningCatalogComponent implements OnInit {
       .getAllOpenings()
       .then((openings) => {
         this.openings = openings;
+        this.filteredOpenings = openings;
         this.changeDetectorRef.detectChanges();
       })
       .catch((err) => {
         this.openings = null;
         console.error('Error fetching all openings: ', err.message);
       });
+  }
+
+  searchHandler(): void {
+    if (!this.searchQuery || this.searchQuery.trim() === '') {
+      this.filteredOpenings = this.openings;
+    } else {
+      if (this.openings) {
+        this.filteredOpenings = this.openings?.filter((opening) =>
+          opening.name.toLowerCase().includes(this.searchQuery.toLowerCase())
+        );
+      }
+    }
   }
 }

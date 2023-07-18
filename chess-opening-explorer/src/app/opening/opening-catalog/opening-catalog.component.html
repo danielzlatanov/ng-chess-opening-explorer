@@ -2,13 +2,21 @@
   <div class="container">
     <h2 class="title">Browse Catalog</h2>
     <div class="search-bar">
-      <input type="text" placeholder="Search openings" />
-      <button type="button">Search</button>
+      <input
+        type="text"
+        [(ngModel)]="searchQuery"
+        placeholder="Search openings"
+        (keydown.enter)="searchHandler()"
+      />
+      <button type="button" (click)="searchHandler()">Search</button>
     </div>
   </div>
 
-  <div class="openings-grid" *ngIf="openings">
-    <div class="opening-card" *ngFor="let opening of openings; let i = index">
+  <div class="openings-grid" *ngIf="filteredOpenings">
+    <div
+      class="opening-card"
+      *ngFor="let opening of filteredOpenings; let i = index"
+    >
       <div class="opening-image">
         <img [src]="getRandomChessPieceImg()" alt="Opening {{ i + 1 }}" />
       </div>

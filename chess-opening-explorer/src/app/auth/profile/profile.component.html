@@ -4,23 +4,20 @@
     <div class="personal-info section">
       <h2>Personal Information <fa-icon [icon]="faUser"></fa-icon></h2>
       <div class="divider"></div>
-      <div class="info" *ngIf="user">
+      <div class="info">
         <div class="profile-photo">
           <img
             class="photo"
-            [src]="user.photoURL || '/assets/images/default-photo.png'"
+            src="/assets/images/default-photo.png"
             alt="Profile IMG"
           />
-          <button class="upload-button" (click)="uploadPhoto()">
-            Upload Photo
-          </button>
         </div>
         <p>
           <strong
             >Email
             <div class="inner-divider"></div
           ></strong>
-          {{ user.email }}
+          {{ user?.email }}
         </p>
 
         <p>

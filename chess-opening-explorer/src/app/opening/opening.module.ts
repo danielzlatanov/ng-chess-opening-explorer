@@ -8,6 +8,7 @@ import { OpeningEditComponent } from './opening-edit/opening-edit.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SharedModule } from '../shared/shared.module';
 import { OpeningDeleteComponent } from './opening-delete/opening-delete.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { OpeningDeleteComponent } from './opening-delete/opening-delete.componen
     SharedModule,
     OpeningRoutingModule,
     FontAwesomeModule,
+    FormsModule
   ],
 })
 export class OpeningModule {}
