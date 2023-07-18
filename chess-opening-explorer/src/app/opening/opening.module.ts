@@ -1,3 +1,4 @@
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { OpeningRoutingModule } from './opening-routing.module';
@@ -23,7 +24,8 @@ import { FormsModule } from '@angular/forms';
     SharedModule,
     OpeningRoutingModule,
     FontAwesomeModule,
-    FormsModule
+    FormsModule,
+    MatSlideToggleModule,
   ],
 })
 export class OpeningModule {}

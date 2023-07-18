@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { OpeningService } from '../opening.service';
 import { IOpening } from 'src/app/shared/interfaces/opening';
 import { getRandomChessPiece } from 'src/app/shared/helpers/getRandomChessPieceImg';
+import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 
 @Component({
   selector: 'app-opening-catalog',
@@ -13,6 +14,7 @@ export class OpeningCatalogComponent implements OnInit {
   openings: IOpening[] | null = [];
   filteredOpenings: IOpening[] | null = [];
   searchQuery: string = '';
+  isDynamicSearch = true;
 
   constructor(private openingService: OpeningService) {}
 
@@ -31,6 +33,10 @@ export class OpeningCatalogComponent implements OnInit {
         this.openings = null;
         console.error('Error fetching all openings: ', err.message);
       });
+  }
+
+  toggleSearchMode() {
+    this.isDynamicSearch = !this.isDynamicSearch;
   }
 
   searchHandler(): void {
