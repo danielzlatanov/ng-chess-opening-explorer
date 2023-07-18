@@ -1,9 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Component,
-  OnInit,
-} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { OpeningService } from '../opening.service';
 import { IOpening } from 'src/app/shared/interfaces/opening';
 import { getRandomChessPiece } from 'src/app/shared/helpers/getRandomChessPieceImg';
@@ -12,18 +7,14 @@ import { getRandomChessPiece } from 'src/app/shared/helpers/getRandomChessPieceI
   selector: 'app-opening-catalog',
   templateUrl: './opening-catalog.component.html',
   styleUrls: ['./opening-catalog.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class OpeningCatalogComponent implements OnInit {
-  getRandomChessPieceImg: Function = getRandomChessPiece;
+  randomChessPieceImgs: string[] = [];
   openings: IOpening[] | null = [];
   filteredOpenings: IOpening[] | null = [];
   searchQuery: string = '';
 
-  constructor(
-    private openingService: OpeningService,
-    private changeDetectorRef: ChangeDetectorRef
-  ) {}
+  constructor(private openingService: OpeningService) {}
 
   ngOnInit(): void {
     this.openingService
@@ -31,7 +22,10 @@ export class OpeningCatalogComponent implements OnInit {
       .then((openings) => {
         this.openings = openings;
         this.filteredOpenings = openings;
-        this.changeDetectorRef.detectChanges();
+
+        for (let i = 0; i < this.openings.length; i++) {
+          this.randomChessPieceImgs[i] = getRandomChessPiece();
+        }
       })
       .catch((err) => {
         this.openings = null;
