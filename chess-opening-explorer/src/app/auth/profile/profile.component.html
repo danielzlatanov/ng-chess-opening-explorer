@@ -5,8 +5,31 @@
       <h2>Personal Information <fa-icon [icon]="faUser"></fa-icon></h2>
       <div class="divider"></div>
       <div class="info" *ngIf="user">
-        <p><strong>Email:</strong> {{ user.email }}</p>
-        <p><strong>Account Created:</strong> {{ euTime }}</p>
+        <div class="profile-photo">
+          <img
+            class="photo"
+            [src]="user.photoURL || '/assets/images/default-photo.png'"
+            alt="Profile IMG"
+          />
+          <button class="upload-button" (click)="uploadPhoto()">
+            Upload Photo
+          </button>
+        </div>
+        <p>
+          <strong
+            >Email
+            <div class="inner-divider"></div
+          ></strong>
+          {{ user.email }}
+        </p>
+
+        <p>
+          <strong
+            >Account Created
+            <div class="inner-divider"></div
+          ></strong>
+          {{ euTime }}
+        </p>
       </div>
     </div>
 

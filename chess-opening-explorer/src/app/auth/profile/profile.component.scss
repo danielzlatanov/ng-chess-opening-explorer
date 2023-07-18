@@ -1,12 +1,22 @@
 .section h2 {
   font-size: 24px;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
+  margin-top: 5px;
+  text-align: center;
 }
 
 .divider {
   height: 2px;
   background-color: #ccc;
   margin-bottom: 10px;
+}
+
+.inner-divider {
+  height: 2px;
+  background-color: #ccc;
+  width: 50%;
+  margin: 0 auto;
+  margin-bottom: 5px;
 }
 
 .info p {
@@ -88,11 +98,13 @@
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   background-color: rgba(255, 255, 255, 0.5);
+  padding-top: 0;
 }
 
 .openings-explored .info ul,
 .favorite-openings .info ul {
   padding: 0;
+  margin-top: 3px;
 }
 
 .openings-explored,
@@ -100,7 +112,7 @@
   display: flex;
   flex-wrap: wrap;
   overflow: auto;
-  max-height: 200px;
+  max-height: 280px;
 }
 
 .openings-explored .info,
@@ -114,10 +126,9 @@
   list-style-type: none;
   color: #333;
   width: 90px;
-  height: 55px;
+  height: 70px;
   padding: 5px 10px;
   border-radius: 5px;
-
   overflow: hidden;
   text-overflow: ellipsis;
 }
@@ -135,9 +146,39 @@
 
 .openings-list {
   display: grid;
-  margin-top: 30px;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 20px;
   max-height: 280px;
   overflow-y: auto;
+}
+
+.personal-info {
+  text-align: center;
+}
+
+.profile-photo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.photo {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+.upload-button {
+  padding: 8px 16px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.upload-button:hover {
+  background-color: #0056b3;
 }

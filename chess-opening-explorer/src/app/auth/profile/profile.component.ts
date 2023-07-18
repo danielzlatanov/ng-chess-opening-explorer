@@ -111,4 +111,8 @@ export class ProfileComponent implements OnInit {
         }
       });
   }
+
+  uploadPhoto(){
+    console.log('photo upload clicked...');
+  }
 }
