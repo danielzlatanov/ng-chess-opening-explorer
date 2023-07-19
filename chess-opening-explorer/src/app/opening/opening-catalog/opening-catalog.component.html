@@ -6,6 +6,7 @@
     </mat-slide-toggle>
     <div class="search-bar">
       <input
+        #searchInput
         type="text"
         [(ngModel)]="searchQuery"
         [placeholder]="
@@ -14,11 +15,7 @@
         (keydown.enter)="searchHandler()"
         (input)="isDynamicSearch && searchHandler()"
       />
-      <button
-        type="button"
-        (click)="searchHandler()"
-        *ngIf="isDynamicSearch == false"
-      >
+      <button type="button" (click)="searchHandler()" *ngIf="!isDynamicSearch">
         Search
       </button>
     </div>
@@ -50,5 +47,11 @@
         >
       </div>
     </div>
+  </div>
+
+  <div class="no-results-message" *ngIf="filteredOpenings?.length == 0">
+    <p class="message">
+      No matching openings found. Please try a different search query.
+    </p>
   </div>
 </div>
