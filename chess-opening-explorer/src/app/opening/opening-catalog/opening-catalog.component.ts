@@ -15,6 +15,7 @@ export class OpeningCatalogComponent implements OnInit {
   filteredOpenings: IOpening[] | null = [];
   searchQuery: string = '';
   isDynamicSearch = true;
+  showNoResultsMsg = false;
 
   @ViewChild('searchInput') searchInput!: ElementRef;
 
@@ -67,6 +68,13 @@ export class OpeningCatalogComponent implements OnInit {
         this.filteredOpenings = this.openings?.filter((opening) =>
           opening.name.toLowerCase().includes(this.searchQuery.toLowerCase())
         );
+
+        if (this.filteredOpenings.length === 0) {
+          this.showNoResultsMsg = true;
+        } else {
+          this.showNoResultsMsg = false;
+        }
+
         this.router.navigate(['/openings/catalog/search'], {
           queryParams: { name: this.searchQuery },
         });
