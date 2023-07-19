@@ -70,8 +70,12 @@
       </button>
     </form>
 
-    <div class="chess-board-container">
+    <div class="chess-board-container" *ngIf="fenValue">
       <app-chessboard [size]="500" [fen]="fenValue"></app-chessboard>
+    </div>
+
+    <div class="chess-board-container" *ngIf="opening && mode == 'edit' && !fenValue">
+      <app-chessboard [size]="500" [fen]="opening.fen"></app-chessboard>
     </div>
   </div>
 </body>
