@@ -42,6 +42,9 @@
           ngModel=" {{ mode == 'edit' ? opening?.fen : '' }}"
           #fenInput="ngModel"
         />
+        <button type="button" (click)="showPositionOnBoard(fenInput.value)">
+          Display FEN Position
+        </button>
       </div>
 
       <div class="form-group">
@@ -68,7 +71,7 @@
     </form>
 
     <div class="chess-board-container">
-      <app-chessboard [size]="500"></app-chessboard>
+      <app-chessboard [size]="500" [fen]="fenValue"></app-chessboard>
     </div>
   </div>
 </body>

@@ -10,11 +10,16 @@ import { IOpening } from '../../interfaces/opening';
 })
 export class FormEditorBaseComponent {
   levels = levels;
+  fenValue: string = '';
   @Input() mode!: string;
   @Input() opening: IOpening | null = null;
   @Output() formSubmitted: EventEmitter<any> = new EventEmitter<any>();
 
   handleSubmit(form: NgForm) {
     this.formSubmitted.emit(form);
+  }
+
+  showPositionOnBoard(fen: string) {
+    this.fenValue = fen;
   }
 }

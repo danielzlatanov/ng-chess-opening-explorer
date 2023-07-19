@@ -1,4 +1,11 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnChanges,
+  OnInit,
+  SimpleChanges,
+  ViewChild,
+} from '@angular/core';
 import { NgxChessBoardView } from 'ngx-chess-board';
 
 @Component({
@@ -6,7 +13,7 @@ import { NgxChessBoardView } from 'ngx-chess-board';
   templateUrl: './chessboard.component.html',
   styleUrls: ['./chessboard.component.scss'],
 })
-export class ChessboardComponent implements OnInit {
+export class ChessboardComponent implements OnInit, OnChanges {
   @Input() size!: number;
   @Input() fen: string = '';
 
@@ -18,6 +25,14 @@ export class ChessboardComponent implements OnInit {
         this.setBoardFEN();
       }
     });
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['fen']) {
+      if (this.fen !== '' && this.chessboard) {
+        this.setBoardFEN();
+      }
+    }
   }
 
   resetBoardHandler(): void {
