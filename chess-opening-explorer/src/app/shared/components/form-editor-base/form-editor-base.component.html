@@ -7,39 +7,77 @@
   <div class="create-opening-container">
     <form #editorBaseForm="ngForm" (ngSubmit)="handleSubmit(editorBaseForm)">
       <div class="form-group">
-        <label for="name" *ngIf="mode == 'create'">Opening name</label>
-        <label for="name" *ngIf="mode == 'edit'">New opening name</label>
+        <label for="name" *ngIf="mode == 'create'"
+          >Opening name<span class="required-star">*</span></label
+        >
+        <label for="name" *ngIf="mode == 'edit'"
+          >New opening name<span class="required-star">*</span></label
+        >
         <input
           type="text"
           id="name"
           name="name"
-          ngModel=" {{ mode == 'edit' ? opening?.name : '' }}"
+          ngModel="{{ mode == 'edit' ? opening?.name : '' }}"
           #nameInput="ngModel"
+          required
+          minlength="5"
         />
+
+        <ng-container *ngIf="nameInput.touched || nameInput.dirty">
+          <p class="error" *ngIf="nameInput.errors?.['required']">
+            Opening name is required
+          </p>
+          <p class="error" *ngIf="nameInput.errors?.['minlength']">
+            Opening name must be at least
+            {{nameInput.errors?.['minlength']['requiredLength']}} characters
+            long
+          </p>
+        </ng-container>
       </div>
 
       <div class="form-group">
         <label for="description" *ngIf="mode == 'create'"
-          >Describe the strategy behind your opening
+          >Describe the strategy behind your opening<span class="required-star"
+            >*</span
+          >
         </label>
         <label for="description" *ngIf="mode == 'edit'"
-          >Update the opening's description
+          >Update the opening's description<span class="required-star">*</span>
         </label>
         <textarea
           id="description"
           name="description"
-          ngModel=" {{ mode == 'edit' ? opening?.description : '' }}"
+          ngModel="{{ mode == 'edit' ? opening?.description : '' }}"
           #descriptionInput="ngModel"
+          required
+          minlength="20"
         ></textarea>
+
+        <ng-container
+          *ngIf="descriptionInput.touched || descriptionInput.dirty"
+        >
+          <p class="error" *ngIf="descriptionInput.errors?.['required']">
+            Description is required
+          </p>
+          <p class="error" *ngIf="descriptionInput.errors?.['minlength']">
+            Description must be at least
+            {{descriptionInput.errors?.['minlength']['requiredLength']}}
+            characters long
+          </p>
+        </ng-container>
       </div>
 
       <div class="form-group">
-        <label for="fen">Forsyth-Edwards notation (FEN)</label>
+        <label for="fen"
+          >Forsyth-Edwards notation (FEN)<span class="required-star"
+            >*</span
+          ></label
+        >
         <input
           type="text"
           id="fen"
           name="fen"
-          ngModel=" {{ mode == 'edit' ? opening?.fen : '' }}"
+          ngModel="{{ mode == 'edit' ? opening?.fen : '' }}"
           #fenInput="ngModel"
         />
         <button type="button" (click)="showPositionOnBoard(fenInput.value)">
@@ -54,12 +92,19 @@
             name="level"
             ngModel="{{ mode == 'edit' ? opening?.level : '' }}"
             #difficultyInput="ngModel"
+            required
           >
             <mat-option *ngFor="let level of levels" [value]="level">
               {{ level }}
             </mat-option>
           </mat-select>
         </mat-form-field>
+
+        <ng-container *ngIf="difficultyInput.touched || difficultyInput.dirty">
+          <p class="error" *ngIf="difficultyInput.errors?.['required']">
+            Difficulty level is required
+          </p>
+        </ng-container>
       </div>
 
       <button type="submit" class="submit-button" *ngIf="mode == 'create'">
@@ -70,11 +115,14 @@
       </button>
     </form>
 
-    <div class="chess-board-container" *ngIf="fenValue">
+    <div class="chess-board-container" *ngIf="fenValue || mode == 'create'">
       <app-chessboard [size]="500" [fen]="fenValue"></app-chessboard>
     </div>
 
-    <div class="chess-board-container" *ngIf="opening && mode == 'edit' && !fenValue">
+    <div
+      class="chess-board-container"
+      *ngIf="opening && mode == 'edit' && !fenValue"
+    >
       <app-chessboard [size]="500" [fen]="opening.fen"></app-chessboard>
     </div>
   </div>
