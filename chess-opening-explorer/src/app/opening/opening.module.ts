@@ -10,6 +10,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SharedModule } from '../shared/shared.module';
 import { OpeningDeleteComponent } from './opening-delete/opening-delete.component';
 import { FormsModule } from '@angular/forms';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { FormsModule } from '@angular/forms';
     FontAwesomeModule,
     FormsModule,
     MatSlideToggleModule,
+    MatTooltipModule
   ],
 })
 export class OpeningModule {}

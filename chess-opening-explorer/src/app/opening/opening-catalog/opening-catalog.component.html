@@ -15,6 +15,12 @@
         (keydown.enter)="searchHandler()"
         (input)="isDynamicSearch && searchHandler()"
       />
+      <div
+        class="tooltip-container"
+        matTooltip="Press '/' to focus the search field"
+      >
+        <div class="slash-indicator" *ngIf="isDynamicSearch">/</div>
+      </div>
       <button type="button" (click)="searchHandler()" *ngIf="!isDynamicSearch">
         Search
       </button>

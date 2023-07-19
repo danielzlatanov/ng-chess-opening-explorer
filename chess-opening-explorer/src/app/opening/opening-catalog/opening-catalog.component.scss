@@ -121,3 +121,16 @@ mat-slide-toggle span {
   color: #555;
   font-size: 20px;
 }
+
+.search-bar {
+  position: relative;
+}
+
+.slash-indicator {
+  position: absolute;
+  top: 50%;
+  right: 8px;
+  transform: translateY(-50%);
+  background-color: #ccc;
+  padding: 5px 10px;
+}

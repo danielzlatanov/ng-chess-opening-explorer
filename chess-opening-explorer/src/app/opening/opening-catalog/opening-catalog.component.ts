@@ -1,5 +1,11 @@
-import { ActivatedRoute, Router, NavigationStart } from '@angular/router';
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import {
+  Component,
+  ElementRef,
+  HostListener,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { OpeningService } from '../opening.service';
 import { IOpening } from 'src/app/shared/interfaces/opening';
 import { getRandomChessPiece } from 'src/app/shared/helpers/getRandomChessPieceImg';
@@ -18,6 +24,13 @@ export class OpeningCatalogComponent implements OnInit {
   showNoResultsMsg = false;
 
   @ViewChild('searchInput') searchInput!: ElementRef;
+  @HostListener('document:keydown', ['$event'])
+  onDocumentKeyDown(event: KeyboardEvent): void {
+    if (event.key === '/') {
+      event.preventDefault();
+      this.searchInput.nativeElement.focus();
+    }
+  }
 
   constructor(
     private openingService: OpeningService,
