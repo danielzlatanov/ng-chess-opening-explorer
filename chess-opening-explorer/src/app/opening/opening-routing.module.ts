@@ -15,6 +15,13 @@ const routes: Routes = [
     },
   },
   {
+    path: 'catalog/search',
+    component: OpeningCatalogComponent,
+    data: {
+      title: 'Search Query',
+    },
+  },
+  {
     path: 'create',
     component: OpeningCreateComponent,
     data: {

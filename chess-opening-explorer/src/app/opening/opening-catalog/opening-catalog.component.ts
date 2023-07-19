@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router, NavigationStart } from '@angular/router';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { OpeningService } from '../opening.service';
 import { IOpening } from 'src/app/shared/interfaces/opening';
 import { getRandomChessPiece } from 'src/app/shared/helpers/getRandomChessPieceImg';
-import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 
 @Component({
   selector: 'app-opening-catalog',
@@ -16,14 +16,33 @@ export class OpeningCatalogComponent implements OnInit {
   searchQuery: string = '';
   isDynamicSearch = true;
 
-  constructor(private openingService: OpeningService) {}
+  @ViewChild('searchInput') searchInput!: ElementRef;
+
+  constructor(
+    private openingService: OpeningService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
+    this.route.queryParams.subscribe((params) => {
+      this.searchQuery = params['name'] || '';
+      if (this.searchQuery.length > 0) {
+        setTimeout(() => {
+          this.searchInput.nativeElement.focus();
+        });
+      }
+      this.fetchOpenings();
+    });
+  }
+
+  fetchOpenings(): void {
     this.openingService
       .getAllOpenings()
       .then((openings) => {
         this.openings = openings;
         this.filteredOpenings = openings;
+        this.searchHandler();
 
         for (let i = 0; i < this.openings.length; i++) {
           this.randomChessPieceImgs[i] = getRandomChessPiece();
@@ -42,11 +61,15 @@ export class OpeningCatalogComponent implements OnInit {
   searchHandler(): void {
     if (!this.searchQuery || this.searchQuery.trim() === '') {
       this.filteredOpenings = this.openings;
+      this.router.navigate(['/openings/catalog']);
     } else {
       if (this.openings) {
         this.filteredOpenings = this.openings?.filter((opening) =>
           opening.name.toLowerCase().includes(this.searchQuery.toLowerCase())
         );
+        this.router.navigate(['/openings/catalog/search'], {
+          queryParams: { name: this.searchQuery },
+        });
       }
     }
   }
