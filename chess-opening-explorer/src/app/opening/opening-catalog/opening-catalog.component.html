@@ -1,31 +1,42 @@
 <div class="openings-catalog">
-  <div class="container">
-    <h2 class="title">Browse Catalog</h2>
-    <mat-slide-toggle [checked]="isDynamicSearch" (change)="toggleSearchMode()">
-      <span>{{ isDynamicSearch == true ? "Dynamic" : "Manual" }} Search </span>
-    </mat-slide-toggle>
-    <div class="search-bar">
-      <input
-        #searchInput
-        type="text"
-        [(ngModel)]="searchQuery"
-        [placeholder]="
-          isDynamicSearch == true ? 'Search as you type' : 'Search openings'
-        "
-        (keydown.enter)="searchHandler()"
-        (input)="isDynamicSearch && searchHandler()"
-      />
-      <div
-        class="tooltip-container"
-        matTooltip="Press '/' to focus the search field"
+  <ng-container *ngIf="filteredOpenings && filteredOpenings.length > 0">
+    <div class="container">
+      <h2 class="title">Browse Catalog</h2>
+      <mat-slide-toggle
+        [checked]="isDynamicSearch"
+        (change)="toggleSearchMode()"
       >
-        <div class="slash-indicator" *ngIf="isDynamicSearch">/</div>
+        <span
+          >{{ isDynamicSearch == true ? "Dynamic" : "Manual" }} Search
+        </span>
+      </mat-slide-toggle>
+      <div class="search-bar">
+        <input
+          #searchInput
+          type="text"
+          [(ngModel)]="searchQuery"
+          [placeholder]="
+            isDynamicSearch == true ? 'Search as you type' : 'Search openings'
+          "
+          (keydown.enter)="searchHandler()"
+          (input)="isDynamicSearch && searchHandler()"
+        />
+        <div
+          class="tooltip-container"
+          matTooltip="Press '/' to focus the search field"
+        >
+          <div class="slash-indicator" *ngIf="isDynamicSearch">/</div>
+        </div>
+        <button
+          type="button"
+          (click)="searchHandler()"
+          *ngIf="!isDynamicSearch"
+        >
+          Search
+        </button>
       </div>
-      <button type="button" (click)="searchHandler()" *ngIf="!isDynamicSearch">
-        Search
-      </button>
     </div>
-  </div>
+  </ng-container>
 
   <div class="openings-grid" *ngIf="filteredOpenings">
     <div
@@ -59,5 +70,17 @@
     <p class="message">
       No matching openings found. Please try a different search query.
     </p>
+  </div>
+
+  <div
+    class="no-openings-message"
+    *ngIf="showNoOpeningsMsg"
+  >
+    <app-no-openings-msg
+      [message]="
+        'No chess openings available at the moment. We\'re constantly updating, so please come back later.'
+      "
+      [imageUrl]="'/assets/images/coming-soon.png'"
+    ></app-no-openings-msg>
   </div>
 </div>

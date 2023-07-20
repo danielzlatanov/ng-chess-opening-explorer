@@ -10,6 +10,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { FormsModule } from '@angular/forms';
 import { ConfirmationDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { NoOpeningsMsgComponent } from './components/no-openings-msg/no-openings-msg.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     ChessboardComponent,
     LoaderComponent,
     ConfirmationDialogComponent,
+    NoOpeningsMsgComponent,
   ],
   imports: [
     CommonModule,
@@ -32,6 +34,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     ChessboardComponent,
     LoaderComponent,
     ConfirmationDialogComponent,
+    NoOpeningsMsgComponent
   ],
 })
 export class SharedModule {}

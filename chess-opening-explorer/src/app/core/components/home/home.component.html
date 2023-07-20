@@ -2,8 +2,13 @@
   <h1>Welcome to Chess Opening Explorer</h1>
   <p>Explore and learn various chess openings</p>
 
-  <h2>Featured Openings</h2>
-  <div class="featured-openings" *ngIf="lastThreeOpenings">
+  <h2 *ngIf="lastThreeOpenings && lastThreeOpenings.length > 0">
+    Featured Openings
+  </h2>
+  <div
+    class="featured-openings"
+    *ngIf="lastThreeOpenings && lastThreeOpenings.length > 0"
+  >
     <div
       class="opening-card"
       *ngFor="let opening of lastThreeOpenings; let i = index"
@@ -19,5 +24,16 @@
       </p>
       <a routerLink="/openings/details/{{ opening.id }}">Learn More</a>
     </div>
+  </div>
+
+  <div class="no-openings-message" *ngIf="showNoOpeningsMsg">
+    <app-no-openings-msg
+      [message]="
+        'It looks like there are no chess openings available at the moment. Please come back later.'
+      "
+      [imageUrl]="'/assets/images/oops.png'"
+      [imageSize]="'170px'"
+      [minHeight]="'calc(100vh - 650px)'"
+    ></app-no-openings-msg>
   </div>
 </div>

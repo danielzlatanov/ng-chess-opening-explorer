@@ -17,6 +17,7 @@ import { IOpening } from 'src/app/shared/interfaces/opening';
 export class HomeComponent implements OnInit {
   lastThreeOpenings: IOpening[] | null = [];
   getRandomChessPieceImg: Function = getRandomChessPiece;
+  showNoOpeningsMsg = false;
 
   constructor(
     private openingService: OpeningService,
@@ -27,7 +28,14 @@ export class HomeComponent implements OnInit {
     this.openingService
       .getLastThreeOpenings()
       .then((openings) => {
-        this.lastThreeOpenings = openings;
+        this.lastThreeOpenings = [];
+
+        if (this.lastThreeOpenings.length === 0) {
+          this.showNoOpeningsMsg = true;
+        } else {
+          this.showNoOpeningsMsg = false;
+        }
+
         this.changeDetectorRef.detectChanges();
       })
       .catch((err) => {

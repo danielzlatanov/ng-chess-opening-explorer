@@ -22,6 +22,7 @@ export class OpeningCatalogComponent implements OnInit {
   searchQuery: string = '';
   isDynamicSearch = true;
   showNoResultsMsg = false;
+  showNoOpeningsMsg = false;
 
   @ViewChild('searchInput') searchInput!: ElementRef;
   @HostListener('document:keydown', ['$event'])
@@ -54,12 +55,18 @@ export class OpeningCatalogComponent implements OnInit {
     this.openingService
       .getAllOpenings()
       .then((openings) => {
-        this.openings = openings;
+        this.openings = [];
         this.filteredOpenings = openings;
         this.searchHandler();
 
         for (let i = 0; i < this.openings.length; i++) {
           this.randomChessPieceImgs[i] = getRandomChessPiece();
+        }
+
+        if (this.openings.length === 0) {
+          this.showNoOpeningsMsg = true;
+        } else {
+          this.showNoOpeningsMsg = false;
         }
       })
       .catch((err) => {
