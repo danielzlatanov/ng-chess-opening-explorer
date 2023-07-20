@@ -11,6 +11,8 @@ import { IOpening } from '../../interfaces/opening';
 export class FormEditorBaseComponent {
   levels = levels;
   fenValue: string = '';
+  fenPattern =
+    /^((([pnbrqkPNBRQK1-8]{1,8})\/?){8})\s+(b|w)\s+(-|K?Q?k?q)\s+(-|[a-h][3-6])\s+(\d+)\s+(\d+)\s*$/gim;
   @Input() mode!: string;
   @Input() opening: IOpening | null = null;
   @Output() formSubmitted: EventEmitter<any> = new EventEmitter<any>();

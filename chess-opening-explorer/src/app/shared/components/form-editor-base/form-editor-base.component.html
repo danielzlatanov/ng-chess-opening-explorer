@@ -79,7 +79,17 @@
           name="fen"
           ngModel="{{ mode == 'edit' ? opening?.fen : '' }}"
           #fenInput="ngModel"
+          required
+          [pattern]="fenPattern"
         />
+        <ng-container *ngIf="fenInput.touched || fenInput.dirty">
+          <p class="error" *ngIf="fenInput.errors?.['required']">
+            FEN is required
+          </p>
+          <p class="error" *ngIf="fenInput.errors?.['pattern']">
+            Please provide a valid FEN position
+          </p>
+        </ng-container>
         <button type="button" (click)="showPositionOnBoard(fenInput.value)">
           Display FEN Position
         </button>
