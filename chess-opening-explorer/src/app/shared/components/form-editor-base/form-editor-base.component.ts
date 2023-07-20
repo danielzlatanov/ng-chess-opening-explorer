@@ -18,6 +18,14 @@ export class FormEditorBaseComponent {
   @Output() formSubmitted: EventEmitter<any> = new EventEmitter<any>();
 
   handleSubmit(form: NgForm) {
+    Object.keys(form.controls).forEach((ctrl) => {
+      const control = form.controls[ctrl];
+      if (control.value && typeof control.value === 'string') {
+        control.setValue(control.value.trimStart());
+        control.setValue(control.value.trimEnd());
+      }
+    });
+
     this.formSubmitted.emit(form);
   }
 
