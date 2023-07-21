@@ -13,7 +13,7 @@ export class AuthService {
 
   constructor(private afAuth: AngularFireAuth) {
     this.afAuth.authState.subscribe((user) => {
-      this.userSubject.next(user as any);
+      this.userSubject.next(user as User);
     });
   }
 
@@ -23,21 +23,10 @@ export class AuthService {
         email,
         password
       );
-      this.userSubject.next(userCredential.user as any);
+      this.userSubject.next(userCredential.user as User);
     } catch (err: any) {
-      if (err.code === 'auth/weak-password') {
-        return alert(
-          'Password is too weak. Please choose a stronger password.'
-        );
-      } else if (err.code == 'auth/invalid-email') {
-        return alert('Email is invalid.');
-      } else if (err.code == 'auth/email-already-in-use') {
-        return alert('Email is already in use.');
-      } else {
-        return alert(
-          'An error occurred during registration. Please try again later.'
-        );
-      }
+      const errMsg = this.getErrorMessageFromErrorCode(err.code);
+      throw new Error(errMsg);
     }
   }
 
@@ -48,9 +37,9 @@ export class AuthService {
         password
       );
       this.userSubject.next(userCredential.user as User);
-    } catch (error: any) {
-      alert(error.message);
-      console.error(error);
+    } catch (err: any) {
+      const errMsg = this.getErrorMessageFromErrorCode(err.code);
+      throw new Error(errMsg);
     }
   }
 
@@ -58,8 +47,33 @@ export class AuthService {
     try {
       await this.afAuth.signOut();
       this.userSubject.next(null);
-    } catch (error) {
-      console.error(error);
+    } catch (err: any) {
+      console.error(err.message);
+      this.userSubject.next(null);
+    }
+  }
+
+  getErrorMessageFromErrorCode(errorCode: string): string {
+    switch (errorCode) {
+      case 'auth/user-not-found':
+        return 'User not found. Please check your email or password.';
+      case 'auth/wrong-password':
+        return 'Incorrect email or password. Please try again.';
+      case 'auth/email-already-in-use':
+        return 'Email is already registered. Please use a different email.';
+      case 'auth/invalid-email':
+        return 'Invalid email format. Please enter a valid email address.';
+      case 'auth/weak-password':
+        return 'Weak password. Please choose a stronger password.';
+      case 'auth/too-many-requests':
+        return 'Too many unsuccessful attempts. Please try again later.';
+      case 'auth/network-request-failed':
+        return 'Network error. Please check your internet connection.';
+      case 'auth/user-disabled':
+        return 'Your account has been disabled. Please contact support for assistance.';
+
+      default:
+        return 'An error occurred during authentication. Please try again later.';
     }
   }
 }

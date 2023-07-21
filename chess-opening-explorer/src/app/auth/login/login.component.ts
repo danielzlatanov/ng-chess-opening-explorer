@@ -19,12 +19,15 @@ export class LoginComponent {
     }
 
     const { email, password } = form.value;
+    if (!email || !password) {
+      return alert('All fields are required');
+    }
 
     try {
       await this.authService.login(email, password);
       this.router.navigate(['/openings/catalog']);
     } catch (err: any) {
-      console.error(err.message);
+      alert(err.message);
     }
   }
 }

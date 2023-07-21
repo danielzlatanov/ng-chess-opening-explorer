@@ -19,6 +19,9 @@ export class RegisterComponent {
     }
 
     const { email, password, repass } = form.value;
+    if (!email || !password) {
+      return alert('All fields are required');
+    }
     if (password.length < 6) {
       return alert('Password should be at least 6 characters');
     }
@@ -30,19 +33,7 @@ export class RegisterComponent {
       await this.authService.register(email, password);
       this.router.navigate(['/openings/catalog']);
     } catch (err: any) {
-      if (err.code === 'auth/weak-password') {
-        return alert(
-          'Password is too weak. Please choose a stronger password.'
-        );
-      } else if (err.code == 'auth/invalid-email') {
-        return alert('Email is invalid.');
-      } else if (err.code == 'auth/email-already-in-use') {
-        return alert('Email is already in use.');
-      } else {
-        return alert(
-          'An error occurred during registration. Please try again later.'
-        );
-      }
+      alert(err.message);
     }
   }
 }
