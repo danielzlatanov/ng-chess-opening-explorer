@@ -7,6 +7,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { AuthRoutingModule } from './auth-routing.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FormsModule } from '@angular/forms';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,6 @@ import { FormsModule } from '@angular/forms';
     LogoutComponent,
     ProfileComponent,
   ],
-  imports: [CommonModule, AuthRoutingModule, FontAwesomeModule, FormsModule],
+  imports: [CommonModule, AuthRoutingModule, FontAwesomeModule, FormsModule, SharedModule],
 })
 export class AuthModule {}
