@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { levels } from 'src/app/constants';
 import { IOpening } from '../../interfaces/opening';
+import { trimFormFields } from '../../helpers/trimFormFields';
 
 @Component({
   selector: 'app-form-editor-base',
@@ -18,14 +19,7 @@ export class FormEditorBaseComponent {
   @Output() formSubmitted: EventEmitter<NgForm> = new EventEmitter<NgForm>();
 
   handleSubmit(form: NgForm) {
-    Object.keys(form.controls).forEach((ctrl) => {
-      const control = form.controls[ctrl];
-      if (control.value && typeof control.value === 'string') {
-        control.setValue(control.value.trimStart());
-        control.setValue(control.value.trimEnd());
-      }
-    });
-
+    trimFormFields(form);
     this.formSubmitted.emit(form);
   }
 

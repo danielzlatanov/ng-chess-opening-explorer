@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
+import { trimFormFields } from 'src/app/shared/helpers/trimFormFields';
 
 @Component({
   selector: 'app-register',
@@ -28,6 +29,8 @@ export class RegisterComponent {
     if (password !== repass) {
       return alert('Passwords do not match');
     }
+
+    trimFormFields(form, true);
 
     try {
       await this.authService.register(email, password);

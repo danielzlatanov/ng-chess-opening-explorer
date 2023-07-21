@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
+import { trimFormFields } from 'src/app/shared/helpers/trimFormFields';
 
 @Component({
   selector: 'app-login',
@@ -23,6 +24,8 @@ export class LoginComponent {
       return alert('All fields are required');
     }
 
+    trimFormFields(form, true);
+    
     try {
       await this.authService.login(email, password);
       this.router.navigate(['/openings/catalog']);
