@@ -55,7 +55,7 @@ export class OpeningCatalogComponent implements OnInit {
     this.openingService
       .getAllOpenings()
       .then((openings) => {
-        this.openings = [];
+        this.openings = openings;
         this.filteredOpenings = openings;
         this.searchHandler();
 

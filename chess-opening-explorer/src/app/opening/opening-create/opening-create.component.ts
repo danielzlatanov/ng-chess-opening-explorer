@@ -34,8 +34,6 @@ export class OpeningCreateComponent implements OnInit {
       return;
     }
 
-    console.log('received values: ', form.value);
-
     const { name, description, fen, level } = form.value;
     const opening: IOpening = {
       name,

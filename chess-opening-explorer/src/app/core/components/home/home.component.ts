@@ -28,7 +28,7 @@ export class HomeComponent implements OnInit {
     this.openingService
       .getLastThreeOpenings()
       .then((openings) => {
-        this.lastThreeOpenings = [];
+        this.lastThreeOpenings = openings;
 
         if (this.lastThreeOpenings.length === 0) {
           this.showNoOpeningsMsg = true;
