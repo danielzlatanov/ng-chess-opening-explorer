@@ -11,7 +11,6 @@ import { FormsModule } from '@angular/forms';
 import { ConfirmationDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { NoOpeningsMsgComponent } from './components/no-openings-msg/no-openings-msg.component';
-import { ComparePassDirective } from './directives/compare-pass.directive';
 
 @NgModule({
   declarations: [
@@ -20,7 +19,6 @@ import { ComparePassDirective } from './directives/compare-pass.directive';
     LoaderComponent,
     ConfirmationDialogComponent,
     NoOpeningsMsgComponent,
-    ComparePassDirective,
   ],
   imports: [
     CommonModule,
@@ -29,15 +27,14 @@ import { ComparePassDirective } from './directives/compare-pass.directive';
     NgxChessBoardModule,
     MatProgressSpinnerModule,
     FormsModule,
-    MatDialogModule,
+    MatDialogModule
   ],
   exports: [
     FormEditorBaseComponent,
     ChessboardComponent,
     LoaderComponent,
     ConfirmationDialogComponent,
-    NoOpeningsMsgComponent,
-    ComparePassDirective,
+    NoOpeningsMsgComponent
   ],
 })
 export class SharedModule {}

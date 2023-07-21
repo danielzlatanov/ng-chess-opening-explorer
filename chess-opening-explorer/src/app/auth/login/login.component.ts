@@ -9,12 +9,10 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
-  showRequiredFieldsError = false;
   constructor(private authService: AuthService, private router: Router) {}
 
   async loginHandler(form: NgForm) {
     if (form.invalid) {
-      this.showRequiredFieldsError = true;
       return;
     }
 

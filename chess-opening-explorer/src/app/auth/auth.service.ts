@@ -47,7 +47,7 @@ export class AuthService {
         email,
         password
       );
-      this.userSubject.next(userCredential.user as User);
+      this.userSubject.next(userCredential.user as any);
     } catch (error: any) {
       alert(error.message);
       console.error(error);

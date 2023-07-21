@@ -9,12 +9,10 @@ import { Router } from '@angular/router';
   styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent {
-  showRequiredFieldsError = false;
   constructor(private authService: AuthService, private router: Router) {}
 
   async registerHandler(form: NgForm) {
     if (form.invalid) {
-      this.showRequiredFieldsError = true;
       return;
     }
 

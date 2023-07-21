@@ -8,24 +8,13 @@
 
     <label for="email">Email</label>
     <input
-      type="email"
+      type="text"
       placeholder="Email address"
       id="email"
       name="email"
       #emailInput="ngModel"
       ngModel
-      required
-      email
     />
-
-    <ng-container *ngIf="emailInput.touched || emailInput.dirty">
-      <p class="error" *ngIf="emailInput.errors?.['required']">
-        Email is required
-      </p>
-      <p class="error" *ngIf="emailInput.errors?.['email']">
-        Please provide a valid email address
-      </p>
-    </ng-container>
 
     <label for="password">Password</label>
     <input
@@ -35,22 +24,11 @@
       name="password"
       #passInput="ngModel"
       ngModel
-      required
     />
-
-    <ng-container *ngIf="passInput.touched || passInput.dirty">
-      <p class="error" *ngIf="passInput.errors?.['required']">
-        Password is required
-      </p>
-    </ng-container>
 
     <p id="registerMsg">
       Don't have an account? <a routerLink="/auth/register">Register now.</a>
     </p>
     <button>Sign in</button>
-
-    <ng-container *ngIf="showRequiredFieldsError">
-      <p class="error">Please fill in all fields and correct any errors.</p>
-    </ng-container>
   </form>
 </body>

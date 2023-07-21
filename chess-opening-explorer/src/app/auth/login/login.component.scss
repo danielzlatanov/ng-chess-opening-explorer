@@ -1,9 +1,5 @@
 body {
   background: rgb(203 199 196);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
 }
 
 .background {
@@ -12,7 +8,7 @@ body {
   position: absolute;
   transform: translate(-50%, -50%);
   left: 50%;
-  top: 58%;
+  top: 50%;
 }
 
 .background .shape {
@@ -35,9 +31,13 @@ body {
 }
 
 form {
-  min-height: 440px;
+  height: 440px;
   width: 400px;
   background-color: rgba(255, 255, 255, 0.1);
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
   border-radius: 10px;
   backdrop-filter: blur(10px);
   border: 2px solid rgba(255, 255, 255, 0.1);
@@ -103,8 +103,4 @@ button:hover {
 #registerMsg a {
   text-decoration: none;
   color: #0164ce;
-}
-
-.error {
-  color: red;
 }
