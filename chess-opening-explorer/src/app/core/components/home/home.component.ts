@@ -18,6 +18,7 @@ export class HomeComponent implements OnInit {
   lastThreeOpenings: IOpening[] | null = [];
   getRandomChessPieceImg: Function = getRandomChessPiece;
   showNoOpeningsMsg = false;
+  isLoading = true;
 
   constructor(
     private openingService: OpeningService,
@@ -25,21 +26,22 @@ export class HomeComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.isLoading = true;
+    this.fetchLastThreeOpenings();
+  }
+
+  fetchLastThreeOpenings() {
     this.openingService
       .getLastThreeOpenings()
       .then((openings) => {
         this.lastThreeOpenings = openings;
-
-        if (this.lastThreeOpenings.length === 0) {
-          this.showNoOpeningsMsg = true;
-        } else {
-          this.showNoOpeningsMsg = false;
-        }
-
+        this.isLoading = false;
+        this.showNoOpeningsMsg = this.lastThreeOpenings.length === 0;
         this.changeDetectorRef.detectChanges();
       })
       .catch((err) => {
         this.lastThreeOpenings = null;
+        this.isLoading = false;
         console.error('Error fetching last three openings: ', err.message);
       });
   }

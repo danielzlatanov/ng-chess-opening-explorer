@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from 'firebase/auth';
 import { AuthService } from 'src/app/auth/auth.service';
-import { LoaderService } from 'src/app/shared/loader/loader.service';
 
 @Component({
   selector: 'app-header',
@@ -10,20 +9,15 @@ import { LoaderService } from 'src/app/shared/loader/loader.service';
 })
 export class HeaderComponent implements OnInit {
   user: User | null = null;
-  loading = true;
+  isUserSet = false;
 
-  constructor(
-    private authService: AuthService,
-    private loaderService: LoaderService
-  ) {
+  constructor(private authService: AuthService) {
     this.authService.user$.subscribe((user) => {
       this.user = user;
-      this.loaderService.hideLoader();
-      this.loading = false;
+      this.isUserSet = true;
     });
   }
   ngOnInit(): void {
-    this.loaderService.showLoader();
-    this.loading = true;
+    this.isUserSet = false;
   }
 }

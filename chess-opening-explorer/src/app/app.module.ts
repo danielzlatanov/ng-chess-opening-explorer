@@ -20,12 +20,12 @@ export class GlobalErrorHandler implements ErrorHandler {
 @NgModule({
   declarations: [AppComponent],
   imports: [
-    BrowserModule,
     AppRoutingModule,
+    BrowserModule,
+    BrowserAnimationsModule,
+    CoreModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
-    CoreModule,
-    BrowserAnimationsModule,
     FontAwesomeModule,
   ],
   providers: [{ provide: ErrorHandler, useClass: GlobalErrorHandler }],

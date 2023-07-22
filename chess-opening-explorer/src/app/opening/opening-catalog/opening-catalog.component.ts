@@ -66,11 +66,7 @@ export class OpeningCatalogComponent implements OnInit {
           this.generateRandomChessPieceImages();
         }
 
-        if (this.openings.length === 0) {
-          this.showNoOpeningsMsg = true;
-        } else {
-          this.showNoOpeningsMsg = false;
-        }
+        this.showNoOpeningsMsg = this.openings.length === 0;
       })
       .catch((err) => {
         this.openings = null;

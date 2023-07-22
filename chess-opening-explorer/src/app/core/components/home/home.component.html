@@ -5,26 +5,33 @@
   <h2 *ngIf="lastThreeOpenings && lastThreeOpenings.length > 0">
     Featured Openings
   </h2>
-  <div
-    class="featured-openings"
-    *ngIf="lastThreeOpenings && lastThreeOpenings.length > 0"
-  >
-    <div
-      class="opening-card"
-      *ngFor="let opening of lastThreeOpenings; let i = index"
-    >
-      <img [src]="getRandomChessPieceImg()" alt="Opening {{ i + 1 }} IMG" />
 
-      <h3>
-        {{ opening.name | slice : 0 : 16 }}
-        {{ opening.name.length > 16 ? "..." : "" }}
-      </h3>
-      <p>
-        Difficulty: <strong>{{ opening.level }}</strong>
-      </p>
-      <a routerLink="/openings/details/{{ opening.id }}">Learn More</a>
+  <ng-container *ngIf="isLoading; else openingsData">
+    <app-loader></app-loader>
+  </ng-container>
+
+  <ng-template #openingsData>
+    <div
+      class="featured-openings"
+      *ngIf="!isLoading && lastThreeOpenings && lastThreeOpenings.length > 0"
+    >
+      <div
+        class="opening-card"
+        *ngFor="let opening of lastThreeOpenings; let i = index"
+      >
+        <img [src]="getRandomChessPieceImg()" alt="Opening {{ i + 1 }} IMG" />
+
+        <h3>
+          {{ opening.name | slice : 0 : 16 }}
+          {{ opening.name.length > 16 ? "..." : "" }}
+        </h3>
+        <p>
+          Difficulty: <strong>{{ opening.level }}</strong>
+        </p>
+        <a routerLink="/openings/details/{{ opening.id }}">Learn More</a>
+      </div>
     </div>
-  </div>
+  </ng-template>
 
   <div class="no-openings-message" *ngIf="showNoOpeningsMsg">
     <app-no-openings-msg

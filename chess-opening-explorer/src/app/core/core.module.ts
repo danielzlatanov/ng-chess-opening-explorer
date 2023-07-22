@@ -19,8 +19,8 @@ import { SharedModule } from '../shared/shared.module';
   ],
   imports: [
     CommonModule,
-    SharedModule,
     RouterModule,
+    SharedModule,
     MatToolbarModule,
     MatListModule,
     MatButtonModule,

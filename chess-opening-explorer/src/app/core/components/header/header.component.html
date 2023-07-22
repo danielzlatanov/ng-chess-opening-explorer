@@ -1,4 +1,4 @@
-<ng-container *ngIf="loading; else header">
+<ng-container *ngIf="!isUserSet; else header">
   <app-loader></app-loader>
 </ng-container>
 

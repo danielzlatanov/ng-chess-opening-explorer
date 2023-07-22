@@ -5,13 +5,13 @@ import { ChessboardComponent } from './components/chessboard/chessboard.componen
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { NgxChessBoardModule } from 'ngx-chess-board';
-import { LoaderComponent } from './loader/loader/loader.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { FormsModule } from '@angular/forms';
 import { ConfirmationDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { NoOpeningsMsgComponent } from './components/no-openings-msg/no-openings-msg.component';
 import { ComparePassDirective } from './directives/compare-pass.directive';
+import { LoaderComponent } from './components/loader/loader.component';
 
 @NgModule({
   declarations: [
