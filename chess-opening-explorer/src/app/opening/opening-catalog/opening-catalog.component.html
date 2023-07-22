@@ -27,33 +27,39 @@
     </div>
   </div>
 
-  <div class="openings-grid" *ngIf="filteredOpenings">
-    <div
-      class="opening-card"
-      *ngFor="let opening of filteredOpenings; let i = index"
-    >
-      <div class="opening-image">
-        <img [src]="randomChessPieceImgs[i]" alt="Opening {{ i + 1 }}" />
-      </div>
+  <ng-container *ngIf="isLoading; else openingsData">
+    <app-loader></app-loader>
+  </ng-container>
 
-      <div class="opening-details">
-        <h2 class="opening-title">
-          {{ opening.name | slice : 0 : 16 }}
-          {{ opening.name.length > 16 ? "..." : "" }}
-        </h2>
-        <p class="opening-description">
-          {{ opening.description | slice : 0 : 20 }}
-          {{ opening.description.length > 20 ? "..." : "" }}
-        </p>
-        <a
-          mat-stroked-button
-          class="view-details"
-          routerLink="/openings/details/{{ opening.id }}"
-          >Details</a
-        >
+  <ng-template #openingsData>
+    <div class="openings-grid" *ngIf="filteredOpenings">
+      <div
+        class="opening-card"
+        *ngFor="let opening of filteredOpenings; let i = index"
+      >
+        <div class="opening-image">
+          <img [src]="randomChessPieceImgs[i]" alt="Opening {{ i + 1 }}" />
+        </div>
+
+        <div class="opening-details">
+          <h2 class="opening-title">
+            {{ opening.name | slice : 0 : 16 }}
+            {{ opening.name.length > 16 ? "..." : "" }}
+          </h2>
+          <p class="opening-description">
+            {{ opening.description | slice : 0 : 20 }}
+            {{ opening.description.length > 20 ? "..." : "" }}
+          </p>
+          <a
+            mat-stroked-button
+            class="view-details"
+            routerLink="/openings/details/{{ opening.id }}"
+            >Details</a
+          >
+        </div>
       </div>
     </div>
-  </div>
+  </ng-template>
 
   <div class="no-results-message" *ngIf="showNoResultsMsg">
     <p class="message">

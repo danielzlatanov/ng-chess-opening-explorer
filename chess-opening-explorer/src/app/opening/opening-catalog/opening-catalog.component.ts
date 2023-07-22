@@ -25,6 +25,7 @@ export class OpeningCatalogComponent implements OnInit {
   showNoResultsMsg = false;
   showNoOpeningsMsg = false;
   initialImgsSet = false;
+  isLoading = true;
 
   @ViewChild('searchInput') searchInput!: ElementRef;
   @HostListener('document:keydown', ['$event'])
@@ -42,6 +43,7 @@ export class OpeningCatalogComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.isLoading = true;
     this.route.queryParams.subscribe((params) => {
       this.searchQuery = params['name'] || '';
       if (this.searchQuery.length > 0) {
@@ -60,6 +62,7 @@ export class OpeningCatalogComponent implements OnInit {
         this.openings = openings;
         this.filteredOpenings = openings;
         this.searchHandler();
+        this.isLoading = false;
 
         if (this.openings && !this.initialImgsSet) {
           this.initialImgsSet = true;
@@ -70,6 +73,7 @@ export class OpeningCatalogComponent implements OnInit {
       })
       .catch((err) => {
         this.openings = null;
+        this.isLoading = false;
         console.error('Error fetching all openings: ', err.message);
       });
   }
