@@ -1,103 +1,111 @@
-<div class="profile-container">
-  <h1>Your Profile</h1>
-  <div class="top-sections">
-    <div class="personal-info section">
-      <h2>Personal Information <fa-icon [icon]="faUser"></fa-icon></h2>
-      <div class="divider"></div>
-      <div class="info">
-        <div class="profile-photo">
-          <img
-            class="photo"
-            src="/assets/images/default-photo.png"
-            alt="Profile IMG"
-          />
-        </div>
-        <p>
-          <strong
-            >Email
-            <div class="inner-divider"></div
-          ></strong>
-          {{ user?.email }}
-        </p>
+<ng-container *ngIf="isLoading; else userData">
+  <app-loader></app-loader>
+</ng-container>
 
-        <p>
-          <strong
-            >Account Created
-            <div class="inner-divider"></div
-          ></strong>
-          {{ euTime }}
-        </p>
+<ng-template #userData>
+  <div class="profile-container">
+    <h1>Your Profile</h1>
+
+    <div class="top-sections">
+      <div class="personal-info section">
+        <h2>Personal Information <fa-icon [icon]="faUser"></fa-icon></h2>
+        <div class="divider"></div>
+        <div class="info">
+          <div class="profile-photo">
+            <img
+              class="photo"
+              src="/assets/images/default-photo.png"
+              alt="Profile IMG"
+            />
+          </div>
+          <p>
+            <strong
+              >Email
+              <div class="inner-divider"></div
+            ></strong>
+            {{ user?.email }}
+          </p>
+
+          <p>
+            <strong
+              >Account Created
+              <div class="inner-divider"></div
+            ></strong>
+            {{ euTime }}
+          </p>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2 class="section-title">
+          Openings Explored <fa-icon [icon]="faChessKnight"></fa-icon>
+        </h2>
+        <div class="divider"></div>
+        <div class="openings-explored">
+          <div class="info" *ngFor="let opening of exploredOpenings">
+            <ul>
+              <a routerLink="/openings/details/{{ opening.id }}">
+                <li>
+                  {{ opening.name }}
+                </li>
+              </a>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2 class="section-title">
+          Favourite Openings <fa-icon [icon]="faStar"></fa-icon>
+        </h2>
+        <div class="divider"></div>
+        <div class="favorite-openings">
+          <div class="info" *ngFor="let opening of favOpenings">
+            <ul>
+              <a routerLink="/openings/details/{{ opening.id }}">
+                <li>
+                  {{ opening.name }}
+                </li>
+              </a>
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
 
-    <div class="section">
+    <div class="my-openings section">
       <h2 class="section-title">
-        Openings Explored <fa-icon [icon]="faChessKnight"></fa-icon>
+        Openings Created by Me <fa-icon [icon]="faChessBoard"></fa-icon>
       </h2>
       <div class="divider"></div>
-      <div class="openings-explored">
-        <div class="info" *ngFor="let opening of exploredOpenings">
-          <ul>
-            <a routerLink="/openings/details/{{ opening.id }}">
-              <li>
-                {{ opening.name }}
-              </li>
-            </a>
-          </ul>
-        </div>
-      </div>
-    </div>
+      <div class="openings-list" *ngIf="userOwnOpenings">
+        <div class="opening-item" *ngFor="let opening of userOwnOpenings">
+          <h4 class="opening-title">
+            {{ opening.name | slice : 0 : 20 }}
+            {{ opening.name.length > 20 ? "..." : "" }}
+          </h4>
+          <p class="opening-description">
+            {{ opening.description | slice : 0 : 20 }}
+            {{ opening.description.length > 20 ? "..." : "" }}
+          </p>
 
-    <div class="section">
-      <h2 class="section-title">
-        Favourite Openings <fa-icon [icon]="faStar"></fa-icon>
-      </h2>
-      <div class="divider"></div>
-      <div class="favorite-openings">
-        <div class="info" *ngFor="let opening of favOpenings">
-          <ul>
-            <a routerLink="/openings/details/{{ opening.id }}">
-              <li>
-                {{ opening.name }}
-              </li>
-            </a>
-          </ul>
+          <div class="opening-actions">
+            <button
+              class="edit-button"
+              routerLink="/openings/edit/{{ opening.id }}"
+            >
+              Edit
+            </button>
+            <button
+              class="delete-button"
+              (click)="handleDeleteDialog(opening.id!)"
+            >
+              Delete
+            </button>
+          </div>
         </div>
       </div>
     </div>
   </div>
+</ng-template>
 
-  <div class="my-openings section">
-    <h2 class="section-title">
-      Openings Created by Me <fa-icon [icon]="faChessBoard"></fa-icon>
-    </h2>
-    <div class="divider"></div>
-    <div class="openings-list" *ngIf="userOwnOpenings">
-      <div class="opening-item" *ngFor="let opening of userOwnOpenings">
-        <h4 class="opening-title">
-          {{ opening.name | slice : 0 : 20 }}
-          {{ opening.name.length > 20 ? "..." : "" }}
-        </h4>
-        <p class="opening-description">
-          {{ opening.description | slice : 0 : 20 }}
-          {{ opening.description.length > 20 ? "..." : "" }}
-        </p>
-
-        <div class="opening-actions">
-          <button
-            class="edit-button"
-            routerLink="/openings/edit/{{ opening.id }}"
-          >
-            Edit
-          </button>
-          <button
-            class="delete-button"
-            (click)="handleDeleteDialog(opening.id!)"
-          >
-            Delete
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>

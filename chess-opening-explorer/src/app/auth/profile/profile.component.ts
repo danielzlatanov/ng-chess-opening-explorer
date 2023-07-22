@@ -27,6 +27,7 @@ export class ProfileComponent implements OnInit {
   exploredOpenings: IOpening[] | [] = [];
   favOpenings: IOpening[] | [] = [];
   userOwnOpenings: IOpening[] | [] = [];
+  isLoading = true;
 
   constructor(
     private authService: AuthService,
@@ -36,8 +37,11 @@ export class ProfileComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.isLoading = true;
+    
     this.authService.user$.subscribe((user) => {
       this.user = user;
+      this.isLoading = false;
       const creationTimeStr = this.user?.metadata.creationTime;
       const creationTime = creationTimeStr ? new Date(creationTimeStr) : null;
 
@@ -59,42 +63,57 @@ export class ProfileComponent implements OnInit {
   }
 
   retrieveExploredOpenings(): void {
+    this.isLoading = true;
+
     if (this.user) {
       this.openingService
         .getUserExploredOpenings(this.user.email!)
         .then((openings) => {
           this.exploredOpenings = openings;
+          this.isLoading = false;
         })
         .catch((err) => {
           this.exploredOpenings = [];
+          this.isLoading = false;
+
           console.error('Error fetching explored openings: ', err.message);
         });
     }
   }
 
   retrieveFavouritedOpenings(): void {
+    this.isLoading = true;
+
     if (this.user) {
       this.openingService
         .getUserFavOpenings(this.user.email!)
         .then((openings) => {
           this.favOpenings = openings;
+          this.isLoading = false;
         })
         .catch((err) => {
           this.favOpenings = [];
+          this.isLoading = false;
+
           console.error('Error fetching favourited openings: ', err.message);
         });
     }
   }
 
   retrieveUserOwnOpenings(): void {
+    this.isLoading = true;
+
     if (this.user) {
       this.openingService
         .getUserOwnOpenings(this.user.uid!)
         .then((openings) => {
           this.userOwnOpenings = openings;
+          this.isLoading = false;
         })
         .catch((err) => {
           this.userOwnOpenings = [];
+          this.isLoading = false;
+
           console.error("Error fetching user's own openings: ", err.message);
         });
     }
