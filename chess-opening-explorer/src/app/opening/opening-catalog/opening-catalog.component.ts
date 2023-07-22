@@ -20,7 +20,8 @@ export class OpeningCatalogComponent implements OnInit {
   openings: IOpening[] | null = [];
   filteredOpenings: IOpening[] | null = [];
   searchQuery: string = '';
-  isDynamicSearch = true;
+  isDynamicSearch =
+    localStorage.getItem('isDynamicSearch') === 'false' ? false : true;
   showNoResultsMsg = false;
   showNoOpeningsMsg = false;
   initialImgsSet = false;
@@ -79,6 +80,7 @@ export class OpeningCatalogComponent implements OnInit {
 
   toggleSearchMode() {
     this.isDynamicSearch = !this.isDynamicSearch;
+    localStorage.setItem('isDynamicSearch', this.isDynamicSearch.toString());
   }
 
   searchHandler(): void {
