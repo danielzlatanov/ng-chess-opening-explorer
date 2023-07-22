@@ -21,6 +21,16 @@ const routes: Routes = [
     },
   },
   {
+    path: 'openings',
+    redirectTo: '',
+    pathMatch: 'full',
+  },
+  {
+    path: 'auth',
+    redirectTo: '',
+    pathMatch: 'full',
+  },
+  {
     path: 'auth',
     loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
   },
