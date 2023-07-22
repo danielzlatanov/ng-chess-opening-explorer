@@ -23,6 +23,7 @@ export class OpeningCatalogComponent implements OnInit {
   isDynamicSearch = true;
   showNoResultsMsg = false;
   showNoOpeningsMsg = false;
+  initialImgsSet = false;
 
   @ViewChild('searchInput') searchInput!: ElementRef;
   @HostListener('document:keydown', ['$event'])
@@ -59,8 +60,9 @@ export class OpeningCatalogComponent implements OnInit {
         this.filteredOpenings = openings;
         this.searchHandler();
 
-        for (let i = 0; i < this.openings.length; i++) {
-          this.randomChessPieceImgs[i] = getRandomChessPiece();
+        if (this.openings && !this.initialImgsSet) {
+          this.initialImgsSet = true;
+          this.generateRandomChessPieceImages();
         }
 
         if (this.openings.length === 0) {
@@ -99,6 +101,12 @@ export class OpeningCatalogComponent implements OnInit {
           queryParams: { name: this.searchQuery },
         });
       }
+    }
+  }
+
+  generateRandomChessPieceImages(): void {
+    for (let i = 0; i < this.openings!.length; i++) {
+      this.randomChessPieceImgs[i] = getRandomChessPiece();
     }
   }
 }
