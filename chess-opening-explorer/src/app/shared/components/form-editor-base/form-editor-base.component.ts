@@ -1,4 +1,12 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnInit,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { levels } from 'src/app/constants';
 import { IOpening } from '../../interfaces/opening';
@@ -9,7 +17,7 @@ import { trimFormFields } from '../../helpers/trimFormFields';
   templateUrl: './form-editor-base.component.html',
   styleUrls: ['./form-editor-base.component.scss'],
 })
-export class FormEditorBaseComponent {
+export class FormEditorBaseComponent implements OnInit, OnChanges {
   levels = levels;
   fenValue: string = '';
   fenPattern =
@@ -17,6 +25,18 @@ export class FormEditorBaseComponent {
   @Input() mode!: string;
   @Input() opening: IOpening | null = null;
   @Output() formSubmitted: EventEmitter<NgForm> = new EventEmitter<NgForm>();
+
+  isLoading = true;
+
+  ngOnInit(): void {
+    this.isLoading = true;
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['opening']) {
+      this.isLoading = false;
+    }
+  }
 
   handleSubmit(form: NgForm) {
     trimFormFields(form);
