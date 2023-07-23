@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { OpeningService } from '../opening.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { NotificationService } from 'src/app/shared/components/notification/notification.service';
 
 @Component({
   selector: 'app-opening-delete',
@@ -14,7 +15,8 @@ export class OpeningDeleteComponent {
   constructor(
     private openingService: OpeningService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private notifService: NotificationService
   ) {}
 
   ngOnInit(): void {
@@ -25,8 +27,10 @@ export class OpeningDeleteComponent {
       .deleteOpening(this.openingId)
       .then(() => {
         if (this.redirectPath) {
+          this.notifService.showNotification('Opening removed successfully!');
           return this.router.navigate([this.redirectPath]);
         }
+        this.notifService.showNotification('Opening removed successfully!');
         return this.router.navigate(['/openings/catalog']);
       })
       .catch((err) => {

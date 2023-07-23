@@ -3,11 +3,12 @@ import { NgForm } from '@angular/forms';
 import { IOpening } from 'src/app/shared/interfaces/opening';
 import { OpeningService } from '../opening.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { NotificationService } from 'src/app/shared/components/notification/notification.service';
 
 @Component({
   selector: 'app-opening-edit',
   templateUrl: './opening-edit.component.html',
-  styleUrls: ['./opening-edit.component.scss' ],
+  styleUrls: ['./opening-edit.component.scss'],
 })
 export class OpeningEditComponent implements OnInit {
   opening: IOpening | null = null;
@@ -17,7 +18,8 @@ export class OpeningEditComponent implements OnInit {
   constructor(
     private openingService: OpeningService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private notifService: NotificationService
   ) {}
 
   ngOnInit(): void {
@@ -53,6 +55,7 @@ export class OpeningEditComponent implements OnInit {
       .updateOpening(this.openingId, updatedOpening)
       .then(() => {
         this.router.navigate(['/openings/details/' + this.openingId]);
+        this.notifService.showNotification('Opening updated successfully!');
       })
       .catch((err) => {
         this.showEditForm = true;

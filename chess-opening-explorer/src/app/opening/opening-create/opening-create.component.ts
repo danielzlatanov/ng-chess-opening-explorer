@@ -4,6 +4,7 @@ import { NgForm } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { OpeningService } from '../opening.service';
 import { IOpening } from 'src/app/shared/interfaces/opening';
+import { NotificationService } from 'src/app/shared/components/notification/notification.service';
 
 @Component({
   selector: 'app-opening-create',
@@ -18,7 +19,8 @@ export class OpeningCreateComponent implements OnInit {
   constructor(
     private openingService: OpeningService,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private notifService: NotificationService
   ) {}
 
   ngOnInit(): void {
@@ -52,6 +54,7 @@ export class OpeningCreateComponent implements OnInit {
       .createOpening(opening)
       .then(() => {
         this.router.navigate(['/openings/catalog']);
+        this.notifService.showNotification('Opening added successfully!');
       })
       .catch((err) => {
         this.showCreateForm = true;

@@ -12,6 +12,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { NoOpeningsMsgComponent } from './components/no-openings-msg/no-openings-msg.component';
 import { ComparePassDirective } from './directives/compare-pass.directive';
 import { LoaderComponent } from './components/loader/loader.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { LoaderComponent } from './components/loader/loader.component';
     MatProgressSpinnerModule,
     FormsModule,
     MatDialogModule,
+    MatSnackBarModule,
   ],
   exports: [
     FormEditorBaseComponent,
