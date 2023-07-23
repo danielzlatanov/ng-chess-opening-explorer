@@ -13,6 +13,7 @@ import { IOpening } from 'src/app/shared/interfaces/opening';
 export class OpeningCreateComponent implements OnInit {
   userUid!: string; //!opening create cmp will be guarded later on
   userEmail!: string;
+  showCreateForm = true;
 
   constructor(
     private openingService: OpeningService,
@@ -21,6 +22,7 @@ export class OpeningCreateComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.showCreateForm = true;
     this.authService.user$.subscribe((user) => {
       if (user) {
         this.userUid = user.uid;
@@ -33,6 +35,8 @@ export class OpeningCreateComponent implements OnInit {
     if (form.invalid) {
       return;
     }
+
+    this.showCreateForm = false;
 
     const { name, description, fen, level } = form.value;
     const opening: IOpening = {
@@ -50,6 +54,7 @@ export class OpeningCreateComponent implements OnInit {
         this.router.navigate(['/openings/catalog']);
       })
       .catch((err) => {
+        this.showCreateForm = true;
         console.error(
           'An error occurred while creating opening: ',
           err.message

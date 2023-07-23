@@ -7,11 +7,12 @@ import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-opening-edit',
   templateUrl: './opening-edit.component.html',
-  styleUrls: ['./opening-edit.component.scss'],
+  styleUrls: ['./opening-edit.component.scss' ],
 })
 export class OpeningEditComponent implements OnInit {
   opening: IOpening | null = null;
   openingId!: string;
+  showEditForm = true;
 
   constructor(
     private openingService: OpeningService,
@@ -20,6 +21,7 @@ export class OpeningEditComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.showEditForm = true;
     this.openingId = this.route.snapshot.paramMap.get('id') as string;
     this.openingService
       .getOpeningById(this.openingId)
@@ -37,6 +39,8 @@ export class OpeningEditComponent implements OnInit {
       return;
     }
 
+    this.showEditForm = false;
+
     const { name, description, fen, level } = form.value;
     const updatedOpening: IOpening = {
       name,
@@ -51,6 +55,7 @@ export class OpeningEditComponent implements OnInit {
         this.router.navigate(['/openings/details/' + this.openingId]);
       })
       .catch((err) => {
+        this.showEditForm = true;
         console.error(
           'An error occurred while updating opening: ',
           err.message

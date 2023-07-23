@@ -1,5 +1,11 @@
-<app-form-editor-base
-  [mode]="'edit'"
-  [opening]="opening"
-  (formSubmitted)="updateOpening($event)"
-></app-form-editor-base>
+<ng-container *ngIf="showEditForm; else loader">
+  <app-form-editor-base
+    [mode]="'edit'"
+    [opening]="opening"
+    (formSubmitted)="updateOpening($event)"
+  ></app-form-editor-base>
+</ng-container>
+
+<ng-template #loader>
+  <app-loader></app-loader>
+</ng-template>
