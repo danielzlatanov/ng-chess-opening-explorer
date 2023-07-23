@@ -1,91 +1,104 @@
-<div class="opening-details" *ngIf="opening">
-  <div class="opening-header">
-    <h2>{{ opening.name }}</h2>
-  </div>
+<ng-container *ngIf="isLoading; else openingData">
+  <app-loader></app-loader>
+</ng-container>
 
-  <div class="content-container">
-    <div class="left-section">
-      <div class="section">
-        <div class="section-info">
-          <div class="section" *ngIf="opening.ownerEmail">
-            <h4 class="section-title">Owned by:</h4>
-            <div class="section-info">
-              <p class="section-item">{{ opening.ownerEmail.split("@")[0] }}</p>
+<ng-template #openingData>
+  <div class="opening-details" *ngIf="opening">
+    <div class="opening-header">
+      <h2>{{ opening.name }}</h2>
+    </div>
+
+    <div class="content-container">
+      <div class="left-section">
+        <div class="section">
+          <div class="section-info">
+            <div class="section" *ngIf="opening.ownerEmail">
+              <h4 class="section-title">Owned by:</h4>
+              <div class="section-info">
+                <p class="section-item">
+                  {{ opening.ownerEmail.split("@")[0] }}
+                </p>
+              </div>
+              <div class="divider"></div>
             </div>
-            <div class="divider"></div>
+          </div>
+        </div>
+        <div class="section">
+          <h4 class="section-title">Difficulty:</h4>
+          <div class="section-info">
+            <p class="section-item">{{ opening.level }}</p>
+          </div>
+        </div>
+        <div class="section">
+          <div class="divider"></div>
+          <h4 class="section-title">FEN:</h4>
+          <div class="section-info">
+            <p class="section-item">{{ opening.fen }}</p>
+          </div>
+        </div>
+        <div class="section">
+          <div class="divider"></div>
+          <h4 class="section-title">Description:</h4>
+          <div class="section-info">
+            <p class="section-item">{{ opening.description }}</p>
           </div>
         </div>
       </div>
-      <div class="section">
-        <h4 class="section-title">Difficulty:</h4>
-        <div class="section-info">
-          <p class="section-item">{{ opening.level }}</p>
+      <div class="middle-section">
+        <div class="chessboard-container">
+          <app-chessboard
+            [size]="600"
+            #board
+            [fen]="opening.fen"
+          ></app-chessboard>
         </div>
       </div>
-      <div class="section">
-        <div class="divider"></div>
-        <h4 class="section-title">FEN:</h4>
-        <div class="section-info">
-          <p class="section-item">{{ opening.fen }}</p>
-        </div>
-      </div>
-      <div class="section">
-        <div class="divider"></div>
-        <h4 class="section-title">Description:</h4>
-        <div class="section-info">
-          <p class="section-item">{{ opening.description }}</p>
-        </div>
-      </div>
-    </div>
-    <div class="middle-section">
-      <div class="chessboard-container">
-        <app-chessboard
-          [size]="600"
-          #board
-          [fen]="opening.fen"
-        ></app-chessboard>
-      </div>
-    </div>
 
-    <div class="right-section">
-      <div class="opening-actions">
-        <h3>Controls:</h3>
-        <button
-          *ngIf="!isOwner && user"
-          [ngClass]="{ 'btn-unfav': isFavourite, 'btn-fav': !isFavourite }"
-          (click)="isFavourite ? unfavouriteOpening() : favouriteOpening()"
-        >
-          {{ isFavourite ? "Unfavourite" : "Favourite" }}
-          <fa-icon [icon]="isFavourite ? faHeartBroken : faHeart"></fa-icon>
-        </button>
-        <button class="btn-reset" (click)="board.resetBoardHandler()">
-          Reset Board
-        </button>
-        <button class="btn-undo" (click)="board.undoMoveHandler()">
-          Undo Move
-        </button>
-        <button class="btn-reverse" (click)="board.flipBoardHandler()">
-          Flip Board
-        </button>
-        <div class="divider"></div>
+      <div class="right-section">
+        <div class="opening-actions">
+          <h3>Controls:</h3>
+          <button
+            *ngIf="!isOwner && user"
+            [ngClass]="{ 'btn-unfav': isFavourite, 'btn-fav': !isFavourite }"
+            (click)="isFavourite ? unfavouriteOpening() : favouriteOpening()"
+          >
+            {{ isFavourite ? "Unfavourite" : "Favourite" }}
+            <fa-icon [icon]="isFavourite ? faHeartBroken : faHeart"></fa-icon>
+          </button>
+          <button class="btn-reset" (click)="board.resetBoardHandler()">
+            Reset Board
+          </button>
+          <button class="btn-undo" (click)="board.undoMoveHandler()">
+            Undo Move
+          </button>
+          <button class="btn-reverse" (click)="board.flipBoardHandler()">
+            Flip Board
+          </button>
+          <div class="divider"></div>
 
-        <div class="button-group">
-          <button class="btn-prev">
-            Prev<fa-icon [icon]="faArrowLeft"></fa-icon>
-          </button>
-          <button class="btn-next">
-            Next<fa-icon [icon]="faArrowRight"></fa-icon>
-          </button>
+          <div class="button-group">
+            <button class="btn-prev">
+              Prev<fa-icon [icon]="faArrowLeft"></fa-icon>
+            </button>
+            <button class="btn-next">
+              Next<fa-icon [icon]="faArrowRight"></fa-icon>
+            </button>
+          </div>
+
+          <ng-container *ngIf="isOwner">
+            <h3>Owner Actions:</h3>
+            <button
+              class="btn-edit"
+              routerLink="/openings/edit/{{ opening.id }}"
+            >
+              Edit
+            </button>
+            <button class="btn-del" (click)="handleDeleteDialog()">
+              Delete
+            </button>
+          </ng-container>
         </div>
-
-        <ng-container *ngIf="isOwner">
-          <h3>Owner Actions:</h3>
-          <button class="btn-edit" routerLink="/openings/edit/{{ opening.id }}">
-            Edit
-          </button>
-          <button class="btn-del" (click)="handleDeleteDialog()">Delete</button>
-        </ng-container>
       </div>
     </div>
   </div>
-</div>
+</ng-template>

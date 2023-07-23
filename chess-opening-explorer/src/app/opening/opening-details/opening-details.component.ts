@@ -28,6 +28,7 @@ export class OpeningDetailsComponent implements OnInit {
   user: User | null = null;
   isOwner = false;
   isFavourite = true;
+  isLoading = true;
 
   @ViewChild('board', { static: false }) board!: ChessboardComponent;
 
@@ -40,6 +41,7 @@ export class OpeningDetailsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.isLoading = true;
     this.openingId = this.route.snapshot.paramMap.get('id') as string;
     this.fetchOpeningDetails();
     this.authService.user$.subscribe((user) => {
@@ -53,6 +55,7 @@ export class OpeningDetailsComponent implements OnInit {
       .then((opening) => {
         this.opening = opening;
         this.isOwner = opening.ownerId == this.user?.uid;
+        this.isLoading = false;
 
         if (this.user && this.user.email && opening.id) {
           this.openingService.setOpeningAsExplored(opening.id, this.user.email);
@@ -69,6 +72,7 @@ export class OpeningDetailsComponent implements OnInit {
       })
       .catch((err) => {
         this.opening = null;
+        this.isLoading = false;
         console.error('Error fetching current opening: ', err.message);
       });
   }
