@@ -13,7 +13,7 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./opening-create.component.scss'],
 })
 export class OpeningCreateComponent implements OnInit, OnDestroy {
-  userUid!: string; //!opening create cmp will be guarded later on
+  userUid!: string;
   userEmail!: string;
   showCreateForm = true;
   authServiceSub!: Subscription;

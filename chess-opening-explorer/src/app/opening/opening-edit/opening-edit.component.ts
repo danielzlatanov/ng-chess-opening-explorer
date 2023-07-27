@@ -1,34 +1,53 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { IOpening } from 'src/app/shared/interfaces/opening';
 import { OpeningService } from '../opening.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NotificationService } from 'src/app/shared/components/notification/notification.service';
+import { AuthService } from 'src/app/auth/auth.service';
+import { User } from 'firebase/auth';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-opening-edit',
   templateUrl: './opening-edit.component.html',
   styleUrls: ['./opening-edit.component.scss'],
 })
-export class OpeningEditComponent implements OnInit {
+export class OpeningEditComponent implements OnInit, OnDestroy {
   opening: IOpening | null = null;
   openingId!: string;
   showEditForm = true;
+  user: User | null = null;
+  authServiceSub!: Subscription;
+  isOwner: boolean = false;
 
   constructor(
     private openingService: OpeningService,
     private route: ActivatedRoute,
     private router: Router,
-    private notifService: NotificationService
+    private notifService: NotificationService,
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
+    this.authServiceSub = this.authService.user$.subscribe((user) => {
+      this.user = user;
+    });
+
     this.showEditForm = true;
     this.openingId = this.route.snapshot.paramMap.get('id') as string;
     this.openingService
       .getOpeningById(this.openingId)
       .then((opening) => {
         this.opening = opening;
+        this.isOwner = opening.ownerId == this.user?.uid;
+
+        if (!this.isOwner) {
+          this.router.navigate(['/openings/details/' + this.openingId]);
+          this.notifService.showNotification(
+            'You do not have permission over this opening!'
+          );
+        }
       })
       .catch((err) => {
         this.opening = null;
@@ -64,5 +83,11 @@ export class OpeningEditComponent implements OnInit {
           err.message
         );
       });
+  }
+
+  ngOnDestroy(): void {
+    if (this.authServiceSub) {
+      this.authServiceSub.unsubscribe();
+    }
   }
 }
