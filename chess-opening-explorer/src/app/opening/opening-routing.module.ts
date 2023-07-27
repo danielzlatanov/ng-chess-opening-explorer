@@ -5,6 +5,7 @@ import { OpeningDetailsComponent } from './opening-details/opening-details.compo
 import { OpeningCreateComponent } from './opening-create/opening-create.component';
 import { OpeningEditComponent } from './opening-edit/opening-edit.component';
 import { OpeningDeleteComponent } from './opening-delete/opening-delete.component';
+import { AuthActivate } from '../core/guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -24,22 +25,28 @@ const routes: Routes = [
   {
     path: 'create',
     component: OpeningCreateComponent,
+    canActivate: [AuthActivate],
     data: {
       title: 'Create Opening',
+      loginRequired: true,
     },
   },
   {
     path: 'edit/:id',
     component: OpeningEditComponent,
+    canActivate: [AuthActivate],
     data: {
       title: 'Update Opening',
+      loginRequired: true,
     },
   },
   {
     path: 'delete/:id',
     component: OpeningDeleteComponent,
+    canActivate: [AuthActivate],
     data: {
       title: 'Delete Opening',
+      loginRequired: true,
     },
   },
   {

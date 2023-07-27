@@ -4,34 +4,43 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { LogoutComponent } from './logout/logout.component';
 import { ProfileComponent } from './profile/profile.component';
+import { AuthActivate } from '../core/guards/auth.guard';
 
 const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
+    canActivate: [AuthActivate],
     data: {
       title: 'Login Form',
+      loginRequired: false,
     },
   },
   {
     path: 'register',
     component: RegisterComponent,
+    canActivate: [AuthActivate],
     data: {
       title: 'Register Form',
+      loginRequired: false,
     },
   },
   {
     path: 'logout',
     component: LogoutComponent,
+    canActivate: [AuthActivate],
     data: {
       title: 'Logging You Out',
+      loginRequired: true,
     },
   },
   {
     path: 'profile',
     component: ProfileComponent,
+    canActivate: [AuthActivate],
     data: {
       title: 'Your Profile',
+      loginRequired: true,
     },
   },
 ];
