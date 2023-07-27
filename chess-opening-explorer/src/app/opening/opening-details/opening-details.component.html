@@ -74,18 +74,9 @@
           <button class="btn-reverse" (click)="board.flipBoardHandler()">
             Flip Board
           </button>
-          <div class="divider"></div>
-
-          <div class="button-group">
-            <button class="btn-prev">
-              Prev<fa-icon [icon]="faArrowLeft"></fa-icon>
-            </button>
-            <button class="btn-next">
-              Next<fa-icon [icon]="faArrowRight"></fa-icon>
-            </button>
-          </div>
-
+          
           <ng-container *ngIf="isOwner">
+            <div class="divider"></div>
             <h3>Owner Actions:</h3>
             <button
               class="btn-edit"

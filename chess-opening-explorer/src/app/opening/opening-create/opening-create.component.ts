@@ -1,20 +1,22 @@
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth/auth.service';
 import { NgForm } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { OpeningService } from '../opening.service';
 import { IOpening } from 'src/app/shared/interfaces/opening';
 import { NotificationService } from 'src/app/shared/components/notification/notification.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-opening-create',
   templateUrl: './opening-create.component.html',
   styleUrls: ['./opening-create.component.scss'],
 })
-export class OpeningCreateComponent implements OnInit {
+export class OpeningCreateComponent implements OnInit, OnDestroy {
   userUid!: string; //!opening create cmp will be guarded later on
   userEmail!: string;
   showCreateForm = true;
+  authServiceSub!: Subscription;
 
   constructor(
     private openingService: OpeningService,
@@ -25,7 +27,7 @@ export class OpeningCreateComponent implements OnInit {
 
   ngOnInit(): void {
     this.showCreateForm = true;
-    this.authService.user$.subscribe((user) => {
+    this.authServiceSub = this.authService.user$.subscribe((user) => {
       if (user) {
         this.userUid = user.uid;
         this.userEmail = user.email as string;
@@ -63,5 +65,11 @@ export class OpeningCreateComponent implements OnInit {
           err.message
         );
       });
+  }
+
+  ngOnDestroy(): void {
+    if (this.authServiceSub) {
+      this.authServiceSub.unsubscribe();
+    }
   }
 }

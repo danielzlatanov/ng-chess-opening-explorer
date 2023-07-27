@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import {
   faChessKnight,
   faStar,
@@ -17,7 +18,7 @@ import { Router } from '@angular/router';
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss'],
 })
-export class ProfileComponent implements OnInit {
+export class ProfileComponent implements OnInit, OnDestroy {
   faUser = faUser;
   faChessKnight = faChessKnight;
   faChessBoard = faChessBoard;
@@ -28,6 +29,7 @@ export class ProfileComponent implements OnInit {
   favOpenings: IOpening[] | [] = [];
   userOwnOpenings: IOpening[] | [] = [];
   isLoading = true;
+  authServiceSub!: Subscription;
 
   constructor(
     private authService: AuthService,
@@ -38,8 +40,8 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.isLoading = true;
-    
-    this.authService.user$.subscribe((user) => {
+
+    this.authServiceSub = this.authService.user$.subscribe((user) => {
       this.user = user;
       this.isLoading = false;
       const creationTimeStr = this.user?.metadata.creationTime;
@@ -129,5 +131,11 @@ export class ProfileComponent implements OnInit {
           });
         }
       });
+  }
+
+  ngOnDestroy(): void {
+    if (this.authServiceSub) {
+      this.authServiceSub.unsubscribe();
+    }
   }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import {
   faArrowLeft,
   faArrowRight,
@@ -12,13 +12,14 @@ import { ChessboardComponent } from 'src/app/shared/components/chessboard/chessb
 import { AuthService } from 'src/app/auth/auth.service';
 import { User } from 'firebase/auth';
 import { ConfirmationDialogService } from 'src/app/shared/components/confirmation-dialog/confirmation-dialog.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-opening-details',
   templateUrl: './opening-details.component.html',
   styleUrls: ['./opening-details.component.scss'],
 })
-export class OpeningDetailsComponent implements OnInit {
+export class OpeningDetailsComponent implements OnInit, OnDestroy {
   faArrowLeft = faArrowLeft;
   faArrowRight = faArrowRight;
   faHeart = faHeart;
@@ -29,6 +30,7 @@ export class OpeningDetailsComponent implements OnInit {
   isOwner = false;
   isFavourite = true;
   isLoading = true;
+  authServiceSub!: Subscription;
 
   @ViewChild('board', { static: false }) board!: ChessboardComponent;
 
@@ -44,7 +46,7 @@ export class OpeningDetailsComponent implements OnInit {
     this.isLoading = true;
     this.openingId = this.route.snapshot.paramMap.get('id') as string;
     this.fetchOpeningDetails();
-    this.authService.user$.subscribe((user) => {
+    this.authServiceSub = this.authService.user$.subscribe((user) => {
       this.user = user;
     });
   }
@@ -105,5 +107,11 @@ export class OpeningDetailsComponent implements OnInit {
           this.router.navigate(['/openings/delete/' + this.openingId]);
         }
       });
+  }
+
+  ngOnDestroy(): void {
+    if (this.authServiceSub) {
+      this.authServiceSub.unsubscribe();
+    }
   }
 }
