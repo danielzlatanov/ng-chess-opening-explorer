@@ -1,3 +1,4 @@
+import { NotificationService } from 'src/app/shared/services/notification/notification.service';
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -10,27 +11,31 @@ import { trimFormFields } from 'src/app/shared/helpers/trimFormFields';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
-  showRequiredFieldsError = false;
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private notifService: NotificationService
+  ) {}
 
   async loginHandler(form: NgForm) {
     if (form.invalid) {
-      this.showRequiredFieldsError = true;
-      return;
+      return this.notifService.showError(
+        'Please fill in all fields or correct any errors.'
+      );
     }
 
     const { email, password } = form.value;
     if (!email || !password) {
-      return alert('All fields are required');
+      return this.notifService.showError('All fields are required');
     }
 
     trimFormFields(form, true);
-    
+
     try {
       await this.authService.login(email, password);
       this.router.navigate(['/openings/catalog']);
     } catch (err: any) {
-      alert(err.message);
+      return this.notifService.showError(err.message);
     }
   }
 }
