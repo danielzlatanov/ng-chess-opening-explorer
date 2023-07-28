@@ -52,6 +52,9 @@ export class OpeningEditComponent implements OnInit, OnDestroy {
       .catch((err) => {
         this.opening = null;
         console.error('Error fetching opening to edit: ', err.message);
+        return this.notifService.showError(
+          'Failed to load opening. Please try again later.'
+        );
       });
   }
 
@@ -81,6 +84,9 @@ export class OpeningEditComponent implements OnInit, OnDestroy {
         console.error(
           'An error occurred while updating opening: ',
           err.message
+        );
+        return this.notifService.showError(
+          'Failed to update opening. Please try again.'
         );
       });
   }

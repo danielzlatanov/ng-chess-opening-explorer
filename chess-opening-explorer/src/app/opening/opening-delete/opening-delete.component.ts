@@ -63,6 +63,9 @@ export class OpeningDeleteComponent implements OnInit, OnDestroy {
       })
       .catch((err) => {
         console.error('Error deleting opening: ', err.message);
+        return this.notifService.showError(
+          'Failed to delete opening. Please try again.'
+        );
       });
   }
 

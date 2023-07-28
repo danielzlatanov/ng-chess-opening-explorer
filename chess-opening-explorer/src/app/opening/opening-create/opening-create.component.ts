@@ -64,6 +64,9 @@ export class OpeningCreateComponent implements OnInit, OnDestroy {
           'An error occurred while creating opening: ',
           err.message
         );
+        return this.notifService.showError(
+          'Failed to create your opening. Please try again.'
+        );
       });
   }
 
