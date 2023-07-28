@@ -42,15 +42,23 @@
         </h2>
         <div class="divider"></div>
         <div class="openings-explored">
-          <div class="info" *ngFor="let opening of exploredOpenings">
-            <ul>
-              <a routerLink="/openings/details/{{ opening.id }}">
-                <li>
-                  {{ opening.name }}
-                </li>
-              </a>
-            </ul>
-          </div>
+          <ng-container *ngIf="exploredOpenings.length > 0; else noExplored">
+            <div class="info" *ngFor="let opening of exploredOpenings">
+              <ul>
+                <a routerLink="/openings/details/{{ opening.id }}">
+                  <li>
+                    {{ opening.name }}
+                  </li>
+                </a>
+              </ul>
+            </div>
+          </ng-container>
+          <ng-template #noExplored>
+            <p class="no-openings-msg">
+              You have not explored any openings yet. <br />Your explored
+              openings will appear here.
+            </p>
+          </ng-template>
         </div>
       </div>
 
@@ -60,15 +68,23 @@
         </h2>
         <div class="divider"></div>
         <div class="favorite-openings">
-          <div class="info" *ngFor="let opening of favOpenings">
-            <ul>
-              <a routerLink="/openings/details/{{ opening.id }}">
-                <li>
-                  {{ opening.name }}
-                </li>
-              </a>
-            </ul>
-          </div>
+          <ng-container *ngIf="favOpenings.length > 0; else noFav">
+            <div class="info" *ngFor="let opening of favOpenings">
+              <ul>
+                <a routerLink="/openings/details/{{ opening.id }}">
+                  <li>
+                    {{ opening.name }}
+                  </li>
+                </a>
+              </ul>
+            </div>
+          </ng-container>
+          <ng-template #noFav>
+            <p class="no-openings-msg">
+              You do not have any favourites yet. <br />Favourite openings will
+              be displayed here.
+            </p>
+          </ng-template>
         </div>
       </div>
     </div>
@@ -79,31 +95,39 @@
       </h2>
       <div class="divider"></div>
       <div class="openings-list" *ngIf="userOwnOpenings">
-        <div class="opening-item" *ngFor="let opening of userOwnOpenings">
-          <h4 class="opening-title">
-            {{ opening.name | slice : 0 : 20 }}
-            {{ opening.name.length > 20 ? "..." : "" }}
-          </h4>
-          <p class="opening-description">
-            {{ opening.description | slice : 0 : 20 }}
-            {{ opening.description.length > 20 ? "..." : "" }}
-          </p>
+        <ng-container *ngIf="userOwnOpenings.length > 0; else noOwn">
+          <div class="opening-item" *ngFor="let opening of userOwnOpenings">
+            <h4 class="opening-title">
+              {{ opening.name | slice : 0 : 20 }}
+              {{ opening.name.length > 20 ? "..." : "" }}
+            </h4>
+            <p class="opening-description">
+              {{ opening.description | slice : 0 : 20 }}
+              {{ opening.description.length > 20 ? "..." : "" }}
+            </p>
 
-          <div class="opening-actions">
-            <button
-              class="edit-button"
-              routerLink="/openings/edit/{{ opening.id }}"
-            >
-              Edit
-            </button>
-            <button
-              class="delete-button"
-              (click)="handleDeleteDialog(opening.id!)"
-            >
-              Delete
-            </button>
+            <div class="opening-actions">
+              <button
+                class="edit-button"
+                routerLink="/openings/edit/{{ opening.id }}"
+              >
+                Edit
+              </button>
+              <button
+                class="delete-button"
+                (click)="handleDeleteDialog(opening.id!)"
+              >
+                Delete
+              </button>
+            </div>
           </div>
-        </div>
+        </ng-container>
+        <ng-template #noOwn>
+          <p class="no-openings-msg">
+            You have not created any openings yet. <br />Your own openings will
+            be here.
+          </p>
+        </ng-template>
       </div>
     </div>
   </div>
