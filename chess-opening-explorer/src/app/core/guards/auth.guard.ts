@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Router, UrlTree } from '@angular/router';
 import { AuthService } from 'src/app/auth/auth.service';
-import { NotificationService } from 'src/app/shared/components/notification/notification.service';
+import { NotificationService } from 'src/app/shared/services/notification/notification.service';
 
 @Injectable({
   providedIn: 'root',

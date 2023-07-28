@@ -4,7 +4,7 @@ import { NgForm } from '@angular/forms';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { OpeningService } from '../opening.service';
 import { IOpening } from 'src/app/shared/interfaces/opening';
-import { NotificationService } from 'src/app/shared/components/notification/notification.service';
+import { NotificationService } from 'src/app/shared/services/notification/notification.service';
 import { Subscription } from 'rxjs';
 
 @Component({

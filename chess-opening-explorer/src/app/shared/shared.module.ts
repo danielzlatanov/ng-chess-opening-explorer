@@ -13,6 +13,7 @@ import { NoOpeningsMsgComponent } from './components/no-openings-msg/no-openings
 import { ComparePassDirective } from './directives/compare-pass.directive';
 import { LoaderComponent } from './components/loader/loader.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { ErrorDialogComponent } from './components/error-dialog/error-dialog.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     ConfirmationDialogComponent,
     NoOpeningsMsgComponent,
     ComparePassDirective,
+    ErrorDialogComponent,
   ],
   imports: [
     CommonModule,
@@ -40,6 +42,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     ConfirmationDialogComponent,
     NoOpeningsMsgComponent,
     ComparePassDirective,
+    ErrorDialogComponent,
   ],
 })
 export class SharedModule {}

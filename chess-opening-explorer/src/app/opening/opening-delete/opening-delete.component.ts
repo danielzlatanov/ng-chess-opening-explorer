@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { OpeningService } from '../opening.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { NotificationService } from 'src/app/shared/components/notification/notification.service';
+import { NotificationService } from 'src/app/shared/services/notification/notification.service';
 import { Subscription } from 'rxjs';
 import { User } from 'firebase/auth';
 import { AuthService } from 'src/app/auth/auth.service';

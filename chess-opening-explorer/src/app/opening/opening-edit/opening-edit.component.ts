@@ -3,7 +3,7 @@ import { NgForm } from '@angular/forms';
 import { IOpening } from 'src/app/shared/interfaces/opening';
 import { OpeningService } from '../opening.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { NotificationService } from 'src/app/shared/components/notification/notification.service';
+import { NotificationService } from 'src/app/shared/services/notification/notification.service';
 import { AuthService } from 'src/app/auth/auth.service';
 import { User } from 'firebase/auth';
 import { Subscription } from 'rxjs';
