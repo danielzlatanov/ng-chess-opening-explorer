@@ -12,6 +12,7 @@ import { OpeningService } from 'src/app/opening/opening.service';
 import { IOpening } from 'src/app/shared/interfaces/opening';
 import { ConfirmationDialogService } from 'src/app/shared/components/confirmation-dialog/confirmation-dialog.service';
 import { Router } from '@angular/router';
+import { NotificationService } from 'src/app/shared/services/notification/notification.service';
 
 @Component({
   selector: 'app-profile',
@@ -35,6 +36,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
     private authService: AuthService,
     private openingService: OpeningService,
     private dialogService: ConfirmationDialogService,
+    private notifService: NotificationService,
     private router: Router
   ) {}
 
@@ -79,6 +81,9 @@ export class ProfileComponent implements OnInit, OnDestroy {
           this.isLoading = false;
 
           console.error('Error fetching explored openings: ', err.message);
+          return this.notifService.showError(
+            'An error occurred while loading your explored openings. Please try again later.'
+          );
         });
     }
   }
@@ -98,6 +103,9 @@ export class ProfileComponent implements OnInit, OnDestroy {
           this.isLoading = false;
 
           console.error('Error fetching favourited openings: ', err.message);
+          return this.notifService.showError(
+            'An error occurred while loading your favourited openings. Please try again later.'
+          );
         });
     }
   }
@@ -117,6 +125,9 @@ export class ProfileComponent implements OnInit, OnDestroy {
           this.isLoading = false;
 
           console.error("Error fetching user's own openings: ", err.message);
+          return this.notifService.showError(
+            'An error occurred while loading your own openings. Please try again later.'
+          );
         });
     }
   }
