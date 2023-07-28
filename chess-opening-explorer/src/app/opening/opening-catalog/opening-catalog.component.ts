@@ -9,6 +9,7 @@ import {
 import { OpeningService } from '../opening.service';
 import { IOpening } from 'src/app/shared/interfaces/opening';
 import { getRandomChessPiece } from 'src/app/shared/helpers/getRandomChessPieceImg';
+import { NotificationService } from 'src/app/shared/services/notification/notification.service';
 
 @Component({
   selector: 'app-opening-catalog',
@@ -39,7 +40,8 @@ export class OpeningCatalogComponent implements OnInit {
   constructor(
     private openingService: OpeningService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private notifService: NotificationService
   ) {}
 
   ngOnInit(): void {
@@ -75,6 +77,9 @@ export class OpeningCatalogComponent implements OnInit {
         this.openings = null;
         this.isLoading = false;
         console.error('Error fetching all openings: ', err.message);
+        return this.notifService.showError(
+          'Failed to load openings. Please try again later.'
+        );
       });
   }
 

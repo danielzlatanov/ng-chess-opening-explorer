@@ -13,6 +13,7 @@ import { AuthService } from 'src/app/auth/auth.service';
 import { User } from 'firebase/auth';
 import { ConfirmationDialogService } from 'src/app/shared/components/confirmation-dialog/confirmation-dialog.service';
 import { Subscription } from 'rxjs';
+import { NotificationService } from 'src/app/shared/services/notification/notification.service';
 
 @Component({
   selector: 'app-opening-details',
@@ -39,7 +40,8 @@ export class OpeningDetailsComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private router: Router,
     private authService: AuthService,
-    private dialogService: ConfirmationDialogService
+    private dialogService: ConfirmationDialogService,
+    private notifService: NotificationService
   ) {}
 
   ngOnInit(): void {
@@ -76,6 +78,9 @@ export class OpeningDetailsComponent implements OnInit, OnDestroy {
         this.opening = null;
         this.isLoading = false;
         console.error('Error fetching current opening: ', err.message);
+        return this.notifService.showError(
+          'Failed to load current opening. Please try again later.'
+        );
       });
   }
 

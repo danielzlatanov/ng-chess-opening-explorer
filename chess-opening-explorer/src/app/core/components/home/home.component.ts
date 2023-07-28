@@ -7,6 +7,7 @@ import {
 import { OpeningService } from 'src/app/opening/opening.service';
 import { getRandomChessPiece } from 'src/app/shared/helpers/getRandomChessPieceImg';
 import { IOpening } from 'src/app/shared/interfaces/opening';
+import { NotificationService } from 'src/app/shared/services/notification/notification.service';
 
 @Component({
   selector: 'app-home',
@@ -22,7 +23,8 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private openingService: OpeningService,
-    private changeDetectorRef: ChangeDetectorRef
+    private changeDetectorRef: ChangeDetectorRef,
+    private notifService: NotificationService
   ) {}
 
   ngOnInit(): void {
@@ -43,6 +45,9 @@ export class HomeComponent implements OnInit {
         this.lastThreeOpenings = null;
         this.isLoading = false;
         console.error('Error fetching last three openings: ', err.message);
+        return this.notifService.showError(
+          'Failed to load featured openings. Please try again later.'
+        );
       });
   }
 }
