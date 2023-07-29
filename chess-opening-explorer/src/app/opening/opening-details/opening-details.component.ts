@@ -62,7 +62,11 @@ export class OpeningDetailsComponent implements OnInit, OnDestroy {
         this.isLoading = false;
 
         if (this.user && this.user.email && opening.id) {
-          this.openingService.setOpeningAsExplored(opening.id, this.user.email);
+          this.openingService
+            .setOpeningAsExplored(opening.id, this.user.email)
+            .catch((err) => {
+              console.error('Error setting opening as explored: ', err.message);
+            });
 
           this.openingService
             .checkFavouriteStatus(this.openingId, this.user.email)
@@ -70,7 +74,7 @@ export class OpeningDetailsComponent implements OnInit, OnDestroy {
               this.isFavourite = isFavourite;
             })
             .catch((err) => {
-              console.error('Error checking favorite status:', err.message);
+              console.error('Error checking fav status: ', err.message);
             });
         }
       })
@@ -87,21 +91,33 @@ export class OpeningDetailsComponent implements OnInit, OnDestroy {
 
   favouriteOpening(): void {
     if (this.user && this.opening) {
-      this.openingService.setOpeningAsFavourited(
-        this.opening.id!,
-        this.user.email!
-      );
-      this.isFavourite = true;
+      this.openingService
+        .setOpeningAsFavourited(this.opening.id!, this.user.email!)
+        .then(() => {
+          this.isFavourite = true;
+        })
+        .catch((err) => {
+          console.error('Error favouriting opening: ', err.message);
+          return this.notifService.showError(
+            'An error occurred while favouriting this opening. Please try again later.'
+          );
+        });
     }
   }
 
   unfavouriteOpening(): void {
     if (this.user && this.opening) {
-      this.openingService.setOpeningAsUnfavourited(
-        this.opening.id!,
-        this.user.email!
-      );
-      this.isFavourite = false;
+      this.openingService
+        .setOpeningAsUnfavourited(this.opening.id!, this.user.email!)
+        .then(() => {
+          this.isFavourite = false;
+        })
+        .catch((err) => {
+          console.error('Error unfavouriting opening: ', err.message);
+          return this.notifService.showError(
+            'An error occurred while unfavouriting this opening. Please try again later.'
+          );
+        });
     }
   }
 

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ConfirmationDialogComponent } from './confirmation-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
-import { Observable } from 'rxjs';
+import { Observable, catchError, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -14,6 +14,14 @@ export class ConfirmationDialogService {
       width: '400px',
     });
 
-    return dialogRef.afterClosed();
+    return dialogRef.afterClosed().pipe(
+      catchError((error) => {
+        console.error(
+          'Error occurred while closing confirmation dialog:',
+          error
+        );
+        return of(false);
+      })
+    );
   }
 }
