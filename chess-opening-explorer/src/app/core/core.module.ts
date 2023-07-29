@@ -10,12 +10,14 @@ import { MatListModule } from '@angular/material/list';
 import { MatButtonModule } from '@angular/material/button';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SharedModule } from '../shared/shared.module';
+import { OpeningNotFoundComponent } from './components/opening-not-found/opening-not-found.component';
 @NgModule({
   declarations: [
     HeaderComponent,
     FooterComponent,
     HomeComponent,
     PageNotFoundComponent,
+    OpeningNotFoundComponent,
   ],
   imports: [
     CommonModule,
@@ -30,7 +32,6 @@ import { SharedModule } from '../shared/shared.module';
     HeaderComponent,
     FooterComponent,
     HomeComponent,
-    PageNotFoundComponent,
   ],
 })
 export class CoreModule {}
