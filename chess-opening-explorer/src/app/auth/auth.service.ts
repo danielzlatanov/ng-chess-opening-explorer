@@ -22,7 +22,7 @@ export class AuthService implements OnDestroy {
       return;
     }
 
-    return new Promise<void>((resolve) => {
+    return new Promise<void>((resolve, reject) => {
       this.subscription = this.afAuth.authState.subscribe({
         next: (user) => {
           this.userSubject.next(user as User);
@@ -36,7 +36,7 @@ export class AuthService implements OnDestroy {
           );
           this.userSubject.next(null);
           this.isInitialized = true;
-          resolve();
+          reject(err);
         },
       });
     });
@@ -88,7 +88,7 @@ export class AuthService implements OnDestroy {
       await this.afAuth.signOut();
       return this.userSubject.next(null);
     } catch (err: any) {
-      console.error(err.message);
+      console.error('logout err: ', err.message);
       return this.userSubject.next(null);
     }
   }

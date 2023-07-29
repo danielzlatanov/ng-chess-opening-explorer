@@ -80,12 +80,12 @@ export class OpeningService {
     openingId: string,
     updatedOpening: IOpening
   ): Promise<void> {
-    try {
-      await this.openingsRef.update(openingId, updatedOpening);
-    } catch (error) {
-      console.error('Error updating opening:', error);
-      throw error;
-    }
+    return new Promise<void>((resolve, reject) => {
+      this.openingsRef
+        .update(openingId, updatedOpening)
+        .then(() => resolve())
+        .catch((error) => reject(error));
+    });
   }
 
   deleteOpening(openingId: string): Promise<void> {
@@ -110,18 +110,27 @@ export class OpeningService {
       `openings/${openingId}/exploredBy/${emailKey}`
     );
 
-    return exploredOpeningsRef.set(true);
+    try {
+      await exploredOpeningsRef.set(true);
+    } catch (error: any) {
+      console.error('Error setting opening as explored: ', error.message);
+      throw new Error('Failed to set opening as explored.');
+    }
   }
 
   async getUserExploredOpenings(userEmail: string): Promise<IOpening[]> {
     const emailKey = userEmail.split('@')[0];
+    try {
+      const openings = await this.getAllOpenings();
+      const userExploredOpenings = openings.filter(
+        (opening) => opening.exploredBy && opening.exploredBy[emailKey]
+      );
 
-    const openings = await this.getAllOpenings();
-    const userExploredOpenings = openings.filter(
-      (opening) => opening.exploredBy && opening.exploredBy[emailKey]
-    );
-
-    return userExploredOpenings;
+      return userExploredOpenings;
+    } catch (error: any) {
+      console.error('Error fetching user explored openings: ', error.message);
+      throw new Error('Error fetching user explored openings.');
+    }
   }
 
   async setOpeningAsFavourited(
@@ -137,7 +146,12 @@ export class OpeningService {
       `openings/${openingId}/favouritedBy/${emailKey}`
     );
 
-    return favOpeningsRef.set(true);
+    try {
+      await favOpeningsRef.set(true);
+    } catch (error: any) {
+      console.error('Error setting opening as favourited: ', error.message);
+      throw new Error('Failed to set opening as favourited.');
+    }
   }
 
   async setOpeningAsUnfavourited(
@@ -153,7 +167,12 @@ export class OpeningService {
       `openings/${openingId}/favouritedBy/${emailKey}`
     );
 
-    return favOpeningsRef.remove();
+    try {
+      await favOpeningsRef.remove();
+    } catch (error: any) {
+      console.error('Error removing opening from favourites: ', error.message);
+      throw new Error('Failed to remove opening from favourites.');
+    }
   }
 
   async checkFavouriteStatus(
@@ -161,32 +180,43 @@ export class OpeningService {
     userEmail: string
   ): Promise<boolean> {
     const emailKey = userEmail.split('@')[0];
-    const openings = await this.getAllOpenings();
-
-    const isFavourite = openings.some(
-      (opening) =>
-        opening.id === openingId && opening.favouritedBy?.[emailKey] == true
-    );
-
-    return isFavourite;
+    try {
+      const openings = await this.getAllOpenings();
+      const isFavourite = openings.some(
+        (opening) =>
+          opening.id === openingId && opening.favouritedBy?.[emailKey] === true
+      );
+      return isFavourite;
+    } catch (error: any) {
+      console.error('Error checking favourite status: ', error.message);
+      throw new Error('Failed to check favourite status.');
+    }
   }
 
   async getUserFavOpenings(userEmail: string): Promise<IOpening[]> {
     const emailKey = userEmail.split('@')[0];
-
-    const openings = await this.getAllOpenings();
-    const userFavOpenings = openings.filter(
-      (opening) => opening.favouritedBy && opening.favouritedBy[emailKey]
-    );
-
-    return userFavOpenings;
+    try {
+      const openings = await this.getAllOpenings();
+      const userFavOpenings = openings.filter(
+        (opening) => opening.favouritedBy && opening.favouritedBy[emailKey]
+      );
+      return userFavOpenings;
+    } catch (error: any) {
+      console.error('Error fetching user favourite openings: ', error.message);
+      throw new Error('Failed to fetch user favourite openings.');
+    }
   }
 
   async getUserOwnOpenings(userId: string): Promise<IOpening[]> {
-    const openings = await this.getAllOpenings();
-    const userOwnOpenings = openings.filter(
-      (opening) => opening.ownerId == userId
-    );
-    return userOwnOpenings;
+    try {
+      const openings = await this.getAllOpenings();
+      const userOwnOpenings = openings.filter(
+        (opening) => opening.ownerId === userId
+      );
+      return userOwnOpenings;
+    } catch (error: any) {
+      console.error('Error fetching user own openings: ', error.message);
+      throw new Error('Failed to fetch user own openings.');
+    }
   }
 }
