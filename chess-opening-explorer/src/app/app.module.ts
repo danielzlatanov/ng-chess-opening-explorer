@@ -7,7 +7,6 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import { environment } from '../environments/environment';
 import { CoreModule } from './core/core.module';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @Injectable()
 export class GlobalErrorHandler implements ErrorHandler {
@@ -21,7 +20,6 @@ export class GlobalErrorHandler implements ErrorHandler {
   imports: [
     AppRoutingModule,
     BrowserModule,
-    BrowserAnimationsModule,
     CoreModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,

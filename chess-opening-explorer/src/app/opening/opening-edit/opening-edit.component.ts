@@ -61,7 +61,9 @@ export class OpeningEditComponent implements OnInit, OnDestroy {
 
   updateOpening(form: NgForm) {
     if (form.invalid) {
-      return;
+      return this.notifService.showError(
+        'Please fill in all fields or correct any errors.'
+      );
     }
 
     this.showEditForm = false;
