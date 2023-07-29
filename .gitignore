@@ -36,7 +36,7 @@ testem.log
 /typings
 
 # Environments
-/chess-opening-explorer/src/environments
+# /chess-opening-explorer/src/environments
 
 # System files
 .DS_Store
