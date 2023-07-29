@@ -4,6 +4,7 @@ import {
   Component,
   OnInit,
 } from '@angular/core';
+import { Router } from '@angular/router';
 import { OpeningService } from 'src/app/opening/opening.service';
 import { getRandomChessPiece } from 'src/app/shared/helpers/getRandomChessPieceImg';
 import { IOpening } from 'src/app/shared/interfaces/opening';
@@ -24,7 +25,8 @@ export class HomeComponent implements OnInit {
   constructor(
     private openingService: OpeningService,
     private changeDetectorRef: ChangeDetectorRef,
-    private notifService: NotificationService
+    private notifService: NotificationService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -45,6 +47,7 @@ export class HomeComponent implements OnInit {
         this.lastThreeOpenings = null;
         this.isLoading = false;
         console.error('Error fetching last three openings: ', err.message);
+        this.router.navigate(['opening-not-found']);
         return this.notifService.showError(
           'Failed to load featured openings. Please try again later.'
         );

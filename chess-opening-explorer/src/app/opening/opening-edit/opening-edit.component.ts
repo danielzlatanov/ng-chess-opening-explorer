@@ -52,6 +52,7 @@ export class OpeningEditComponent implements OnInit, OnDestroy {
       .catch((err) => {
         this.opening = null;
         console.error('Error fetching opening to edit: ', err.message);
+        this.router.navigate(['opening-not-found']);
         return this.notifService.showError(
           'Failed to load opening. Please try again later.'
         );

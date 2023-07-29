@@ -77,6 +77,7 @@ export class OpeningCatalogComponent implements OnInit {
         this.openings = null;
         this.isLoading = false;
         console.error('Error fetching all openings: ', err.message);
+        this.router.navigate(['opening-not-found']);
         return this.notifService.showError(
           'Failed to load openings. Please try again later.'
         );

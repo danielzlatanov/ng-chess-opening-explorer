@@ -78,6 +78,7 @@ export class OpeningDetailsComponent implements OnInit, OnDestroy {
         this.opening = null;
         this.isLoading = false;
         console.error('Error fetching current opening: ', err.message);
+        this.router.navigate(['opening-not-found']);
         return this.notifService.showError(
           'Failed to load current opening. Please try again later.'
         );
