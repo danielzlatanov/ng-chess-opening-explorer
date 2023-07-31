@@ -1,19 +1,19 @@
 import { Injectable, OnDestroy } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { User } from 'firebase/auth';
-import { BehaviorSubject, Subscription } from 'rxjs';
+import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService implements OnDestroy {
+  subscription: Subscription;
+  private isInitialized: boolean = false;
   private userSubject: BehaviorSubject<User | null> =
     new BehaviorSubject<User | null>(null);
-  user$ = this.userSubject.asObservable();
-  subscription: Subscription;
-  private isInitialized = false;
+  user$: Observable<User | null> = this.userSubject.asObservable();
 
-  get isLoggedIn() {
+  get isLoggedIn(): boolean {
     return this.userSubject.value !== null;
   }
 

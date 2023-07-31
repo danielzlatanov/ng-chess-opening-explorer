@@ -44,12 +44,12 @@ export class OpeningDeleteComponent implements OnInit, OnDestroy {
     });
   }
 
-  redirectNonOwner() {
+  redirectNonOwner(): void {
     this.notifService.showNotification('You cannot delete this opening!');
     this.router.navigate(['/openings/details/' + this.openingId]);
   }
 
-  deleteOpening() {
+  deleteOpening(): void {
     this.redirectPath = this.route.snapshot.queryParams['redirectPath'];
     this.openingService
       .deleteOpening(this.openingId)

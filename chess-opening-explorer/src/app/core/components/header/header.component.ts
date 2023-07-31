@@ -10,7 +10,7 @@ import { AuthService } from 'src/app/auth/auth.service';
 })
 export class HeaderComponent implements OnInit, OnDestroy {
   user: User | null = null;
-  isUserSet = false;
+  isUserSet: boolean = false;
   authServiceSub!: Subscription;
 
   constructor(private authService: AuthService) {

@@ -19,8 +19,8 @@ import { NotificationService } from 'src/app/shared/services/notification/notifi
 export class HomeComponent implements OnInit {
   lastThreeOpenings: IOpening[] | null = [];
   getRandomChessPieceImg: Function = getRandomChessPiece;
-  showNoOpeningsMsg = false;
-  isLoading = true;
+  showNoOpeningsMsg: boolean = false;
+  isLoading: boolean = true;
 
   constructor(
     private openingService: OpeningService,
@@ -34,7 +34,7 @@ export class HomeComponent implements OnInit {
     this.fetchLastThreeOpenings();
   }
 
-  fetchLastThreeOpenings() {
+  fetchLastThreeOpenings(): void {
     this.openingService
       .getLastThreeOpenings()
       .then((openings) => {

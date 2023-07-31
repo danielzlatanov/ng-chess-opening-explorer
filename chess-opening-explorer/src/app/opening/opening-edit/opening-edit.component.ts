@@ -16,7 +16,7 @@ import { Subscription } from 'rxjs';
 export class OpeningEditComponent implements OnInit, OnDestroy {
   opening: IOpening | null = null;
   openingId!: string;
-  showEditForm = true;
+  showEditForm: boolean = true;
   user: User | null = null;
   authServiceSub!: Subscription;
   isOwner: boolean = false;
@@ -59,7 +59,7 @@ export class OpeningEditComponent implements OnInit, OnDestroy {
       });
   }
 
-  updateOpening(form: NgForm) {
+  updateOpening(form: NgForm): void {
     if (form.invalid) {
       return this.notifService.showError(
         'Please fill in all fields or correct any errors.'

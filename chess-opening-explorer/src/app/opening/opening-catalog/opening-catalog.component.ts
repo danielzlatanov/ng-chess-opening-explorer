@@ -21,12 +21,12 @@ export class OpeningCatalogComponent implements OnInit {
   openings: IOpening[] | null = [];
   filteredOpenings: IOpening[] | null = [];
   searchQuery: string = '';
-  isDynamicSearch =
+  isDynamicSearch: boolean =
     localStorage.getItem('isDynamicSearch') === 'false' ? false : true;
-  showNoResultsMsg = false;
-  showNoOpeningsMsg = false;
-  initialImgsSet = false;
-  isLoading = true;
+  showNoResultsMsg: boolean = false;
+  showNoOpeningsMsg: boolean = false;
+  initialImgsSet: boolean = false;
+  isLoading: boolean = true;
 
   @ViewChild('searchInput') searchInput!: ElementRef;
   @HostListener('document:keydown', ['$event'])
@@ -84,7 +84,7 @@ export class OpeningCatalogComponent implements OnInit {
       });
   }
 
-  toggleSearchMode() {
+  toggleSearchMode(): void {
     this.isDynamicSearch = !this.isDynamicSearch;
     localStorage.setItem('isDynamicSearch', this.isDynamicSearch.toString());
   }

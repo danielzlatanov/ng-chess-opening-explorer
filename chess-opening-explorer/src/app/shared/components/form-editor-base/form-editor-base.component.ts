@@ -18,15 +18,15 @@ import { trimFormFields } from '../../helpers/trimFormFields';
   styleUrls: ['./form-editor-base.component.scss'],
 })
 export class FormEditorBaseComponent implements OnInit, OnChanges {
-  levels = levels;
+  levels: string[] = levels;
   fenValue: string = '';
-  fenPattern =
+  fenPattern: RegExp =
     /^((([pnbrqkPNBRQK1-8]{1,8})\/?){8})\s+(b|w)\s+(-|K?Q?k?q)\s+(-|[a-h][3-6])\s+(\d+)\s+(\d+)\s*$/gim;
+  isLoading: boolean = true;
+
   @Input() mode!: string;
   @Input() opening: IOpening | null = null;
-  @Output() formSubmitted = new EventEmitter<NgForm>();
-
-  isLoading = true;
+  @Output() formSubmitted: EventEmitter<NgForm> = new EventEmitter<NgForm>();
 
   ngOnInit(): void {
     this.isLoading = true;
@@ -38,12 +38,12 @@ export class FormEditorBaseComponent implements OnInit, OnChanges {
     }
   }
 
-  handleSubmit(form: NgForm) {
+  handleSubmit(form: NgForm): void {
     trimFormFields(form);
     this.formSubmitted.emit(form);
   }
 
-  showPositionOnBoard(fen: string) {
+  showPositionOnBoard(fen: string): void {
     this.fenValue = fen;
   }
 }

@@ -5,6 +5,7 @@ import {
   faStar,
   faUser,
   faChessBoard,
+  IconDefinition,
 } from '@fortawesome/free-solid-svg-icons';
 import { AuthService } from '../auth.service';
 import { User } from 'firebase/auth';
@@ -20,16 +21,16 @@ import { NotificationService } from 'src/app/shared/services/notification/notifi
   styleUrls: ['./profile.component.scss'],
 })
 export class ProfileComponent implements OnInit, OnDestroy {
-  faUser = faUser;
-  faChessKnight = faChessKnight;
-  faChessBoard = faChessBoard;
-  faStar = faStar;
+  faUser: IconDefinition = faUser;
+  faChessKnight: IconDefinition = faChessKnight;
+  faChessBoard: IconDefinition = faChessBoard;
+  faStar: IconDefinition = faStar;
   user: User | null = null;
   euTime: string | undefined = undefined;
   exploredOpenings: IOpening[] | [] = [];
   favOpenings: IOpening[] | [] = [];
   userOwnOpenings: IOpening[] | [] = [];
-  isLoading = true;
+  isLoading: boolean = true;
   authServiceSub!: Subscription;
 
   constructor(

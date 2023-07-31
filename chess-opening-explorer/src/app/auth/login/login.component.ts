@@ -17,7 +17,7 @@ export class LoginComponent {
     private notifService: NotificationService
   ) {}
 
-  async loginHandler(form: NgForm) {
+  async loginHandler(form: NgForm): Promise<void> {
     if (form.invalid) {
       return this.notifService.showError(
         'Please fill in all fields or correct any errors.'

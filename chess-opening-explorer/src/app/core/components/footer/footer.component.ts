@@ -3,6 +3,7 @@ import {
   faLinkedin,
   faGithubSquare,
   faRedditSquare,
+  IconDefinition,
 } from '@fortawesome/free-brands-svg-icons';
 
 @Component({
@@ -11,7 +12,7 @@ import {
   styleUrls: ['./footer.component.scss'],
 })
 export class FooterComponent {
-  faLinkedin = faLinkedin;
-  faGithubSquare = faGithubSquare;
-  faRedditSquare = faRedditSquare;
+  faLinkedin: IconDefinition = faLinkedin;
+  faGithubSquare: IconDefinition = faGithubSquare;
+  faRedditSquare: IconDefinition = faRedditSquare;
 }

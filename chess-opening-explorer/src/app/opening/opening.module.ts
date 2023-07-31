@@ -27,7 +27,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     FontAwesomeModule,
     FormsModule,
     MatSlideToggleModule,
-    MatTooltipModule
+    MatTooltipModule,
   ],
 })
 export class OpeningModule {}

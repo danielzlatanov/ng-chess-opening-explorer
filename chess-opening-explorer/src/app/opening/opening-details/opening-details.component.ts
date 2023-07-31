@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import {
+  IconDefinition,
   faArrowLeft,
   faArrowRight,
   faHeart,
@@ -21,16 +22,16 @@ import { NotificationService } from 'src/app/shared/services/notification/notifi
   styleUrls: ['./opening-details.component.scss'],
 })
 export class OpeningDetailsComponent implements OnInit, OnDestroy {
-  faArrowLeft = faArrowLeft;
-  faArrowRight = faArrowRight;
-  faHeart = faHeart;
-  faHeartBroken = faHeartBroken;
+  faArrowLeft: IconDefinition = faArrowLeft;
+  faArrowRight: IconDefinition = faArrowRight;
+  faHeart: IconDefinition = faHeart;
+  faHeartBroken: IconDefinition = faHeartBroken;
   openingId!: string;
   opening: IOpening | null = null;
   user: User | null = null;
-  isOwner = false;
-  isFavourite = true;
-  isLoading = true;
+  isOwner: boolean = false;
+  isFavourite: boolean = true;
+  isLoading: boolean = true;
   authServiceSub!: Subscription;
 
   @ViewChild('board', { static: false }) board!: ChessboardComponent;

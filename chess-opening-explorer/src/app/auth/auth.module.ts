@@ -16,6 +16,12 @@ import { SharedModule } from '../shared/shared.module';
     LogoutComponent,
     ProfileComponent,
   ],
-  imports: [CommonModule, AuthRoutingModule, FontAwesomeModule, FormsModule, SharedModule],
+  imports: [
+    CommonModule,
+    AuthRoutingModule,
+    FontAwesomeModule,
+    FormsModule,
+    SharedModule,
+  ],
 })
 export class AuthModule {}

@@ -11,6 +11,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SharedModule } from '../shared/shared.module';
 import { OpeningNotFoundComponent } from './components/opening-not-found/opening-not-found.component';
+
 @NgModule({
   declarations: [
     HeaderComponent,
@@ -28,10 +29,6 @@ import { OpeningNotFoundComponent } from './components/opening-not-found/opening
     MatButtonModule,
     FontAwesomeModule,
   ],
-  exports: [
-    HeaderComponent,
-    FooterComponent,
-    HomeComponent,
-  ],
+  exports: [HeaderComponent, FooterComponent, HomeComponent],
 })
 export class CoreModule {}

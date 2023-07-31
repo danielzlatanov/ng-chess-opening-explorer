@@ -11,14 +11,13 @@ import { NotificationService } from 'src/app/shared/services/notification/notifi
   styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent {
-  showRequiredFieldsError = false;
   constructor(
     private authService: AuthService,
     private router: Router,
     private notifService: NotificationService
   ) {}
 
-  async registerHandler(form: NgForm) {
+  async registerHandler(form: NgForm): Promise<void> {
     if (form.invalid) {
       return this.notifService.showError(
         'Please fill in all fields or correct any errors.'

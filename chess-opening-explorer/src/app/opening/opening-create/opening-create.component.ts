@@ -15,7 +15,7 @@ import { Subscription } from 'rxjs';
 export class OpeningCreateComponent implements OnInit, OnDestroy {
   userUid!: string;
   userEmail!: string;
-  showCreateForm = true;
+  showCreateForm: boolean = true;
   authServiceSub!: Subscription;
 
   constructor(
@@ -35,7 +35,7 @@ export class OpeningCreateComponent implements OnInit, OnDestroy {
     });
   }
 
-  createOpening(form: NgForm) {
+  createOpening(form: NgForm): void {
     if (form.invalid) {
       return this.notifService.showError(
         'Please fill in all fields or correct any errors.'

@@ -9,8 +9,6 @@ import { filter, map } from 'rxjs';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  title = 'chess-opening-explorer';
-
   constructor(private router: Router, private pageTitle: Title) {
     this.router.events
       .pipe(
