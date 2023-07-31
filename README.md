@@ -116,4 +116,4 @@ This project is licensed under the MIT License.
 
 ## [Application](https://chess-opening-explorer.vercel.app/) Screenshot
 
-![opening-explorer-home-img](https://github.com/danielzlatanov/ng-chess-opening-explorer/assets/110429874/34dc051d-7435-4c29-8396-14fcd65dfdcc)
+![opening-explorer-home-img](https://github.com/danielzlatanov/ng-chess-opening-explorer/assets/110429874/9fa29a76-b009-45a0-804c-14cfe673cd01)
