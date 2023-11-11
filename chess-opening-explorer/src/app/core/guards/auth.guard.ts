@@ -25,8 +25,6 @@ export class AuthActivate {
       return true;
     }
 
-    this.notifService.showNotification('Please login first!');
-
     return this.authService.isLoggedIn
       ? this.redirectToCatalog()
       : this.redirectToLogin();
