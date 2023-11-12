@@ -1,5 +1,4 @@
 @use "@angular/material" as mat;
-
 @include mat.core();
 
 $my-app-primary: mat.define-palette(mat.$teal-palette);
@@ -17,6 +16,10 @@ $my-app-theme: mat.define-light-theme(
 );
 
 @include mat.all-component-themes($my-app-theme);
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 html,
 body {
