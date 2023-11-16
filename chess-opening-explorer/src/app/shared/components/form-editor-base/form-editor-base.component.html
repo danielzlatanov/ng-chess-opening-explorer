@@ -5,14 +5,17 @@
 <ng-template #editOpeningData>
   <body>
     <div id="title">
-      <h2 *ngIf="mode == 'create'">Create Opening</h2>
-      <h2 *ngIf="mode == 'edit'">Edit Your Opening</h2>
+      <h2 *ngIf="mode == 'create'" class="mb-6 lg:mb-20">Create Opening</h2>
+      <h2 *ngIf="mode == 'edit'" class="mb-6 lg:mb-20">Edit Your Opening</h2>
     </div>
 
-    <div class="create-opening-container">
-      <form #editorBaseForm="ngForm" (ngSubmit)="handleSubmit(editorBaseForm)">
-        <div class="form-group">
-          <label for="name" *ngIf="mode == 'create'"
+    <div class="flex flex-col lg:flex-row justify-center">
+      <form
+        #editorBaseForm="ngForm"
+        (ngSubmit)="handleSubmit(editorBaseForm)"
+        class="lg:mr-10 mb-10 container mx-auto lg:ml-10"
+      >
+        <div class="form-group mx-6">
           <label
             for="name"
             *ngIf="mode == 'create'"
@@ -27,6 +30,7 @@
           >
           <input
             type="text"
+            class="w-full py-3 pl-3 box-border border-0 rounded focus:outline-none"
             id="name"
             name="name"
             ngModel="{{ mode == 'edit' ? opening?.name : '' }}"
@@ -47,7 +51,7 @@
           </ng-container>
         </div>
 
-        <div class="form-group">
+        <div class="form-group mx-6">
           <label
             for="description"
             *ngIf="mode == 'create'"
@@ -61,6 +65,7 @@
             >Update description<span class="required-star">*</span>
           </label>
           <textarea
+            class="w-full h-36 py-3 pl-3 box-border border-0 rounded focus:outline-none resize-none"
             id="description"
             name="description"
             ngModel="{{ mode == 'edit' ? opening?.description : '' }}"
@@ -83,8 +88,7 @@
           </ng-container>
         </div>
 
-        <div class="form-group">
-          <label for="fen"
+        <div class="form-group mx-6">
           <label for="fen" class="block text-gray-700 mb-2"
             >Forsyth-Edwards notation (FEN)<span class="required-star"
               >*</span
@@ -92,6 +96,7 @@
           >
           <input
             type="text"
+            class="w-full py-3 pl-3 box-border border-0 rounded focus:outline-none"
             id="fen"
             name="fen"
             ngModel="{{ mode == 'edit' ? opening?.fen : '' }}"
@@ -116,46 +121,53 @@
           </button>
         </div>
 
-        <div class="form-group">
-          <mat-form-field>
-            <mat-label>Difficulty Level</mat-label>
-            <mat-select
-              name="level"
-              ngModel="{{ mode == 'edit' ? opening?.level : '' }}"
-              #difficultyInput="ngModel"
-              required
-            >
-              <mat-option *ngFor="let level of levels" [value]="level">
-                {{ level }}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
+        <div class="sm:flex justify-between items-start">
+          <div class="form-group mx-6">
+            <mat-form-field>
+              <mat-label>Difficulty Level</mat-label>
+              <mat-select
+                name="level"
+                ngModel="{{ mode == 'edit' ? opening?.level : '' }}"
+                #difficultyInput="ngModel"
+                required
+              >
+                <mat-option *ngFor="let level of levels" [value]="level">
+                  {{ level }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
 
-          <ng-container
-            *ngIf="difficultyInput.touched || difficultyInput.dirty"
+            <ng-container
+              *ngIf="difficultyInput.touched || difficultyInput.dirty"
+            >
+              <p class="error" *ngIf="difficultyInput.errors?.['required']">
+                Difficulty level is required
+              </p>
+            </ng-container>
+          </div>
+
           <button
             type="submit"
             class="bg-blue-500 h-auto hover:bg-blue-600 text-white cursor-pointer p-3 text-lg border-none rounded-md mx-6"
           >
-            <p class="error" *ngIf="difficultyInput.errors?.['required']">
-              Difficulty level is required
-            </p>
-          </ng-container>
             <span *ngIf="mode == 'create'">Create</span>
             <span *ngIf="mode == 'edit'">Update</span>
           </button>
         </div>
       </form>
 
-      <div class="chess-board-container" *ngIf="fenValue || mode == 'create'">
-        <app-chessboard [size]="500" [fen]="fenValue"></app-chessboard>
+      <div
+        *ngIf="fenValue || mode == 'create'"
+        class="flex justify-center items-center mb-20 lg:mr-16"
+      >
+        <app-chessboard [fen]="fenValue"></app-chessboard>
       </div>
 
       <div
-        class="chess-board-container"
         *ngIf="opening && mode == 'edit' && !fenValue"
+        class="flex justify-center items-center mb-20 lg:mr-12"
       >
-        <app-chessboard [size]="500" [fen]="opening.fen"></app-chessboard>
+        <app-chessboard [fen]="opening.fen"></app-chessboard>
       </div>
     </div>
   </body>
