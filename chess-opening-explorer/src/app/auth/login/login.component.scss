@@ -21,27 +21,24 @@ body {
 }
 
 form {
-  min-height: 440px;
-  width: 400px;
+  min-height: 400px;
   background-color: rgba(255, 255, 255, 0.1);
   border-radius: 10px;
   backdrop-filter: blur(10px);
   border: 2px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
-  padding: 50px 35px;
+  padding: 30px;
   padding-top: 0;
 }
 
 form * {
-  letter-spacing: 0.5px;
   outline: none;
   border: none;
 }
 
 form h3 {
-  font-size: 28px;
+  font-size: 24px;
   font-weight: 500;
-  line-height: 42px;
   text-align: center;
 }
 
@@ -55,7 +52,7 @@ label {
 input {
   display: block;
   height: 50px;
-  width: 380px;
+  width: calc(100% - 20px);
   background-color: rgba(255, 255, 255, 0.07);
   border-radius: 3px;
   padding: 0 10px;
