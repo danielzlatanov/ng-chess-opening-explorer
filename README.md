@@ -1,6 +1,6 @@
 # Chess Opening Explorer
 
-An Angular application for exploring, learning, and adding new chess opening positions.
+A fully **responsive** Angular application for exploring, learning, and adding new chess opening positions.
 
 ## Installation and Setup
 
@@ -70,6 +70,7 @@ The Chess Opening Explorer is deployed with Vercel and is accessible at [Chess O
 
 ### Main Dependencies list:
 
+-   `tailwindcss`: Styling & Responsive design.
 -   `@angular/fire`: Angular library for Firebase integration.
 -   `@fortawesome/angular-fontawesome`: Angular integration for Font Awesome icons.
 -   `firebase`: Firebase SDK for JavaScript.
