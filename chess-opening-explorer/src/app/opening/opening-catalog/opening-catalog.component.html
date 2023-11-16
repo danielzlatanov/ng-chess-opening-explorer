@@ -31,11 +31,6 @@
     <app-loader></app-loader>
   </ng-container>
 
-  <ng-template #openingsData>
-    <div class="openings-grid" *ngIf="filteredOpenings">
-      <div
-        class="opening-card"
-        *ngFor="let opening of filteredOpenings; let i = index"
   <div
     class="search-bar flex justify-center items-center m-6"
     [ngClass]="{
@@ -101,7 +96,20 @@
             class="view-details"
             routerLink="/openings/details/{{ opening.id }}"
             >Details</a
+    <ng-template #openingsData>
+      <div class="openings-grid px-6 mb-10" *ngIf="filteredOpenings">
+        <div
+          class="opening-card relative"
+          *ngFor="let opening of filteredOpenings; let i = index"
+        >
+          <div
+            matTooltip="{{ opening.description }}"
+            class="w-fit bg-white rounded-tr-md rounded-bl-md absolute right-0 top-0"
           >
+            <h3 class="px-1 m-1">
+              <fa-icon [icon]="faInfoCircle"></fa-icon>
+            </h3>
+          </div>
         </div>
       </div>
     </div>

@@ -10,6 +10,10 @@ import { OpeningService } from '../opening.service';
 import { IOpening } from 'src/app/shared/interfaces/opening';
 import { getRandomChessPiece } from 'src/app/shared/helpers/getRandomChessPieceImg';
 import { NotificationService } from 'src/app/shared/services/notification/notification.service';
+import {
+  IconDefinition,
+  faInfoCircle,
+} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-opening-catalog',
@@ -17,6 +21,7 @@ import { NotificationService } from 'src/app/shared/services/notification/notifi
   styleUrls: ['./opening-catalog.component.scss'],
 })
 export class OpeningCatalogComponent implements OnInit {
+  faInfoCircle: IconDefinition = faInfoCircle;
   randomChessPieceImgs: string[] = [];
   openings: IOpening[] | null = [];
   filteredOpenings: IOpening[] | null = [];
