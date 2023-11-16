@@ -107,11 +107,14 @@
     </div>
   </ng-template>
 
-  <div class="no-results-message" *ngIf="showNoResultsMsg">
-    <p class="message">
-      No matching openings found. Please try a different search query.
-    </p>
-  </div>
+    <div class="no-results-message" *ngIf="showNoResultsMsg">
+      <p class="message">
+        No matching openings found.
+        <span class="hidden sm:block"
+          >Please try a different search query.</span
+        >
+      </p>
+    </div>
 
   <div class="no-openings-message" *ngIf="showNoOpeningsMsg">
     <app-no-openings-msg
