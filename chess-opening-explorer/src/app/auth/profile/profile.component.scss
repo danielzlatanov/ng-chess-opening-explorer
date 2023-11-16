@@ -1,3 +1,13 @@
+.profile-container {
+  background: rgb(203 199 196);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.section-title {
+  font-size: 18px;
   margin-bottom: 5px;
   margin-top: 5px;
   text-align: center;
@@ -11,7 +21,7 @@
 .divider {
   height: 2px;
   background-color: #ccc;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 
 .inner-divider {
@@ -36,7 +46,7 @@
 
 .opening-item {
   background-color: #d1d1d1;
-  padding: 20px;
+  padding: 14px;
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
@@ -49,10 +59,6 @@
 .opening-description {
   font-size: 14px;
   color: #666;
-}
-
-.opening-actions {
-  margin-top: 10px;
 }
 
 .edit-button,
@@ -173,11 +179,5 @@
   height: 100px;
   object-fit: cover;
   border-radius: 50%;
-  margin-bottom: 10px;
-}
-
-.no-openings-msg {
-  text-align: center;
-  font-size: 20px;
-  margin-top: 80px;
+  margin-bottom: 20px;
 }
