@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { User } from 'firebase/auth';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/auth/auth.service';
+import { IconDefinition, faUser } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-header',
@@ -12,6 +13,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
   user: User | null = null;
   isUserSet: boolean = false;
   authServiceSub!: Subscription;
+  isMobileMenuOpen = false;
+  faUser: IconDefinition = faUser;
 
   constructor(private authService: AuthService) {
     this.authServiceSub = this.authService.user$.subscribe((user) => {
@@ -22,6 +25,14 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.isUserSet = false;
+  }
+
+  openMobileMenu() {
+    this.isMobileMenuOpen = true;
+  }
+
+  handleCloseMobileMenu(value: boolean) {
+    this.isMobileMenuOpen = value;
   }
 
   ngOnDestroy(): void {

@@ -11,10 +11,12 @@ import { MatButtonModule } from '@angular/material/button';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SharedModule } from '../shared/shared.module';
 import { OpeningNotFoundComponent } from './components/opening-not-found/opening-not-found.component';
+import { MobileMenuComponent } from './components/mobile-menu/mobile-menu.component';
 
 @NgModule({
   declarations: [
     HeaderComponent,
+    MobileMenuComponent,
     FooterComponent,
     HomeComponent,
     PageNotFoundComponent,
