@@ -82,7 +82,10 @@
           >Login now.</a
         >
       </p>
-      <button>Sign up</button>
+      
+      <button [disabled]="isRegistering" [class.loading]="isRegistering">
+        {{ isRegistering ? "Signing up..." : "Sign up" }}
+      </button>
     </form>
   </div>
 </body>

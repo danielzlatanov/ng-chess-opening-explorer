@@ -11,6 +11,8 @@ import { trimFormFields } from 'src/app/shared/helpers/trimFormFields';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
+  isSigningIn = false;
+
   constructor(
     private authService: AuthService,
     private router: Router,
@@ -32,10 +34,13 @@ export class LoginComponent {
     trimFormFields(form, true);
 
     try {
+      this.isSigningIn = true;
       await this.authService.login(email, password);
       this.router.navigate(['/openings/catalog']);
     } catch (err: any) {
       return this.notifService.showError(err.message);
+    } finally {
+      this.isSigningIn = false;
     }
   }
 }

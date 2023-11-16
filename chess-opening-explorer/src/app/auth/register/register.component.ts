@@ -11,6 +11,8 @@ import { NotificationService } from 'src/app/shared/services/notification/notifi
   styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent {
+  isRegistering = false;
+
   constructor(
     private authService: AuthService,
     private router: Router,
@@ -40,10 +42,13 @@ export class RegisterComponent {
     trimFormFields(form, true);
 
     try {
+      this.isRegistering = true;
       await this.authService.register(email, password);
       this.router.navigate(['/openings/catalog']);
     } catch (err: any) {
       return this.notifService.showError(err.message);
+    } finally {
+      this.isRegistering = false;
     }
   }
 }

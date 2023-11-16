@@ -88,3 +88,21 @@ button:hover {
 .error {
   color: red;
 }
+
+button.loading:after {
+  content: "";
+  display: inline-block;
+  width: 0.8em;
+  height: 0.8em;
+  margin-left: 8px;
+  border: 2px solid #000000;
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
