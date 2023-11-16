@@ -38,6 +38,9 @@
         *ngFor="let opening of filteredOpenings; let i = index"
   <div
     class="search-bar flex justify-center items-center m-6"
+    [ngClass]="{
+      'pointer-events-none opacity-40': showNoOpeningsMsg || isLoading
+    }"
   >
     <input
       #searchInput
