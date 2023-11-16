@@ -1,35 +1,12 @@
-    <h2 class="title">Browse Catalog</h2>
 <div class="chess-bg">
   <div class="text-center">
+    <h2 class="title">Browse Openings</h2>
     <mat-slide-toggle [checked]="isDynamicSearch" (change)="toggleSearchMode()">
-      <span>{{ isDynamicSearch == true ? "Dynamic" : "Manual" }} Search </span>
+      <span class="ml-1"
+        >{{ isDynamicSearch == true ? "Dynamic" : "Manual" }} Search
+      </span>
     </mat-slide-toggle>
-    <div class="search-bar">
-      <input
-        #searchInput
-        type="text"
-        [(ngModel)]="searchQuery"
-        [placeholder]="
-          isDynamicSearch == true ? 'Search as you type' : 'Search openings'
-        "
-        (keydown.enter)="searchHandler()"
-        (input)="isDynamicSearch && searchHandler()"
-      />
-      <div
-        class="tooltip-container"
-        matTooltip="Press '/' to focus the search field"
-      >
-        <div class="slash-indicator" *ngIf="isDynamicSearch">/</div>
-      </div>
-      <button type="button" (click)="searchHandler()" *ngIf="!isDynamicSearch">
-        Search
-      </button>
-    </div>
   </div>
-
-  <ng-container *ngIf="isLoading; else openingsData">
-    <app-loader></app-loader>
-  </ng-container>
 
   <div
     class="search-bar flex justify-center items-center m-6"
@@ -68,9 +45,6 @@
         fill="none"
         viewBox="0 0 20 20"
       >
-        <div class="opening-image">
-          <img [src]="randomChessPieceImgs[i]" alt="Opening {{ i + 1 }}" />
-        </div>
         <path
           stroke="currentColor"
           stroke-linecap="round"
@@ -82,20 +56,11 @@
     </button>
   </div>
 
-        <div class="opening-details">
-          <h2 class="opening-title">
-            {{ opening.name | slice : 0 : 16 }}
-            {{ opening.name.length > 16 ? "..." : "" }}
-          </h2>
-          <p class="opening-description">
-            {{ opening.description | slice : 0 : 20 }}
-            {{ opening.description.length > 20 ? "..." : "" }}
-          </p>
-          <a
-            mat-stroked-button
-            class="view-details"
-            routerLink="/openings/details/{{ opening.id }}"
-            >Details</a
+  <div class="container mx-auto">
+    <ng-container *ngIf="isLoading; else openingsData">
+      <app-loader></app-loader>
+    </ng-container>
+
     <ng-template #openingsData>
       <div class="openings-grid px-6 mb-10" *ngIf="filteredOpenings">
         <div
@@ -110,10 +75,30 @@
               <fa-icon [icon]="faInfoCircle"></fa-icon>
             </h3>
           </div>
+
+          <div class="opening-image">
+            <img [src]="randomChessPieceImgs[i]" alt="Opening {{ i + 1 }}" />
+          </div>
+
+          <div class="opening-details">
+            <h2 class="opening-title">
+              {{ opening.name | slice : 0 : 16 }}
+              {{ opening.name.length > 16 ? "..." : "" }}
+            </h2>
+            <p class="opening-description">
+              {{ opening.description | slice : 0 : 20 }}
+              {{ opening.description.length > 20 ? "..." : "" }}
+            </p>
+            <a
+              mat-stroked-button
+              class="view-details"
+              routerLink="/openings/details/{{ opening.id }}"
+              >Details</a
+            >
+          </div>
         </div>
       </div>
-    </div>
-  </ng-template>
+    </ng-template>
 
     <div class="no-results-message" *ngIf="showNoResultsMsg">
       <p class="message">
@@ -124,12 +109,13 @@
       </p>
     </div>
 
-  <div class="no-openings-message" *ngIf="showNoOpeningsMsg">
-    <app-no-openings-msg
-      [message]="
-        'No chess openings available at the moment. We\'re constantly updating, so please come back later.'
-      "
-      [imageUrl]="'/assets/images/coming-soon.png'"
-    ></app-no-openings-msg>
+    <div class="no-openings-message" *ngIf="showNoOpeningsMsg">
+      <app-no-openings-msg
+        [message]="
+          'No chess openings available at the moment. We\'re constantly updating, so please come back later.'
+        "
+        [imageUrl]="'/assets/images/coming-soon.png'"
+      ></app-no-openings-msg>
+    </div>
   </div>
 </div>
