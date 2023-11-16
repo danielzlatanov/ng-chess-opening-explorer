@@ -5,7 +5,7 @@
 <ng-template #openingData>
   <div class="opening-details" *ngIf="opening">
     <div class="opening-header">
-      <h2>{{ opening.name }}</h2>
+      <h2 class="break-all">{{ opening.name }}</h2>
     </div>
 
     <div
@@ -22,9 +22,11 @@
           <div class="opening-actions">
             <div
               matTooltip="[ Right-click ] to add circles and [ drag ] to draw arrows as helpful annotations on the board"
-              class="w-fit  bg-white rounded-md"
+              class="w-fit bg-white rounded-md"
             >
-              <h3 class="px-3 m-2">Controls <fa-icon [icon]="faInfoCircle"></fa-icon></h3>
+              <h3 class="px-3 m-2">
+                Controls <fa-icon [icon]="faInfoCircle"></fa-icon>
+              </h3>
             </div>
             <button
               *ngIf="!isOwner && user"
@@ -67,7 +69,7 @@
             <div class="section" *ngIf="opening.ownerEmail">
               <h4 class="section-title">Owned by</h4>
               <div class="section-info">
-                <p class="section-item text-teal-600">
+                <p class="section-item text-teal-600 break-all">
                   {{ opening.ownerEmail.split("@")[0] }}
                 </p>
                 <div class="divider"></div>
@@ -94,7 +96,7 @@
         <div class="section">
           <h4 class="section-title">Description</h4>
           <div class="section-info">
-            <p class="section-item text-teal-600">
+            <p class="section-item text-teal-600 break-all">
               {{ opening.description }}
             </p>
           </div>
