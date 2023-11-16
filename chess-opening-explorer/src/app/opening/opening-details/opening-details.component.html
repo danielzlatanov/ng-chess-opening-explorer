@@ -19,34 +19,38 @@
         <div class="section">
           <div class="section-info">
             <div class="section" *ngIf="opening.ownerEmail">
-              <h4 class="section-title">Owned by:</h4>
+              <h4 class="section-title">Owned by</h4>
               <div class="section-info">
-                <p class="section-item">
+                <p class="section-item text-teal-600">
                   {{ opening.ownerEmail.split("@")[0] }}
                 </p>
+                <div class="divider"></div>
               </div>
-              <div class="divider"></div>
             </div>
           </div>
         </div>
         <div class="section">
-          <h4 class="section-title">Difficulty:</h4>
+          <h4 class="section-title">Difficulty</h4>
           <div class="section-info">
-            <p class="section-item">{{ opening.level }}</p>
+            <p class="section-item text-teal-600">{{ opening.level }}</p>
+            <div class="divider"></div>
           </div>
         </div>
         <div class="section">
-          <div class="divider"></div>
-          <h4 class="section-title">FEN:</h4>
+          <h4 class="section-title">FEN</h4>
           <div class="section-info">
-            <p class="section-item">{{ opening.fen }}</p>
+            <p class="section-item text-teal-600 break-all">
+              {{ opening.fen }}
+            </p>
           </div>
+          <div class="divider"></div>
         </div>
         <div class="section">
-          <div class="divider"></div>
-          <h4 class="section-title">Description:</h4>
+          <h4 class="section-title">Description</h4>
           <div class="section-info">
-            <p class="section-item">{{ opening.description }}</p>
+            <p class="section-item text-teal-600">
+              {{ opening.description }}
+            </p>
           </div>
         </div>
       </div>
