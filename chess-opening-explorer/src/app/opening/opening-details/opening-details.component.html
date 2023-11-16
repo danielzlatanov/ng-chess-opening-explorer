@@ -30,7 +30,10 @@
             </div>
             <button
               *ngIf="!isOwner && user"
-              [ngClass]="{ 'btn-unfav': isFavourite, 'btn-fav': !isFavourite }"
+              [ngClass]="{
+                'btn-unfav': isFavourite,
+                'btn-fav': !isFavourite
+              }"
               (click)="isFavourite ? unfavouriteOpening() : favouriteOpening()"
             >
               {{ isFavourite ? "Unfavourite" : "Favourite" }}
