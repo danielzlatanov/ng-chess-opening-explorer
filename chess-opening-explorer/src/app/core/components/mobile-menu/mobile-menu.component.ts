@@ -2,8 +2,10 @@ import {
   Component,
   EventEmitter,
   HostListener,
+  Input,
   Output,
 } from '@angular/core';
+import { User } from 'firebase/auth';
 import { IconDefinition, faUser } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -13,6 +15,7 @@ import { IconDefinition, faUser } from '@fortawesome/free-solid-svg-icons';
 })
 export class MobileMenuComponent {
   faUser: IconDefinition = faUser;
+  @Input() user!: User | null;
   @Output() isMobileMenuOpenChange = new EventEmitter<boolean>();
 
   @HostListener('document:keyup', ['$event'])

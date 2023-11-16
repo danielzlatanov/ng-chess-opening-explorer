@@ -49,6 +49,7 @@
           openings
         </a>
 
+        <ng-container *ngIf="user">
           <a
             class="w-full"
             mat-raised-button
@@ -72,7 +73,9 @@
             routerLink="/auth/logout"
             >logout
           </a>
+        </ng-container>
 
+        <ng-container *ngIf="!user">
           <a
             class="w-full"
             mat-raised-button
@@ -87,6 +90,7 @@
             routerLink="/auth/register"
             >register
           </a>
+        </ng-container>
       </div>
     </div>
   </div>
