@@ -43,22 +43,18 @@
 }
 
 .search-bar input {
-  width: 400px;
-  font-size: 20px;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
 }
 
 .search-bar button {
-  width: 100px;
-  padding: 10px;
-  font-size: 20px;
-  margin-left: 8px;
+  width: fit-content;
+  padding: 12px;
   background-color: #009688;
   color: #fff;
   border: none;
-  border-radius: 4px;
+  border-radius: 6px;
   cursor: pointer;
 }
 
@@ -122,15 +118,4 @@ mat-slide-toggle span {
   font-size: 20px;
 }
 
-.search-bar {
-  position: relative;
-}
-
-.slash-indicator {
-  position: absolute;
-  top: 50%;
-  right: 8px;
-  transform: translateY(-50%);
-  background-color: #ccc;
-  padding: 5px 10px;
 }

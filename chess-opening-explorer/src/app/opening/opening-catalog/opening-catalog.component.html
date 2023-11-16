@@ -36,10 +36,52 @@
       <div
         class="opening-card"
         *ngFor="let opening of filteredOpenings; let i = index"
+  <div
+    class="search-bar flex justify-center items-center m-6"
+  >
+    <input
+      #searchInput
+      type="text"
+      class="w-96"
+      [(ngModel)]="searchQuery"
+      [placeholder]="
+        isDynamicSearch == true ? 'Search as you type' : 'Search openings'
+      "
+      (keydown.enter)="searchHandler()"
+      (input)="isDynamicSearch && searchHandler()"
+    />
+    <div
+      matTooltip="Press '/' to focus the search field"
+      *ngIf="isDynamicSearch"
+    >
+      <div class="">/</div>
+    </div>
+    <button
+      type="button"
+      class="ml-2"
+      (click)="searchHandler()"
+      *ngIf="!isDynamicSearch"
+    >
+      <svg
+        class="w-3 h-3"
+        aria-hidden="true"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 20 20"
       >
         <div class="opening-image">
           <img [src]="randomChessPieceImgs[i]" alt="Opening {{ i + 1 }}" />
         </div>
+        <path
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
+        />
+      </svg>
+    </button>
+  </div>
 
         <div class="opening-details">
           <h2 class="opening-title">
