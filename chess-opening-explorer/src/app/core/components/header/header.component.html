@@ -31,8 +31,6 @@
           <a mat-raised-button color="accent" routerLink="/openings/create"
             >Create
           </a>
-          <a mat-raised-button color="accent" routerLink="/auth/profile"
-            >Profile
           </a>
           <a mat-raised-button color="accent" routerLink="/auth/logout"
             >Logout
@@ -47,6 +45,9 @@
             >Register
           </a>
         </ng-container>
+            <a mat-raised-button color="accent" routerLink="/auth/profile">
+              {{ user.email!.split("@")[0] | slice : 0 : 8 }}
+              <fa-icon [icon]="faUser"></fa-icon>
       </mat-nav-list>
     </nav>
   </mat-toolbar>
