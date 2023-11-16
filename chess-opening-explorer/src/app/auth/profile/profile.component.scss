@@ -26,7 +26,7 @@
 
 .inner-divider {
   height: 2px;
-  background-color: #ccc;
+  background-color: #9b9b9b;
   width: 50%;
   margin: 0 auto;
   margin-bottom: 5px;
@@ -87,79 +87,13 @@
   opacity: 0.8;
 }
 
-.profile-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px;
-  background: rgb(203, 199, 196);
-  height: 100%;
-}
-
-.top-sections {
-  display: flex;
-  justify-content: center;
-  width: 80%;
-}
-
 .section {
-  flex: 1 1 300px;
   margin: 10px;
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   background-color: rgba(255, 255, 255, 0.5);
   padding-top: 0;
-}
-
-.openings-explored .info ul,
-.favorite-openings .info ul {
-  padding: 0;
-  margin-top: 3px;
-}
-
-.openings-explored,
-.favorite-openings {
-  display: flex;
-  flex-wrap: wrap;
-  overflow: auto;
-  max-height: 280px;
-}
-
-.openings-explored .info,
-.favorite-openings .info {
-  flex: 0 0 33%;
-  max-width: 33%;
-}
-
-.openings-explored .info li,
-.favorite-openings .info li {
-  color: #333;
-  margin-left: 8px;
-  width: 90px;
-  height: 70px;
-  padding: 5px 10px;
-  border-radius: 5px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.openings-explored .info li {
-  background-color: #00bcd4;
-}
-.favorite-openings .info li {
-  background-color: #00b894;
-}
-
-.my-openings {
-  width: 80%;
-}
-
-.openings-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  max-height: 280px;
-  overflow-y: auto;
 }
 
 .personal-info {
