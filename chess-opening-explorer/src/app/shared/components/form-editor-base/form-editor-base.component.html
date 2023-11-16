@@ -13,9 +13,16 @@
       <form #editorBaseForm="ngForm" (ngSubmit)="handleSubmit(editorBaseForm)">
         <div class="form-group">
           <label for="name" *ngIf="mode == 'create'"
+          <label
+            for="name"
+            *ngIf="mode == 'create'"
+            class="block text-gray-700 mb-2"
             >Opening name<span class="required-star">*</span></label
           >
-          <label for="name" *ngIf="mode == 'edit'"
+          <label
+            for="name"
+            *ngIf="mode == 'edit'"
+            class="block text-gray-700 mb-2"
             >New opening name<span class="required-star">*</span></label
           >
           <input
@@ -41,16 +48,17 @@
         </div>
 
         <div class="form-group">
-          <label for="description" *ngIf="mode == 'create'"
-            >Describe the strategy behind your opening<span
-              class="required-star"
-              >*</span
-            >
+          <label
+            for="description"
+            *ngIf="mode == 'create'"
+            class="block text-gray-700 mb-2"
+            >Strategy description<span class="required-star">*</span>
           </label>
-          <label for="description" *ngIf="mode == 'edit'"
-            >Update the opening's description<span class="required-star"
-              >*</span
-            >
+          <label
+            for="description"
+            *ngIf="mode == 'edit'"
+            class="block text-gray-700 mb-2"
+            >Update description<span class="required-star">*</span>
           </label>
           <textarea
             id="description"
@@ -77,6 +85,7 @@
 
         <div class="form-group">
           <label for="fen"
+          <label for="fen" class="block text-gray-700 mb-2"
             >Forsyth-Edwards notation (FEN)<span class="required-star"
               >*</span
             ></label
@@ -124,19 +133,18 @@
 
           <ng-container
             *ngIf="difficultyInput.touched || difficultyInput.dirty"
+          <button
+            type="submit"
+            class="bg-blue-500 h-auto hover:bg-blue-600 text-white cursor-pointer p-3 text-lg border-none rounded-md mx-6"
           >
             <p class="error" *ngIf="difficultyInput.errors?.['required']">
               Difficulty level is required
             </p>
           </ng-container>
+            <span *ngIf="mode == 'create'">Create</span>
+            <span *ngIf="mode == 'edit'">Update</span>
+          </button>
         </div>
-
-        <button type="submit" class="submit-button" *ngIf="mode == 'create'">
-          Create
-        </button>
-        <button type="submit" class="submit-button" *ngIf="mode == 'edit'">
-          Update
-        </button>
       </form>
 
       <div class="chess-board-container" *ngIf="fenValue || mode == 'create'">
