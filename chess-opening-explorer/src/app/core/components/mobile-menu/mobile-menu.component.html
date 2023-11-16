@@ -6,6 +6,7 @@
   >
     <div
       class="flex items-center justify-between cursor-pointer mt-2"
+      (click)="closeMobileMenu()"
     >
       <a routerLink="/">
         <img
@@ -31,7 +32,7 @@
       </svg>
     </div>
     <div class="pt-3 pb-6 flow-root">
-      <div class="space-y-3">
+      <div class="space-y-3" (click)="closeMobileMenu()">
         <a class="w-full" mat-raised-button color="accent" routerLink="/">
           home
         </a>
