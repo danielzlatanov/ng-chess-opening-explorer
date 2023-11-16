@@ -1,55 +1,60 @@
 <body>
-  <div class="background">
-    <div class="shape"></div>
-    <div class="shape"></div>
-  </div>
-  <form #loginForm="ngForm" (ngSubmit)="loginHandler(loginForm)">
-    <h3>Login Form</h3>
+  <div class="relative">
+    <div class="circle-container absolute top-0 left-0 right-0 bottom-0">
+      <div class="absolute w-52 h-52 rounded-full top-left"></div>
+      <div class="absolute w-52 h-52 rounded-full bot-right"></div>
+    </div>
+    <form
+      #loginForm="ngForm"
+      (ngSubmit)="loginHandler(loginForm)"
+    >
+      <h3>Login</h3>
 
-    <label for="email">Email</label>
-    <input
-      type="email"
-      placeholder="Email address"
-      id="email"
-      name="email"
-      #emailInput="ngModel"
-      ngModel
-      required
-      email
-    />
+      <label for="email">Email</label>
+      <input
+        type="email"
+        placeholder="Email address"
+        id="email"
+        name="email"
+        #emailInput="ngModel"
+        ngModel
+        required
+        email
+      />
 
-    <ng-container *ngIf="emailInput.touched || emailInput.dirty">
-      <p class="error" *ngIf="emailInput.errors?.['required']">
-        Email is required
-      </p>
-      <p class="error" *ngIf="emailInput.errors?.['email']">
-        Please provide a valid email address
-      </p>
-    </ng-container>
+      <ng-container *ngIf="emailInput.touched || emailInput.dirty">
+        <p class="error" *ngIf="emailInput.errors?.['required']">
+          Email is required
+        </p>
+        <p class="error" *ngIf="emailInput.errors?.['email']">
+          Please provide a valid email address
+        </p>
+      </ng-container>
 
-    <label for="password">Password</label>
-    <input
-      type="password"
-      placeholder="Password"
-      id="password"
-      name="password"
-      #passInput="ngModel"
-      ngModel
-      required
-    />
+      <label for="password">Password</label>
+      <input
+        type="password"
+        placeholder="Password"
+        id="password"
+        name="password"
+        #passInput="ngModel"
+        ngModel
+        required
+      />
 
-    <ng-container *ngIf="passInput.touched || passInput.dirty">
-      <p class="error" *ngIf="passInput.errors?.['required']">
-        Password is required
-      </p>
-    </ng-container>
+      <ng-container *ngIf="passInput.touched || passInput.dirty">
+        <p class="error" *ngIf="passInput.errors?.['required']">
+          Password is required
+        </p>
+      </ng-container>
 
-    <button>Sign in</button>
-  </form>
       <p id="registerMsg">
         Don't have an account?
         <a class="no-underline hover:underline" routerLink="/auth/register"
           >Register now.</a
         >
       </p>
+      <button>Sign in</button>
+    </form>
+  </div>
 </body>
