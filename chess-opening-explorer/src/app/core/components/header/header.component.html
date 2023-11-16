@@ -22,32 +22,34 @@
 
     <nav mat-tab-nav-bar>
       <mat-nav-list class="nav-links">
-        <a mat-raised-button color="accent" routerLink="/"> Home </a>
-        <a mat-raised-button color="accent" routerLink="/openings/catalog">
-          Openings
-        </a>
+        <div class="hidden lg:flex gap-2 justify-center items-center">
+          <a mat-raised-button color="accent" routerLink="/"> home </a>
+          <a mat-raised-button color="accent" routerLink="/openings/catalog">
+            openings
+          </a>
 
-        <ng-container *ngIf="user">
-          <a mat-raised-button color="accent" routerLink="/openings/create"
-            >Create
-          </a>
-          </a>
-          <a mat-raised-button color="accent" routerLink="/auth/logout"
-            >Logout
-          </a>
-        </ng-container>
-
-        <ng-container *ngIf="!user">
-          <a mat-raised-button color="accent" routerLink="/auth/login"
-            >Login
-          </a>
-          <a mat-raised-button color="accent" routerLink="/auth/register"
-            >Register
-          </a>
-        </ng-container>
+          <ng-container *ngIf="user">
+            <a mat-raised-button color="accent" routerLink="/openings/create"
+              >create
+            </a>
             <a mat-raised-button color="accent" routerLink="/auth/profile">
               {{ user.email!.split("@")[0] | slice : 0 : 8 }}
               <fa-icon [icon]="faUser"></fa-icon>
+            </a>
+            <a mat-raised-button color="accent" routerLink="/auth/logout"
+              >logout
+            </a>
+          </ng-container>
+
+          <ng-container *ngIf="!user">
+            <a mat-raised-button color="accent" routerLink="/auth/login"
+              >login
+            </a>
+            <a mat-raised-button color="accent" routerLink="/auth/register"
+              >register
+            </a>
+          </ng-container>
+        </div>
       </mat-nav-list>
     </nav>
   </mat-toolbar>
