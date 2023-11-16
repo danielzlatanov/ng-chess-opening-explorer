@@ -17,7 +17,7 @@ export class NotificationService {
 
   showError(message: string): void {
     this.snackBar.openFromComponent(ErrorDialogComponent, {
-      duration: 5000,
+      duration: 3000,
       verticalPosition: 'top',
       data: { message },
     });
