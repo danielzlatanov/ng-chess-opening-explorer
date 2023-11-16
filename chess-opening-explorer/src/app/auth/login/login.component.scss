@@ -9,11 +9,13 @@ body {
 }
 
 .top-left {
+  background: linear-gradient(to right, #ff512f, #cddc39);
   left: -70px;
   top: -70px;
 }
 
 .bot-right {
+  background: linear-gradient(#009688, #23a2f6);
   right: -70px;
   bottom: -70px;
 }
