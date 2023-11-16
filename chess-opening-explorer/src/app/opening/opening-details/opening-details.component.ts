@@ -32,7 +32,8 @@ export class OpeningDetailsComponent implements OnInit, OnDestroy {
   opening: IOpening | null = null;
   user: User | null = null;
   isOwner: boolean = false;
-  isFavourite: boolean = true;
+  isFavStatusSet: boolean = false;
+  isFavourite: boolean = false;
   isLoading: boolean = true;
   authServiceSub!: Subscription;
 
@@ -75,6 +76,7 @@ export class OpeningDetailsComponent implements OnInit, OnDestroy {
             .checkFavouriteStatus(this.openingId, this.user.email)
             .then((isFavourite) => {
               this.isFavourite = isFavourite;
+              this.isFavStatusSet = true;
             })
             .catch((err) => {
               console.error('Error checking fav status: ', err.message);

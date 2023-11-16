@@ -1,4 +1,4 @@
-<ng-container *ngIf="isLoading; else openingData">
+<ng-container *ngIf="isLoading || !isFavStatusSet; else openingData">
   <app-loader></app-loader>
 </ng-container>
 
@@ -29,7 +29,7 @@
               </h3>
             </div>
             <button
-              *ngIf="!isOwner && user"
+              *ngIf="!isOwner && user && isFavStatusSet"
               [ngClass]="{
                 'btn-unfav': isFavourite,
                 'btn-fav': !isFavourite
