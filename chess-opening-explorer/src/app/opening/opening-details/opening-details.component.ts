@@ -5,6 +5,7 @@ import {
   faArrowRight,
   faHeart,
   faHeartBroken,
+  faInfoCircle,
 } from '@fortawesome/free-solid-svg-icons';
 import { OpeningService } from '../opening.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -26,6 +27,7 @@ export class OpeningDetailsComponent implements OnInit, OnDestroy {
   faArrowRight: IconDefinition = faArrowRight;
   faHeart: IconDefinition = faHeart;
   faHeartBroken: IconDefinition = faHeartBroken;
+  faInfoCircle: IconDefinition = faInfoCircle;
   openingId!: string;
   opening: IOpening | null = null;
   user: User | null = null;
