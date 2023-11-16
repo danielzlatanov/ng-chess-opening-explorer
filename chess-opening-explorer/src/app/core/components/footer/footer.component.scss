@@ -1,6 +1,7 @@
 .mat-toolbar.footer-toolbar,
 .footer-content {
-  height: 64px;
+  height: fit-content;
+  padding: 6px;
   display: flex;
   justify-content: center;
   align-items: center;
