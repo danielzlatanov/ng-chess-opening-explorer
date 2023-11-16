@@ -37,6 +37,14 @@
       </div>
 
       <div class="section">
+              <h4 class="opening-title" title="{{ opening.name }}">
+                {{ opening.name | slice : 0 : 15 }}
+                {{ opening.name.length > 15 ? "..." : "" }}
+              </h4>
+              <p class="opening-description" title="{{ opening.description }}">
+                {{ opening.description | slice : 0 : 15 }}
+                {{ opening.description.length > 15 ? "..." : "" }}
+              </p>
         <h2 class="section-title">
           Explored Openings <fa-icon [icon]="faChessKnight"></fa-icon>
         </h2>
