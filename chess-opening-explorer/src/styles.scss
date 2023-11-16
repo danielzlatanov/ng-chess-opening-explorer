@@ -28,3 +28,12 @@ body {
   margin: 0;
   font-family: "Poppins", sans-serif;
 }
+
+.chess-bg {
+  background-image: url("/assets/images/bg1.jpg");
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
