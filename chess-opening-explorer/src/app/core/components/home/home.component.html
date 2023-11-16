@@ -1,6 +1,8 @@
 <div class="home-container chess-bg">
   <h1>Welcome to Chess Opening Explorer</h1>
-  <p>Explore and learn various chess openings</p>
+  <p class="hidden md:block m-0" *ngIf="!showNoOpeningsMsg">
+    Explore and learn various chess openings
+  </p>
 
   <h2 *ngIf="lastThreeOpenings && lastThreeOpenings.length > 0">
     Featured Openings
