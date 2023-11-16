@@ -1,11 +1,16 @@
 <div id="not-found">
-  <div id="error-text">
+  <div id="error-text" class="px-4">
     <img
       src="https://cdn.rawgit.com/ahmedhosna95/upload/1731955f/sad404.svg"
       alt="404 img"
     />
-    <span>404</span>
-    <p class="msg">The requested page could not be found</p>
-    <a routerLink="/">Go Back Home</a>
+    <span class="text-center">404</span>
+    <p class="msg text-center">The requested page could not be found.</p>
+    <button
+      class="p-3 rounded-md bg-blue-600 hover:bg-blue-700 text-white text-lg border-none cursor-pointer"
+      routerLink="/"
+    >
+      Go Back
+    </button>
   </div>
 </div>

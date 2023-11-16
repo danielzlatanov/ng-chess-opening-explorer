@@ -1,34 +1,24 @@
-#not-found {
-  background: rgb(203 199 196);
-  height: 100%;
-}
-
 #not-found #error-text {
-  font-size: 25px;
+  background: rgb(203 199 196);
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 
+img {
+  height: 260px;
+}
+
 .msg {
   margin: 0;
+  font-size: 16px;
+  color: #555;
   margin-bottom: 30px;
 }
 
 #not-found #error-text span {
   font-size: 3.3em;
   font-weight: 900;
-}
-
-#not-found a {
-  text-decoration: none;
-  color: #fff;
-  background-color: #007bff;
-  padding: 10px 20px;
-  border-radius: 5px;
-}
-
-#not-found a:hover {
-  background-color: #0056b3;
 }
