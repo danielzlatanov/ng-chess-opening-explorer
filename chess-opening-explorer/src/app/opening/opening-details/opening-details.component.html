@@ -8,14 +8,60 @@
       <h2>{{ opening.name }}</h2>
     </div>
 
-    <div class="content-container">
-      <div class="left-section">
+    <div
+      class="content-container lg:mt-8 lg:mx-10 flex flex-col justify-center items-center mb-20"
+    >
+      <div class="lg:flex lg:flex-row w-10/12 justify-center max-w-screen-lg">
+        <div class="chessboard-section flex justify-center">
+          <div class="chessboard-container">
+            <app-chessboard #board [fen]="opening.fen"></app-chessboard>
+          </div>
+        </div>
+
+        <div class="controls-section flex justify-center">
+          <div class="opening-actions">
             <div
               matTooltip="[ Right-click ] to add circles and [ drag ] to draw arrows as helpful annotations on the board"
               class="w-fit  bg-white rounded-md"
             >
               <h3 class="px-3 m-2">Controls <fa-icon [icon]="faInfoCircle"></fa-icon></h3>
             </div>
+            <button
+              *ngIf="!isOwner && user"
+              [ngClass]="{ 'btn-unfav': isFavourite, 'btn-fav': !isFavourite }"
+              (click)="isFavourite ? unfavouriteOpening() : favouriteOpening()"
+            >
+              {{ isFavourite ? "Unfavourite" : "Favourite" }}
+              <fa-icon [icon]="isFavourite ? faHeartBroken : faHeart"></fa-icon>
+            </button>
+            <button class="btn-reset" (click)="board.resetBoardHandler()">
+              Reset Board
+            </button>
+            <button class="btn-undo" (click)="board.undoMoveHandler()">
+              Undo Move
+            </button>
+            <button class="btn-reverse" (click)="board.flipBoardHandler()">
+              Flip Board
+            </button>
+
+            <ng-container *ngIf="isOwner">
+              <div class="divider"></div>
+              <h3>Owner Actions</h3>
+              <button
+                class="btn-edit"
+                routerLink="/openings/edit/{{ opening.id }}"
+              >
+                Edit
+              </button>
+              <button class="btn-del" (click)="handleDeleteDialog()">
+                Delete
+              </button>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+
+      <div class="desc-section w-9/12 max-w-screen-lg">
         <div class="section">
           <div class="section-info">
             <div class="section" *ngIf="opening.ownerEmail">
@@ -52,51 +98,6 @@
               {{ opening.description }}
             </p>
           </div>
-        </div>
-      </div>
-      <div class="middle-section">
-        <div class="chessboard-container">
-          <app-chessboard
-            [size]="600"
-            #board
-            [fen]="opening.fen"
-          ></app-chessboard>
-        </div>
-      </div>
-
-      <div class="right-section">
-        <div class="opening-actions">
-          <button
-            *ngIf="!isOwner && user"
-            [ngClass]="{ 'btn-unfav': isFavourite, 'btn-fav': !isFavourite }"
-            (click)="isFavourite ? unfavouriteOpening() : favouriteOpening()"
-          >
-            {{ isFavourite ? "Unfavourite" : "Favourite" }}
-            <fa-icon [icon]="isFavourite ? faHeartBroken : faHeart"></fa-icon>
-          </button>
-          <button class="btn-reset" (click)="board.resetBoardHandler()">
-            Reset Board
-          </button>
-          <button class="btn-undo" (click)="board.undoMoveHandler()">
-            Undo Move
-          </button>
-          <button class="btn-reverse" (click)="board.flipBoardHandler()">
-            Flip Board
-          </button>
-
-          <ng-container *ngIf="isOwner">
-            <div class="divider"></div>
-            <h3>Owner Actions:</h3>
-            <button
-              class="btn-edit"
-              routerLink="/openings/edit/{{ opening.id }}"
-            >
-              Edit
-            </button>
-            <button class="btn-del" (click)="handleDeleteDialog()">
-              Delete
-            </button>
-          </ng-container>
         </div>
       </div>
     </div>
