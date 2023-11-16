@@ -1,9 +1,11 @@
 body {
   background: rgb(203 199 196);
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  overflow: hidden;
 }
 
 .background {
