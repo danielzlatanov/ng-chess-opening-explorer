@@ -6,7 +6,16 @@ import {
   Output,
 } from '@angular/core';
 import { User } from 'firebase/auth';
-import { IconDefinition, faUser } from '@fortawesome/free-solid-svg-icons';
+import {
+  IconDefinition,
+  faUser,
+  faHome,
+  faBook,
+  faPlus,
+  faSignOutAlt,
+  faSignInAlt,
+  faUserPlus,
+} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-mobile-menu',
@@ -15,6 +24,12 @@ import { IconDefinition, faUser } from '@fortawesome/free-solid-svg-icons';
 })
 export class MobileMenuComponent {
   faUser: IconDefinition = faUser;
+  faHome: IconDefinition = faHome;
+  faBook: IconDefinition = faBook;
+  faPlus: IconDefinition = faPlus;
+  faSignOutAlt: IconDefinition = faSignOutAlt;
+  faSignInAlt: IconDefinition = faSignInAlt;
+  faUserPlus: IconDefinition = faUserPlus;
   @Input() user!: User | null;
   @Output() isMobileMenuOpenChange = new EventEmitter<boolean>();
 

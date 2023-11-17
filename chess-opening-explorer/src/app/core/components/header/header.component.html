@@ -23,30 +23,38 @@
     <nav mat-tab-nav-bar>
       <mat-nav-list class="nav-links">
         <div class="hidden lg:flex gap-2 justify-center items-center">
-          <a mat-raised-button color="accent" routerLink="/"> home </a>
+          <a mat-raised-button color="accent" routerLink="/">
+            home
+            <fa-icon [icon]="faHome"></fa-icon>
+          </a>
           <a mat-raised-button color="accent" routerLink="/openings/catalog">
             openings
+            <fa-icon [icon]="faBook"></fa-icon>
           </a>
 
           <ng-container *ngIf="user">
-            <a mat-raised-button color="accent" routerLink="/openings/create"
-              >create
+            <a mat-raised-button color="accent" routerLink="/openings/create">
+              create
+              <fa-icon [icon]="faPlus"></fa-icon>
             </a>
             <a mat-raised-button color="accent" routerLink="/auth/profile">
               {{ user.email!.split("@")[0] | slice : 0 : 8 }}
               <fa-icon [icon]="faUser"></fa-icon>
             </a>
-            <a mat-raised-button color="accent" routerLink="/auth/logout"
-              >logout
+            <a mat-raised-button color="accent" routerLink="/auth/logout">
+              logout
+              <fa-icon [icon]="faSignOutAlt"></fa-icon>
             </a>
           </ng-container>
 
           <ng-container *ngIf="!user">
-            <a mat-raised-button color="accent" routerLink="/auth/login"
-              >login
+            <a mat-raised-button color="accent" routerLink="/auth/login">
+              login
+              <fa-icon [icon]="faSignInAlt"></fa-icon>
             </a>
-            <a mat-raised-button color="accent" routerLink="/auth/register"
-              >register
+            <a mat-raised-button color="accent" routerLink="/auth/register">
+              register
+              <fa-icon [icon]="faUserPlus"></fa-icon>
             </a>
           </ng-container>
         </div>

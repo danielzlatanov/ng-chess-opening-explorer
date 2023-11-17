@@ -39,6 +39,7 @@
       <div class="space-y-3" (click)="closeMobileMenu()">
         <a class="w-full" mat-raised-button color="accent" routerLink="/">
           home
+          <fa-icon [icon]="faHome"></fa-icon>
         </a>
         <a
           class="w-full"
@@ -47,6 +48,7 @@
           routerLink="/openings/catalog"
         >
           openings
+          <fa-icon [icon]="faBook"></fa-icon>
         </a>
 
         <ng-container *ngIf="user">
@@ -55,7 +57,9 @@
             mat-raised-button
             color="accent"
             routerLink="/openings/create"
-            >create
+          >
+            create
+            <fa-icon [icon]="faPlus"></fa-icon>
           </a>
           <a
             class="w-full"
@@ -71,7 +75,9 @@
             mat-raised-button
             color="accent"
             routerLink="/auth/logout"
-            >logout
+          >
+            logout
+            <fa-icon [icon]="faSignOutAlt"></fa-icon>
           </a>
         </ng-container>
 
@@ -81,14 +87,18 @@
             mat-raised-button
             color="accent"
             routerLink="/auth/login"
-            >login
+          >
+            login
+            <fa-icon [icon]="faSignInAlt"></fa-icon>
           </a>
           <a
             class="w-full"
             mat-raised-button
             color="accent"
             routerLink="/auth/register"
-            >register
+          >
+            register
+            <fa-icon [icon]="faUserPlus"></fa-icon>
           </a>
         </ng-container>
       </div>
