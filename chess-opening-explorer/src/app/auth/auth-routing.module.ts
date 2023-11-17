@@ -12,7 +12,7 @@ const routes: Routes = [
     component: LoginComponent,
     canActivate: [AuthActivate],
     data: {
-      title: 'Login Form',
+      title: 'Login',
       loginRequired: false,
     },
   },
@@ -21,7 +21,7 @@ const routes: Routes = [
     component: RegisterComponent,
     canActivate: [AuthActivate],
     data: {
-      title: 'Register Form',
+      title: 'Register',
       loginRequired: false,
     },
   },
@@ -39,7 +39,7 @@ const routes: Routes = [
     component: ProfileComponent,
     canActivate: [AuthActivate],
     data: {
-      title: 'Your Profile',
+      title: 'Profile',
       loginRequired: true,
     },
   },

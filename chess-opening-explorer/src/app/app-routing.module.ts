@@ -10,7 +10,7 @@ const routes: Routes = [
     pathMatch: 'full',
     component: HomeComponent,
     data: {
-      title: 'Home Page',
+      title: 'Home',
     },
   },
   {

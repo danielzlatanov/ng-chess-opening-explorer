@@ -17,7 +17,7 @@ export class AppComponent {
         filter((x) => Boolean(x))
       )
       .subscribe((newTitle) => {
-        this.pageTitle.setTitle(newTitle);
+        this.pageTitle.setTitle(newTitle + ' | Chess Opening Explorer');
       });
   }
 }

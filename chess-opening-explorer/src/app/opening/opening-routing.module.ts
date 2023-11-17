@@ -12,14 +12,14 @@ const routes: Routes = [
     path: 'catalog',
     component: OpeningCatalogComponent,
     data: {
-      title: 'Browse Openings',
+      title: 'Browse',
     },
   },
   {
     path: 'catalog/search',
     component: OpeningCatalogComponent,
     data: {
-      title: 'Search Query',
+      title: 'Search',
     },
   },
   {
@@ -27,7 +27,7 @@ const routes: Routes = [
     component: OpeningCreateComponent,
     canActivate: [AuthActivate],
     data: {
-      title: 'Create Opening',
+      title: 'Create',
       loginRequired: true,
     },
   },
@@ -36,7 +36,7 @@ const routes: Routes = [
     component: OpeningEditComponent,
     canActivate: [AuthActivate],
     data: {
-      title: 'Update Opening',
+      title: 'Update',
       loginRequired: true,
     },
   },
@@ -45,7 +45,7 @@ const routes: Routes = [
     component: OpeningDeleteComponent,
     canActivate: [AuthActivate],
     data: {
-      title: 'Delete Opening',
+      title: 'Deleting Your Opening',
       loginRequired: true,
     },
   },
@@ -53,7 +53,7 @@ const routes: Routes = [
     path: 'details/:id',
     component: OpeningDetailsComponent,
     data: {
-      title: 'Opening Explorer',
+      title: 'Details',
     },
   },
 ];
