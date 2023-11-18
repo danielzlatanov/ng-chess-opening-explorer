@@ -1,8 +1,32 @@
 <div class="home-container chess-bg">
-  <h1>Welcome to Chess Opening Explorer</h1>
-  <p class="hidden md:block m-0" *ngIf="!showNoOpeningsMsg">
-    Explore and learn various chess openings
-  </p>
+  <div class="flex flex-wrap mx-auto">
+    <div class="w-full lg:w-1/2 flex items-center justify-center">
+      <div class="bg-custom-gray rounded-full shadow-xl p-6 lg:mr-2">
+        <div class="text-center">
+          <h1>Opening Explorer</h1>
+          <p>Organize your chess knowledge effortlessly</p>
+          <p>Browse and learn various chess openings</p>
+
+          <div class="mt-6 flex items-center justify-center">
+            <a
+              routerLink="/openings/catalog"
+              class="rounded-full no-underline bg-custom-yellow text-black px-4 py-3 font-semibold shadow-lg transform hover:scale-105 transition-transform duration-100"
+            >
+              Explore
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="w-full lg:w-1/2 flex items-center justify-center mt-5 lg:mt-0">
+      <img
+        src="/assets/images/chess-hero.jpg"
+        alt=""
+        class="w-full h-auto md:w-auto md:max-h-72 rounded-full"
+      />
+    </div>
+  </div>
 
   <h2 *ngIf="lastThreeOpenings && lastThreeOpenings.length > 0">
     Featured Openings
@@ -28,7 +52,7 @@
           {{ opening.name.length > 16 ? "..." : "" }}
         </h3>
         <p>
-          Difficulty: <strong>{{ opening.level }}</strong>
+          Difficulty | <strong>{{ opening.level }}</strong>
         </p>
         <a routerLink="/openings/details/{{ opening.id }}">Learn More</a>
       </div>
