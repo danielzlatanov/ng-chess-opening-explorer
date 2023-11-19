@@ -5,16 +5,15 @@
   ></div>
 
   <div
-    id="mobile-menu-content"
     class="absolute inset-y-0 top-14 right-0 custom-z-1000 w-44 h-fit overflow-hidden px-6 shadow-md bg-gray-200"
   >
     <div
-      class="flex items-center justify-between cursor-pointer mt-2"
+      class="flex items-center justify-between cursor-pointer"
       (click)="closeMobileMenu()"
     >
       <a routerLink="/">
         <img
-          class="w-12 h-auto mt-2.5"
+          class="w-12 h-12 mt-2.5"
           src="/assets/images/coe-logos/coe-logo_black_mobile.png"
           alt="coe-logo-menu"
         />
@@ -35,7 +34,7 @@
         />
       </svg>
     </div>
-    <div class="pt-3 pb-6 flow-root">
+    <div class="pb-6 flow-root">
       <div class="space-y-3" (click)="closeMobileMenu()">
         <a class="w-full" mat-raised-button color="accent" routerLink="/">
           home
